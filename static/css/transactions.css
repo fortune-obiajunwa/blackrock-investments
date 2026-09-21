@@ -1,0 +1,1088 @@
+
+/* =========================================
+   BLACKROCK INVESTMENT
+   TRANSACTIONS PAGE
+========================================= */
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #080808;
+    color: #ffffff;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================
+   DASHBOARD LAYOUT
+========================================= */
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    width: 255px;
+    min-height: 100vh;
+
+    background: #0d0d0d;
+
+    border-right: 1px solid #222;
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    z-index: 100;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.sidebar-logo {
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 25px;
+
+    border-bottom: 1px solid #222;
+}
+
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f5c400;
+
+    color: #000;
+
+    border-radius: 10px;
+
+    font-size: 19px;
+}
+
+
+.sidebar-logo h2 {
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+
+.sidebar-logo span {
+    display: block;
+
+    font-size: 9px;
+
+    color: #f5c400;
+
+    letter-spacing: 2px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.sidebar-nav {
+    padding: 25px 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 13px 15px;
+
+    color: #8e8e8e;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    transition: 0.25s ease;
+}
+
+
+.sidebar-nav a i {
+    width: 20px;
+
+    text-align: center;
+}
+
+
+.sidebar-nav a:hover {
+    background: #181818;
+
+    color: #ffffff;
+}
+
+
+.sidebar-nav a.active {
+    background: rgba(245, 196, 0, 0.12);
+
+    color: #f5c400;
+}
+
+
+/* =========================================
+   SIDEBAR BOTTOM
+========================================= */
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    padding: 20px 15px;
+
+    border-top: 1px solid #222;
+}
+
+
+.logout-link {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 13px 15px;
+
+    color: #888;
+
+    font-size: 14px;
+
+    border-radius: 8px;
+
+    transition: 0.25s;
+}
+
+
+.logout-link:hover {
+    background: #181818;
+
+    color: #ff5c5c;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+    margin-left: 255px;
+
+    width: calc(100% - 255px);
+
+    padding: 0 35px 50px;
+}
+
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar {
+    height: 90px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid #222;
+}
+
+
+.topbar-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.topbar h1 {
+    font-size: 25px;
+
+    margin-bottom: 5px;
+}
+
+
+.topbar p {
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+.topbar-right {
+    display: flex;
+
+    align-items: center;
+}
+
+
+.user-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #181818;
+
+    border: 1px solid #2b2b2b;
+
+    border-radius: 50%;
+
+    color: #f5c400;
+}
+
+
+.user-profile strong {
+    display: block;
+
+    font-size: 13px;
+}
+
+
+.user-profile span {
+    display: block;
+
+    color: #777;
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+.mobile-menu {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid #292929;
+
+    background: #121212;
+
+    color: #fff;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   DEMO NOTICE
+========================================= */
+
+.demo-notice {
+    margin-top: 25px;
+
+    padding: 17px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background: rgba(245, 196, 0, 0.07);
+
+    border: 1px solid rgba(245, 196, 0, 0.25);
+
+    border-radius: 10px;
+}
+
+
+.notice-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: rgba(245, 196, 0, 0.13);
+
+    color: #f5c400;
+}
+
+
+.demo-notice strong {
+    font-size: 13px;
+
+    color: #f5c400;
+}
+
+
+.demo-notice p {
+    color: #8b8b8b;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   PAGE HEADING
+========================================= */
+
+.page-heading {
+    margin-top: 30px;
+
+    margin-bottom: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.page-heading h2 {
+    font-size: 18px;
+}
+
+
+.page-heading p {
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+
+.transaction-count {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 13px;
+
+    background: #111;
+
+    border: 1px solid #242424;
+
+    border-radius: 7px;
+
+    color: #888;
+
+    font-size: 11px;
+}
+
+
+.transaction-count i {
+    color: #f5c400;
+}
+
+
+/* =========================================
+   TRANSACTIONS CARD
+========================================= */
+
+.transactions-card {
+    background: #101010;
+
+    border: 1px solid #222;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   TABLE HEADER
+========================================= */
+
+.transaction-header {
+    display: grid;
+
+    grid-template-columns:
+        1.2fr
+        1.6fr
+        1fr
+        1fr
+        1.2fr;
+
+    gap: 15px;
+
+    padding: 15px 20px;
+
+    background: #141414;
+
+    border-bottom: 1px solid #222;
+
+    color: #666;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+}
+
+
+/* =========================================
+   TRANSACTION ROW
+========================================= */
+
+.transaction-row {
+    display: grid;
+
+    grid-template-columns:
+        1.2fr
+        1.6fr
+        1fr
+        1fr
+        1.2fr;
+
+    gap: 15px;
+
+    align-items: center;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #1f1f1f;
+
+    transition: 0.25s ease;
+}
+
+
+.transaction-row:last-child {
+    border-bottom: none;
+}
+
+
+.transaction-row:hover {
+    background: #131313;
+}
+
+
+/* =========================================
+   TRANSACTION TYPE
+========================================= */
+
+.transaction-type {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+.transaction-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    transition: 0.25s ease;
+}
+
+
+/* =========================================
+   DEPOSIT
+========================================= */
+
+.transaction-icon.deposit {
+    background: rgba(245, 196, 0, 0.1);
+
+    color: #f5c400;
+}
+
+
+/* =========================================
+   WITHDRAWAL
+========================================= */
+
+.transaction-icon.withdraw {
+    background: rgba(255, 104, 104, 0.08);
+
+    color: #ff6868;
+}
+
+
+/* =========================================
+   INVESTMENT
+========================================= */
+
+.transaction-icon.investment {
+    background: rgba(245, 196, 0, 0.08);
+
+    color: #f5c400;
+}
+
+
+/* =========================================
+   INVESTMENT RETURN
+========================================= */
+
+.transaction-icon.return {
+    background: rgba(73, 201, 139, 0.1);
+
+    color: #49c98b;
+}
+
+
+/* =========================================
+   TRANSACTION ROW ACCENTS
+========================================= */
+
+.transaction-row.transaction-deposit {
+    border-left: 2px solid rgba(245, 196, 0, 0.35);
+}
+
+
+.transaction-row.transaction-investment {
+    border-left: 2px solid rgba(245, 196, 0, 0.18);
+}
+
+
+.transaction-row.transaction-return {
+    border-left: 2px solid rgba(73, 201, 139, 0.35);
+}
+
+
+.transaction-row.transaction-withdrawal {
+    border-left: 2px solid rgba(255, 104, 104, 0.25);
+}
+
+
+/* =========================================
+   TYPE TEXT
+========================================= */
+
+.transaction-type strong {
+    display: block;
+
+    font-size: 12px;
+
+    margin-bottom: 4px;
+}
+
+
+.transaction-type span {
+    display: block;
+
+    color: #666;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.transaction-description {
+    color: #888;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   AMOUNT
+========================================= */
+
+.transaction-amount {
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.transaction-amount.positive {
+    color: #49c98b;
+}
+
+
+.transaction-amount.negative {
+    color: #ff6868;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 6px 9px;
+
+    background: rgba(73, 201, 139, 0.08);
+
+    border: 1px solid rgba(73, 201, 139, 0.15);
+
+    border-radius: 6px;
+
+    color: #49c98b;
+
+    font-size: 9px;
+}
+
+
+.status-badge i {
+    font-size: 7px;
+}
+
+
+/* =========================================
+   STATUS VARIANTS
+========================================= */
+
+.status-badge.status-completed {
+    background: rgba(73, 201, 139, 0.08);
+
+    border-color: rgba(73, 201, 139, 0.15);
+
+    color: #49c98b;
+}
+
+
+.status-badge.status-pending {
+    background: rgba(245, 196, 0, 0.08);
+
+    border-color: rgba(245, 196, 0, 0.18);
+
+    color: #f5c400;
+}
+
+
+.status-badge.status-failed {
+    background: rgba(255, 104, 104, 0.08);
+
+    border-color: rgba(255, 104, 104, 0.18);
+
+    color: #ff6868;
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+.transaction-date {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #666;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+.transaction-date i {
+    color: #555;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-transactions {
+    padding: 70px 20px;
+
+    text-align: center;
+}
+
+
+.empty-icon {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #181818;
+
+    border: 1px solid #252525;
+
+    border-radius: 50%;
+
+    color: #666;
+
+    font-size: 20px;
+}
+
+
+.empty-transactions h3 {
+    font-size: 15px;
+
+    margin-bottom: 7px;
+}
+
+
+.empty-transactions p {
+    max-width: 400px;
+
+    margin: 0 auto 20px;
+
+    color: #666;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   WALLET BUTTON
+========================================= */
+
+.wallet-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 10px 14px;
+
+    background: #f5c400;
+
+    color: #000;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    transition: 0.25s ease;
+}
+
+
+.wallet-button:hover {
+    background: #ffd83d;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.sidebar-overlay {
+    display: none;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .transaction-header,
+    .transaction-row {
+
+        grid-template-columns:
+            1.2fr
+            1.5fr
+            1fr
+            1fr;
+
+    }
+
+
+    .transaction-header span:last-child {
+        display: none;
+    }
+
+
+    .transaction-date {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .sidebar {
+
+        transform: translateX(-100%);
+
+        transition: 0.3s ease;
+
+    }
+
+
+    .sidebar.open {
+
+        transform: translateX(0);
+
+    }
+
+
+    .main-content {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 0 20px 40px;
+
+    }
+
+
+    .mobile-menu {
+
+        display: block;
+
+    }
+
+
+    .sidebar-overlay.show {
+
+        display: block;
+
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(0, 0, 0, 0.65);
+
+        z-index: 90;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .transaction-header {
+
+        display: none;
+
+    }
+
+
+    .transaction-row {
+
+        display: grid;
+
+        grid-template-columns: 1fr auto;
+
+        gap: 14px;
+
+        padding: 18px;
+
+    }
+
+
+    .transaction-type {
+
+        min-width: 0;
+
+    }
+
+
+    .transaction-description {
+
+        grid-column: 1 / -1;
+
+        padding-left: 51px;
+
+    }
+
+
+    .transaction-amount {
+
+        text-align: right;
+
+    }
+
+
+    .status-badge {
+
+        grid-column: 1;
+
+        width: fit-content;
+
+    }
+
+
+    .transaction-date {
+
+        display: block;
+
+        grid-column: 2;
+
+        text-align: right;
+
+        align-self: center;
+    }
+
+
+    .topbar-right {
+
+        display: none;
+
+    }
+
+
+    .page-heading {
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .main-content {
+
+        padding: 0 15px 35px;
+
+    }
+
+
+    .demo-notice {
+
+        align-items: flex-start;
+
+    }
+
+
+    .transaction-row {
+
+        padding: 16px;
+
+    }
+
+
+    .transaction-description {
+
+        font-size: 10px;
+
+    }
+
+
+    .transaction-count {
+
+        font-size: 9px;
+
+        padding: 8px 10px;
+
+    }
+
+}

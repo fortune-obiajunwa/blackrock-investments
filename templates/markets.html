@@ -1,0 +1,2539 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Markets | BlackRock Investment</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/markets.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <!-- LOGO -->
+
+        <div class="sidebar-logo">
+
+            <div class="logo-mark">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <div class="logo-text">
+
+                <strong>BLACKROCK</strong>
+
+                <span>INVESTMENT</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">
+                MAIN MENU
+            </p>
+
+
+            <a
+                href="{{ url_for('user.dashboard') }}"
+                class="nav-item"
+            >
+
+                <i class="fa-solid fa-grid-2"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('user.wallet') }}"
+                class="nav-item"
+            >
+
+                <i class="fa-solid fa-wallet"></i>
+
+                <span>Wallet</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('user.investments') }}"
+                class="nav-item"
+            >
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span>Investments</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('user.transactions') }}"
+                class="nav-item"
+            >
+
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                <span>Transactions</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('user.markets') }}"
+                class="nav-item active"
+            >
+
+                <i class="fa-solid fa-chart-simple"></i>
+
+                <span>Markets</span>
+
+            </a>
+
+
+            <p class="nav-title second-title">
+                ACCOUNT
+            </p>
+
+
+            <a href="#" class="nav-item">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>Referrals</span>
+
+            </a>
+
+
+            <a href="#" class="nav-item">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="support-box">
+
+                <div class="support-icon">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>Need Help?</strong>
+
+                    <span>Contact Support</span>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="logout-link"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         SIDEBAR OVERLAY
+    ========================================= -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+
+        <!-- =====================================
+             TOPBAR
+        ===================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="mobile-menu"
+                    id="mobileMenu"
+                    type="button"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div>
+
+                    <h1>Markets</h1>
+
+                    <p>
+                        Explore digital assets, stocks and energy markets
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="demo-badge">
+
+                    <i class="fa-solid fa-flask"></i>
+
+                    MARKET MODE
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="profile-icon">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            {{ user["username"] }}
+                        </strong>
+
+                        <span>
+                            Investor
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             DEMO NOTICE
+        ===================================== -->
+
+        <div class="demo-notice">
+
+            <div class="notice-icon">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Simulated Market Data
+                </strong>
+
+                <p>
+                    Prices, changes, market capitalizations and trading
+                    volumes shown on this page are for 
+                    Market environment.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             PAGE HEADER
+        ===================================== -->
+
+        <section class="page-heading">
+
+            <div>
+
+                <span class="section-label">
+                    MARKET OVERVIEW
+                </span>
+
+                <h2>
+                    Global Markets
+                </h2>
+
+                <p>
+                    Monitor selected digital assets, stocks and energy
+                    markets using real market activity.
+                </p>
+
+            </div>
+
+
+            <div class="market-status">
+
+                <span class="status-dot"></span>
+
+                <span id="marketStatusText">
+                    Market Open
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             MARKET OVERVIEW CARDS
+        ===================================== -->
+
+        <section class="market-overview">
+
+
+            <!-- MARKET CAP -->
+
+            <div class="market-stat-card">
+
+                <div class="stat-icon market-cap">
+
+                    <i class="fa-solid fa-globe"></i>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Total Market Cap
+                    </span>
+
+                    <strong id="totalMarketCap">
+                        $2.41T
+                    </strong>
+
+                    <small
+                        class="positive"
+                        id="marketCapChange"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        2.84% today
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- VOLUME -->
+
+            <div class="market-stat-card">
+
+                <div class="stat-icon volume">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        24h Volume
+                    </span>
+
+                    <strong id="totalVolume">
+                        $86.7B
+                    </strong>
+
+                    <small
+                        class="positive"
+                        id="volumeChange"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        6.21%
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- MARKET CHANGE -->
+
+            <div class="market-stat-card">
+
+                <div class="stat-icon change">
+
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Market Change
+                    </span>
+
+                    <strong id="overallMarketChange">
+                        +3.18%
+                    </strong>
+
+                    <small>
+                        Across tracked assets
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- SENTIMENT -->
+
+            <div class="market-stat-card">
+
+                <div class="stat-icon sentiment">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Market Sentiment
+                    </span>
+
+                    <strong id="marketSentiment">
+                        Positive
+                    </strong>
+
+                    <small
+                        class="positive"
+                        id="sentimentDescription"
+                    >
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        Bullish activity
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             POPULAR CRYPTO ASSETS
+        ===================================== -->
+
+        <section class="popular-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-label">
+                        DIGITAL ASSETS
+                    </span>
+
+                    <h2>
+                        Popular Crypto
+                    </h2>
+
+                </div>
+
+
+                <span class="demo-label">
+                    Simulated prices
+                </span>
+
+            </div>
+
+
+            <div class="popular-grid">
+
+
+                <!-- BITCOIN -->
+
+                <div
+                    class="popular-card"
+                    data-asset="BTC"
+                >
+
+                    <div class="asset-top">
+
+                        <div class="asset-logo bitcoin">
+
+                            <i class="fa-brands fa-bitcoin"></i>
+
+                        </div>
+
+                        <span class="asset-symbol">
+                            BTC
+                        </span>
+
+                    </div>
+
+
+                    <div class="asset-name">
+                        Bitcoin
+                    </div>
+
+
+                    <div
+                        class="asset-price"
+                        data-price="BTC"
+                    >
+                        $67,842.31
+                    </div>
+
+
+                    <div
+                        class="asset-change positive"
+                        data-change="BTC"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        +3.42%
+
+                    </div>
+
+                </div>
+
+
+                <!-- ETHEREUM -->
+
+                <div
+                    class="popular-card"
+                    data-asset="ETH"
+                >
+
+                    <div class="asset-top">
+
+                        <div class="asset-logo ethereum">
+
+                            <i class="fa-brands fa-ethereum"></i>
+
+                        </div>
+
+                        <span class="asset-symbol">
+                            ETH
+                        </span>
+
+                    </div>
+
+
+                    <div class="asset-name">
+                        Ethereum
+                    </div>
+
+
+                    <div
+                        class="asset-price"
+                        data-price="ETH"
+                    >
+                        $3,482.76
+                    </div>
+
+
+                    <div
+                        class="asset-change positive"
+                        data-change="ETH"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        +2.87%
+
+                    </div>
+
+                </div>
+
+
+                <!-- TETHER -->
+
+                <div
+                    class="popular-card"
+                    data-asset="USDT"
+                >
+
+                    <div class="asset-top">
+
+                        <div class="asset-logo tether">
+
+                            <i class="fa-solid fa-dollar-sign"></i>
+
+                        </div>
+
+                        <span class="asset-symbol">
+                            USDT
+                        </span>
+
+                    </div>
+
+
+                    <div class="asset-name">
+                        Tether
+                    </div>
+
+
+                    <div
+                        class="asset-price"
+                        data-price="USDT"
+                    >
+                        $1.00
+                    </div>
+
+
+                    <div
+                        class="asset-change neutral"
+                        data-change="USDT"
+                    >
+
+                        <i class="fa-solid fa-minus"></i>
+
+                        0.01%
+
+                    </div>
+
+                </div>
+
+
+                <!-- BNB -->
+
+                <div
+                    class="popular-card"
+                    data-asset="BNB"
+                >
+
+                    <div class="asset-top">
+
+                        <div class="asset-logo bnb">
+
+                            <span>BNB</span>
+
+                        </div>
+
+                        <span class="asset-symbol">
+                            BNB
+                        </span>
+
+                    </div>
+
+
+                    <div class="asset-name">
+                        BNB
+                    </div>
+
+
+                    <div
+                        class="asset-price"
+                        data-price="BNB"
+                    >
+                        $612.48
+                    </div>
+
+
+                    <div
+                        class="asset-change positive"
+                        data-change="BNB"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        +1.94%
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             OIL & GAS / ENERGY MARKET
+        ===================================== -->
+
+        <section class="energy-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-label">
+                        ENERGY MARKETS
+                    </span>
+
+                    <h2>
+                        Oil &amp; Gas Market
+                    </h2>
+
+                </div>
+
+
+                <span class="demo-label">
+                    Simulated prices
+                </span>
+
+            </div>
+
+
+            <div class="energy-grid">
+
+
+                <!-- BRENT CRUDE -->
+
+                <div
+                    class="energy-card"
+                    data-energy="BRENT"
+                >
+
+                    <div class="energy-card-top">
+
+                        <div class="energy-icon oil">
+
+                            <i class="fa-solid fa-droplet"></i>
+
+                        </div>
+
+                        <span class="energy-symbol">
+                            BRENT
+                        </span>
+
+                    </div>
+
+
+                    <div class="energy-name">
+                        Brent Crude Oil
+                    </div>
+
+
+                    <div
+                        class="energy-price"
+                        data-energy-price="BRENT"
+                    >
+                        $82.46
+                    </div>
+
+
+                    <div
+                        class="energy-change positive"
+                        data-energy-change="BRENT"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        +1.28%
+
+                    </div>
+
+
+                    <div class="energy-unit">
+                        USD / Barrel
+                    </div>
+
+                </div>
+
+
+                <!-- WTI -->
+
+                <div
+                    class="energy-card"
+                    data-energy="WTI"
+                >
+
+                    <div class="energy-card-top">
+
+                        <div class="energy-icon oil">
+
+                            <i class="fa-solid fa-oil-well"></i>
+
+                        </div>
+
+                        <span class="energy-symbol">
+                            WTI
+                        </span>
+
+                    </div>
+
+
+                    <div class="energy-name">
+                        WTI Crude Oil
+                    </div>
+
+
+                    <div
+                        class="energy-price"
+                        data-energy-price="WTI"
+                    >
+                        $78.31
+                    </div>
+
+
+                    <div
+                        class="energy-change negative"
+                        data-energy-change="WTI"
+                    >
+
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                        -0.64%
+
+                    </div>
+
+
+                    <div class="energy-unit">
+                        USD / Barrel
+                    </div>
+
+                </div>
+
+
+                <!-- NATURAL GAS -->
+
+                <div
+                    class="energy-card"
+                    data-energy="NATGAS"
+                >
+
+                    <div class="energy-card-top">
+
+                        <div class="energy-icon gas">
+
+                            <i class="fa-solid fa-fire-flame-simple"></i>
+
+                        </div>
+
+                        <span class="energy-symbol">
+                            NAT GAS
+                        </span>
+
+                    </div>
+
+
+                    <div class="energy-name">
+                        Natural Gas
+                    </div>
+
+
+                    <div
+                        class="energy-price"
+                        data-energy-price="NATGAS"
+                    >
+                        $2.84
+                    </div>
+
+
+                    <div
+                        class="energy-change positive"
+                        data-energy-change="NATGAS"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        +0.92%
+
+                    </div>
+
+
+                    <div class="energy-unit">
+                        USD / MMBtu
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             BROAD MARKET STOCKS
+        ===================================== -->
+
+        <section class="stocks-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-label">
+                        BROAD MARKET
+                    </span>
+
+                    <h2>
+                        Selected Stocks
+                    </h2>
+
+                </div>
+
+
+                <span class="demo-label">
+                    Simulated prices
+                </span>
+
+            </div>
+
+
+            <div class="stocks-grid">
+
+
+                <!-- EXXON MOBIL -->
+
+                <div
+                    class="stock-card"
+                    data-stock="XOM"
+                >
+
+                    <div class="stock-card-top">
+
+                        <div class="stock-icon">
+                            X
+                        </div>
+
+                        <span class="stock-symbol">
+                            XOM
+                        </span>
+
+                    </div>
+
+
+                    <div class="stock-name">
+                        Exxon Mobil
+                    </div>
+
+
+                    <div
+                        class="stock-price"
+                        data-stock-price="XOM"
+                    >
+                        $118.42
+                    </div>
+
+
+                    <div
+                        class="stock-change positive"
+                        data-stock-change="XOM"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        +0.84%
+
+                    </div>
+
+                </div>
+
+
+                <!-- CHEVRON -->
+
+                <div
+                    class="stock-card"
+                    data-stock="CVX"
+                >
+
+                    <div class="stock-card-top">
+
+                        <div class="stock-icon">
+                            C
+                        </div>
+
+                        <span class="stock-symbol">
+                            CVX
+                        </span>
+
+                    </div>
+
+
+                    <div class="stock-name">
+                        Chevron
+                    </div>
+
+
+                    <div
+                        class="stock-price"
+                        data-stock-price="CVX"
+                    >
+                        $164.31
+                    </div>
+
+
+                    <div
+                        class="stock-change negative"
+                        data-stock-change="CVX"
+                    >
+
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                        -0.27%
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONOCOPHILLIPS -->
+
+                <div
+                    class="stock-card"
+                    data-stock="COP"
+                >
+
+                    <div class="stock-card-top">
+
+                        <div class="stock-icon">
+                            C
+                        </div>
+
+                        <span class="stock-symbol">
+                            COP
+                        </span>
+
+                    </div>
+
+
+                    <div class="stock-name">
+                        ConocoPhillips
+                    </div>
+
+
+                    <div
+                        class="stock-price"
+                        data-stock-price="COP"
+                    >
+                        $103.75
+                    </div>
+
+
+                    <div
+                        class="stock-change positive"
+                        data-stock-change="COP"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        +1.12%
+
+                    </div>
+
+                </div>
+
+
+                <!-- SHELL -->
+
+                <div
+                    class="stock-card"
+                    data-stock="SHEL"
+                >
+
+                    <div class="stock-card-top">
+
+                        <div class="stock-icon">
+                            S
+                        </div>
+
+                        <span class="stock-symbol">
+                            SHEL
+                        </span>
+
+                    </div>
+
+
+                    <div class="stock-name">
+                        Shell
+                    </div>
+
+
+                    <div
+                        class="stock-price"
+                        data-stock-price="SHEL"
+                    >
+                        $72.18
+                    </div>
+
+
+                    <div
+                        class="stock-change positive"
+                        data-stock-change="SHEL"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        +0.46%
+
+                    </div>
+
+                </div>
+
+
+                <!-- BP -->
+
+                <div
+                    class="stock-card"
+                    data-stock="BP"
+                >
+
+                    <div class="stock-card-top">
+
+                        <div class="stock-icon">
+                            BP
+                        </div>
+
+                        <span class="stock-symbol">
+                            BP
+                        </span>
+
+                    </div>
+
+
+                    <div class="stock-name">
+                        BP
+                    </div>
+
+
+                    <div
+                        class="stock-price"
+                        data-stock-price="BP"
+                    >
+                        $37.64
+                    </div>
+
+
+                    <div
+                        class="stock-change negative"
+                        data-stock-change="BP"
+                    >
+
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                        -0.38%
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOTALENERGIES -->
+
+                <div
+                    class="stock-card"
+                    data-stock="TTE"
+                >
+
+                    <div class="stock-card-top">
+
+                        <div class="stock-icon">
+                            T
+                        </div>
+
+                        <span class="stock-symbol">
+                            TTE
+                        </span>
+
+                    </div>
+
+
+                    <div class="stock-name">
+                        TotalEnergies
+                    </div>
+
+
+                    <div
+                        class="stock-price"
+                        data-stock-price="TTE"
+                    >
+                        $67.92
+                    </div>
+
+
+                    <div
+                        class="stock-change positive"
+                        data-stock-change="TTE"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        +0.61%
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             MARKET TABLE
+        ===================================== -->
+
+        <section class="markets-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-label">
+                        MARKETS
+                    </span>
+
+                    <h2>
+                        All Tracked Assets
+                    </h2>
+
+                </div>
+
+
+                <div class="market-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="marketSearch"
+                        placeholder="Search assets..."
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="markets-card">
+
+                <div class="markets-table-wrapper">
+
+                    <table class="markets-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Asset
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+
+                                <th>
+                                    24h Change
+                                </th>
+
+                                <th>
+                                    Market Cap
+                                </th>
+
+                                <th>
+                                    24h Volume
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="marketTableBody">
+
+
+                            <!-- =================================
+                                 BITCOIN
+                            ================================== -->
+
+                            <tr
+                                data-name="bitcoin btc crypto digital asset"
+                                data-symbol="BTC"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon bitcoin">
+
+                                            <i class="fa-brands fa-bitcoin"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Bitcoin
+                                            </strong>
+
+                                            <span>
+                                                BTC
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    <strong
+                                        data-table-price="BTC"
+                                    >
+                                        $67,842.31
+                                    </strong>
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change positive"
+                                        data-table-change="BTC"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-up"></i>
+
+                                        +3.42%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="BTC">
+                                    $1.34T
+                                </td>
+
+
+                                <td data-volume="BTC">
+                                    $38.4B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 ETHEREUM
+                            ================================== -->
+
+                            <tr
+                                data-name="ethereum eth crypto digital asset"
+                                data-symbol="ETH"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon ethereum">
+
+                                            <i class="fa-brands fa-ethereum"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Ethereum
+                                            </strong>
+
+                                            <span>
+                                                ETH
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="ETH"
+                                    >
+                                        $3,482.76
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change positive"
+                                        data-table-change="ETH"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-up"></i>
+
+                                        +2.87%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="ETH">
+                                    $419.1B
+                                </td>
+
+
+                                <td data-volume="ETH">
+                                    $19.7B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 TETHER
+                            ================================== -->
+
+                            <tr
+                                data-name="tether usdt stablecoin crypto digital asset"
+                                data-symbol="USDT"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon tether">
+
+                                            <i class="fa-solid fa-dollar-sign"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Tether
+                                            </strong>
+
+                                            <span>
+                                                USDT
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="USDT"
+                                    >
+                                        $1.00
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change neutral"
+                                        data-table-change="USDT"
+                                    >
+
+                                        <i class="fa-solid fa-minus"></i>
+
+                                        0.01%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="USDT">
+                                    $112.5B
+                                </td>
+
+
+                                <td data-volume="USDT">
+                                    $54.2B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 BNB
+                            ================================== -->
+
+                            <tr
+                                data-name="bnb binance crypto digital asset"
+                                data-symbol="BNB"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon bnb">
+
+                                            <span>
+                                                BNB
+                                            </span>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                BNB
+                                            </strong>
+
+                                            <span>
+                                                BNB
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="BNB"
+                                    >
+                                        $612.48
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change positive"
+                                        data-table-change="BNB"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-up"></i>
+
+                                        +1.94%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="BNB">
+                                    $89.7B
+                                </td>
+
+
+                                <td data-volume="BNB">
+                                    $1.8B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 SOLANA
+                            ================================== -->
+
+                            <tr
+                                data-name="solana sol crypto digital asset"
+                                data-symbol="SOL"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon solana">
+
+                                            <i class="fa-solid fa-s"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Solana
+                                            </strong>
+
+                                            <span>
+                                                SOL
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="SOL"
+                                    >
+                                        $186.42
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change negative"
+                                        data-table-change="SOL"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-down"></i>
+
+                                        -0.86%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="SOL">
+                                    $86.2B
+                                </td>
+
+
+                                <td data-volume="SOL">
+                                    $3.1B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 XRP
+                            ================================== -->
+
+                            <tr
+                                data-name="xrp crypto digital asset"
+                                data-symbol="XRP"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon xrp">
+
+                                            <i class="fa-solid fa-x"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                XRP
+                                            </strong>
+
+                                            <span>
+                                                XRP
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="XRP"
+                                    >
+                                        $0.58
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change negative"
+                                        data-table-change="XRP"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-down"></i>
+
+                                        -1.23%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="XRP">
+                                    $32.4B
+                                </td>
+
+
+                                <td data-volume="XRP">
+                                    $1.4B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 EXXON MOBIL
+                            ================================== -->
+
+                            <tr
+                                data-name="exxon mobil xom oil gas energy stock"
+                                data-symbol="XOM"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon energy-stock">
+
+                                            <i class="fa-solid fa-oil-well"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Exxon Mobil
+                                            </strong>
+
+                                            <span>
+                                                XOM
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="XOM"
+                                    >
+                                        $118.42
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change positive"
+                                        data-table-change="XOM"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-up"></i>
+
+                                        +0.84%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="XOM">
+                                    $510.2B
+                                </td>
+
+
+                                <td data-volume="XOM">
+                                    $2.1B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 CHEVRON
+                            ================================== -->
+
+                            <tr
+                                data-name="chevron cvx oil gas energy stock"
+                                data-symbol="CVX"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon energy-stock">
+
+                                            <i class="fa-solid fa-oil-well"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Chevron
+                                            </strong>
+
+                                            <span>
+                                                CVX
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="CVX"
+                                    >
+                                        $164.31
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change negative"
+                                        data-table-change="CVX"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-down"></i>
+
+                                        -0.27%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="CVX">
+                                    $305.4B
+                                </td>
+
+
+                                <td data-volume="CVX">
+                                    $1.6B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 CONOCOPHILLIPS
+                            ================================== -->
+
+                            <tr
+                                data-name="conocophillips cop oil gas energy stock"
+                                data-symbol="COP"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon energy-stock">
+
+                                            <i class="fa-solid fa-oil-well"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                ConocoPhillips
+                                            </strong>
+
+                                            <span>
+                                                COP
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="COP"
+                                    >
+                                        $103.75
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change positive"
+                                        data-table-change="COP"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-up"></i>
+
+                                        +1.12%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="COP">
+                                    $121.8B
+                                </td>
+
+
+                                <td data-volume="COP">
+                                    $1.7B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 SHELL
+                            ================================== -->
+
+                            <tr
+                                data-name="shell shel oil gas energy stock"
+                                data-symbol="SHEL"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon energy-stock">
+
+                                            <i class="fa-solid fa-oil-well"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Shell
+                                            </strong>
+
+                                            <span>
+                                                SHEL
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="SHEL"
+                                    >
+                                        $72.18
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change positive"
+                                        data-table-change="SHEL"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-up"></i>
+
+                                        +0.46%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="SHEL">
+                                    $225.1B
+                                </td>
+
+
+                                <td data-volume="SHEL">
+                                    $1.2B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 BP
+                            ================================== -->
+
+                            <tr
+                                data-name="bp british petroleum oil gas energy stock"
+                                data-symbol="BP"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon energy-stock">
+
+                                            <i class="fa-solid fa-oil-well"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                BP
+                                            </strong>
+
+                                            <span>
+                                                BP
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="BP"
+                                    >
+                                        $37.64
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change negative"
+                                        data-table-change="BP"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-down"></i>
+
+                                        -0.38%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="BP">
+                                    $98.5B
+                                </td>
+
+
+                                <td data-volume="BP">
+                                    $0.8B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- =================================
+                                 TOTALENERGIES
+                            ================================== -->
+
+                            <tr
+                                data-name="totalenergies tte oil gas energy stock"
+                                data-symbol="TTE"
+                            >
+
+                                <td>
+
+                                    <div class="table-asset">
+
+                                        <div class="table-asset-icon energy-stock">
+
+                                            <i class="fa-solid fa-oil-well"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                TotalEnergies
+                                            </strong>
+
+                                            <span>
+                                                TTE
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+
+                                    <strong
+                                        data-table-price="TTE"
+                                    >
+                                        $67.92
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="table-change positive"
+                                        data-table-change="TTE"
+                                    >
+
+                                        <i class="fa-solid fa-arrow-up"></i>
+
+                                        +0.61%
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-market-cap="TTE">
+                                    $160.4B
+                                </td>
+
+
+                                <td data-volume="TTE">
+                                    $0.9B
+                                </td>
+
+
+                                <td>
+
+                                    <span class="market-badge positive-badge">
+
+                                        <i class="fa-solid fa-circle"></i>
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- EMPTY SEARCH STATE -->
+
+                <div
+                    class="market-empty"
+                    id="marketEmpty"
+                >
+
+                    <div class="empty-icon">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </div>
+
+
+                    <h3>
+                        No assets found
+                    </h3>
+
+
+                    <p>
+                        Try searching for another asset or symbol.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             MARKET INFORMATION
+        ===================================== -->
+
+        <section class="market-information">
+
+
+            <div class="information-card">
+
+                <div class="information-icon">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        About Market Data
+                    </h3>
+
+                    <p>
+                        All prices, market capitalizations and trading
+                        volumes displayed on this page are 
+                        for the BlackRock Investment environment.
+                        They represent live exchange prices.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="information-card">
+
+                <div class="information-icon">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                         Environment
+                    </h3>
+
+                    <p>
+                        real cryptocurrency, stock or commodity
+                        purchases or sales are executed from this
+                        market dashboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script
+        src="{{ url_for('static', filename='js/markets.js') }}"
+    ></script>
+
+
+    <script>
+
+        /* =========================================
+           MOBILE SIDEBAR
+        ========================================= */
+
+        const mobileMenu =
+            document.getElementById("mobileMenu");
+
+        const sidebar =
+            document.getElementById("sidebar");
+
+        const sidebarOverlay =
+            document.getElementById("sidebarOverlay");
+
+
+        if (mobileMenu) {
+
+            mobileMenu.addEventListener(
+                "click",
+                () => {
+
+                    sidebar.classList.toggle("active");
+
+                    sidebarOverlay.classList.toggle("active");
+
+                }
+            );
+
+        }
+
+
+        if (sidebarOverlay) {
+
+            sidebarOverlay.addEventListener(
+                "click",
+                () => {
+
+                    sidebar.classList.remove("active");
+
+                    sidebarOverlay.classList.remove("active");
+
+                }
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+

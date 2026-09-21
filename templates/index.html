@@ -1,0 +1,1531 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>BlackRock Investment | Blockchain Investment</title>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="../static/css/styles.css">
+
+
+</head>
+
+<body>
+
+
+<!-- =========================================
+     TOP ANNOUNCEMENT
+========================================== -->
+
+<div class="announcement-bar">
+
+    <div class="container announcement-content">
+
+        <span>
+            <i class="fa-solid fa-circle-check"></i>
+            Secure blockchain investment platform
+        </span>
+
+        <span class="announcement-right">
+            <i class="fa-solid fa-shield-halved"></i>
+            Your security matters to us
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     NAVIGATION
+========================================== -->
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <!-- LOGO -->
+
+        <a href="{{ url_for('home') }}" class="logo">
+
+            <span class="logo-icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </span>
+
+            <span class="logo-text">
+                BLACKROCK<span>INVESTMENT</span>
+            </span>
+
+        </a>
+
+
+        <!-- DESKTOP NAV -->
+
+        <nav class="nav-links">
+
+            <a
+                href="{{ url_for('home') }}"
+                class="active"
+            >
+                Home
+            </a>
+
+            <a href="#markets">
+                Markets
+            </a>
+
+            <a href="#investments">
+                Investments
+            </a>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </nav>
+
+
+        <!-- NAV ACTIONS -->
+
+        <div class="nav-actions">
+
+            <a
+                href="{{ url_for('auth.login') }}"
+                class="login-btn"
+            >
+                <i class="fa-regular fa-user"></i>
+                Login
+            </a>
+
+            <a
+                href="{{ url_for('auth.register') }}"
+                class="signup-btn"
+            >
+                Get Started
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+    </div>
+
+</header>
+<!-- =========================================
+     ACCOUNT PROTECTION
+========================================== -->
+
+<div class="account-protection-bar">
+
+
+<!-- <div class="container account-protection-content">
+
+    <div class="account-protection-info">
+
+        <div class="protection-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div> -->
+
+        <!-- <div class="protection-text">
+
+            <strong>
+                Account Protection
+            </strong>
+
+            <span>
+                Your account security and activity are protected
+            </span>
+
+        </div> -->
+
+    </div>
+
+
+    <!-- =========================================
+         ADMINISTRATION PROTECTION
+    ========================================== -->
+
+    <a
+        href="{{ url_for('auth.admin_login') }}"
+        class="admin-button"
+        title="Administrator Login"
+    >
+
+        <span class="admin-button-icon">
+            <i class="fa-solid fa-user-shield"></i>
+        </span>
+
+        <span class="admin-button-text">
+
+            <strong>
+                Administration Protection
+            </strong>
+
+            <small>
+                Administrator Login
+            </small>
+
+        </span>
+
+        <span class="admin-button-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+</div>
+
+
+</div>
+
+<!-- =========================================
+     MOBILE NAVIGATION
+========================================== -->
+
+<div
+    class="mobile-nav"
+    id="mobileNav"
+>
+
+    <a href="{{ url_for('home') }}">
+        Home
+    </a>
+
+    <a href="#markets">
+        Markets
+    </a>
+
+    <a href="#investments">
+        Investments
+    </a>
+
+    <a href="#how-it-works">
+        How It Works
+    </a>
+
+    <a href="#about">
+        About
+    </a>
+
+    <a href="{{ url_for('auth.login') }}">
+
+        <i class="fa-regular fa-user"></i>
+
+        Login
+
+    </a>
+
+    <a
+        href="{{ url_for('auth.register') }}"
+        class="mobile-signup"
+    >
+        Get Started
+    </a>
+
+</div>
+
+
+<!-- =========================================
+     HERO
+========================================== -->
+
+<main>
+
+    <section class="hero">
+
+        <div class="container hero-container">
+
+
+            <!-- HERO TEXT -->
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+
+                    <span class="status-dot"></span>
+
+                    Blockchain-powered investment
+
+                </div>
+
+
+                <h1>
+
+                    Build Your
+
+                    <span>
+                        Financial Future
+                    </span>
+
+                    With Blockchain
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Discover a smarter way to grow and manage your
+                    digital assets with a secure blockchain-powered
+                    investment platform.
+
+                </p>
+
+
+                <!-- HERO BUTTONS -->
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="{{ url_for('auth.register') }}"
+                        class="primary-btn"
+                    >
+
+                        Start Investing
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+
+                    <a
+                        href="#how-it-works"
+                        class="secondary-btn"
+                    >
+
+                        <span class="play-icon">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </span>
+
+                        How It Works
+
+                    </a>
+
+                </div>
+
+
+                <!-- HERO TRUST -->
+
+                <div class="hero-trust">
+
+                    <div class="trust-item">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <span>
+                            Secure Platform
+                        </span>
+
+                    </div>
+
+
+                    <div class="trust-item">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                        <span>
+                            Fast Transactions
+                        </span>
+
+                    </div>
+
+
+                    <div class="trust-item">
+
+                        <i class="fa-solid fa-globe"></i>
+
+                        <span>
+                            Global Access
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO DASHBOARD CARD -->
+
+            <div class="hero-visual">
+
+                <div class="floating-card card-top">
+
+                    <div class="floating-icon">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Portfolio Growth
+                        </small>
+
+                        <strong>
+                            +24.68%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="portfolio-card">
+
+                    <div class="portfolio-header">
+
+                        <div>
+
+                            <span>
+                                Total Portfolio
+                            </span>
+
+                            <h3>
+                                $24,680.42
+                            </h3>
+
+                        </div>
+
+                        <button class="more-btn">
+
+                            <i class="fa-solid fa-ellipsis"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- CHART -->
+
+                    <div class="chart">
+
+                        <div class="chart-grid"></div>
+
+                        <svg
+                            viewBox="0 0 500 180"
+                            preserveAspectRatio="none"
+                        >
+
+                            <defs>
+
+                                <linearGradient
+                                    id="chartGradient"
+                                    x1="0"
+                                    x2="0"
+                                    y1="0"
+                                    y2="1"
+                                >
+
+                                    <stop
+                                        offset="0%"
+                                        stop-color="#f4c542"
+                                        stop-opacity="0.35"
+                                    />
+
+                                    <stop
+                                        offset="100%"
+                                        stop-color="#f4c542"
+                                        stop-opacity="0"
+                                    />
+
+                                </linearGradient>
+
+                            </defs>
+
+
+                            <path
+                                d="
+                                M0,145
+                                C35,140 45,120 70,125
+                                C95,130 105,100 135,108
+                                C165,116 170,82 205,90
+                                C235,98 250,65 275,72
+                                C305,80 320,48 345,57
+                                C375,68 390,38 415,45
+                                C445,53 465,22 500,30
+                                L500,180
+                                L0,180
+                                Z
+                                "
+                                fill="url(#chartGradient)"
+                            />
+
+
+                            <path
+                                d="
+                                M0,145
+                                C35,140 45,120 70,125
+                                C95,130 105,100 135,108
+                                C165,116 170,82 205,90
+                                C235,98 250,65 275,72
+                                C305,80 320,48 345,57
+                                C375,68 390,38 415,45
+                                C445,53 465,22 500,30
+                                "
+                                fill="none"
+                                stroke="#f4c542"
+                                stroke-width="4"
+                                stroke-linecap="round"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <!-- CHART BOTTOM -->
+
+                    <div class="chart-footer">
+
+                        <span>
+                            24H
+                        </span>
+
+                        <span>
+                            7D
+                        </span>
+
+                        <span class="active">
+                            30D
+                        </span>
+
+                        <span>
+                            1Y
+                        </span>
+
+                        <span>
+                            ALL
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CRYPTO FLOATING CARD -->
+
+                <div class="floating-card crypto-card">
+
+                    <div class="crypto-icon bitcoin">
+
+                        <i class="fa-brands fa-bitcoin"></i>
+
+                    </div>
+
+                    <div class="crypto-info">
+
+                        <strong>
+                            Bitcoin
+                        </strong>
+
+                        <span>
+                            BTC
+                        </span>
+
+                    </div>
+
+                    <div class="crypto-price">
+
+                        <strong>
+                            $67,842.10
+                        </strong>
+
+                        <small>
+
+                            <i class="fa-solid fa-caret-up"></i>
+
+                            3.42%
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SECURITY CARD -->
+
+                <div class="security-card">
+
+                    <div class="security-icon">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Assets Protected
+                        </strong>
+
+                        <span>
+                            Enterprise-grade security
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         MARKET TICKER
+    ========================================== -->
+
+    <section
+        class="market-ticker"
+        id="markets"
+    >
+
+        <div class="container">
+
+            <div class="ticker-header">
+
+                <div>
+
+                    <span class="section-label">
+
+                        <i class="fa-solid fa-chart-simple"></i>
+
+                        LIVE MARKETS
+
+                    </span>
+
+                    <h2>
+                        Digital Asset Markets
+                    </h2>
+
+                </div>
+
+                <a
+                    href="{{ url_for('user.markets') }}"
+                    class="view-markets"
+                >
+
+                    View Markets
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="market-grid">
+
+
+                <!-- BITCOIN -->
+
+                <div class="market-card">
+
+                    <div class="market-top">
+
+                        <div class="coin-symbol bitcoin-bg">
+
+                            <i class="fa-brands fa-bitcoin"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Bitcoin
+                            </strong>
+
+                            <span>
+                                BTC
+                            </span>
+
+                        </div>
+
+                        <span class="market-up">
+                            +3.42%
+                        </span>
+
+                    </div>
+
+                    <div class="market-price">
+                        $67,842.10
+                    </div>
+
+                    <div class="mini-chart positive-chart">
+                        ╱╲╱╲╱╱╲
+                    </div>
+
+                </div>
+
+
+                <!-- ETHEREUM -->
+
+                <div class="market-card">
+
+                    <div class="market-top">
+
+                        <div class="coin-symbol ethereum-bg">
+
+                            <i class="fa-brands fa-ethereum"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Ethereum
+                            </strong>
+
+                            <span>
+                                ETH
+                            </span>
+
+                        </div>
+
+                        <span class="market-up">
+                            +2.18%
+                        </span>
+
+                    </div>
+
+                    <div class="market-price">
+                        $3,842.56
+                    </div>
+
+                    <div class="mini-chart positive-chart">
+                        ╲╱╱╲╱╲╱
+                    </div>
+
+                </div>
+
+
+                <!-- USDT -->
+
+                <div class="market-card">
+
+                    <div class="market-top">
+
+                        <div class="coin-symbol usdt-bg">
+
+                            <i class="fa-solid fa-dollar-sign"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Tether
+                            </strong>
+
+                            <span>
+                                USDT
+                            </span>
+
+                        </div>
+
+                        <span class="market-up">
+                            +0.04%
+                        </span>
+
+                    </div>
+
+                    <div class="market-price">
+                        $1.00
+                    </div>
+
+                    <div class="mini-chart">
+                        ─────────
+                    </div>
+
+                </div>
+
+
+                <!-- BNB -->
+
+                <div class="market-card">
+
+                    <div class="market-top">
+
+                        <div class="coin-symbol bnb-bg">
+
+                            <i class="fa-solid fa-b"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                BNB
+                            </strong>
+
+                            <span>
+                                BNB
+                            </span>
+
+                        </div>
+
+                        <span class="market-down">
+                            -0.86%
+                        </span>
+
+                    </div>
+
+                    <div class="market-price">
+                        $592.74
+                    </div>
+
+                    <div class="mini-chart negative-chart">
+                        ╱╲╲╱╲╲
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         INVESTMENT SECTION
+    ========================================== -->
+
+    <section
+        class="investment-section"
+        id="investments"
+    >
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+
+                    <i class="fa-solid fa-coins"></i>
+
+                    INVESTMENT OPTIONS
+
+                </span>
+
+                <h2>
+                    Choose Your Investment Strategy
+                </h2>
+
+                <p>
+                    Explore investment options designed for different
+                    goals and risk preferences.
+                </p>
+
+            </div>
+
+
+            <div class="investment-grid">
+
+
+                <!-- PLAN 1 -->
+
+                <div class="investment-card">
+
+                    <div class="plan-icon">
+
+                        <i class="fa-solid fa-seedling"></i>
+
+                    </div>
+
+                    <h3>
+                        Starter
+                    </h3>
+
+                    <p>
+                        A simple entry point for exploring digital asset
+                        investment.
+                    </p>
+
+                    <div class="plan-rate">
+
+                        <strong>
+                            Flexible
+                        </strong>
+
+                        <span>
+                            Investment
+                        </span>
+
+                    </div>
+
+                    <ul>
+
+                        <li>
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Beginner friendly
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Portfolio tracking
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-check"></i>
+
+                            24/7 account access
+
+                        </li>
+
+                    </ul>
+
+                    <a
+                        href="{{ url_for('auth.register') }}"
+                        class="plan-btn"
+                    >
+
+                        Explore Plan
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- PLAN 2 -->
+
+                <div class="investment-card featured">
+
+                    <div class="popular-badge">
+                        MOST POPULAR
+                    </div>
+
+                    <div class="plan-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+                    <h3>
+                        Growth
+                    </h3>
+
+                    <p>
+                        Designed for investors looking for a balanced
+                        digital asset strategy.
+                    </p>
+
+                    <div class="plan-rate">
+
+                        <strong>
+                            Balanced
+                        </strong>
+
+                        <span>
+                            Strategy
+                        </span>
+
+                    </div>
+
+                    <ul>
+
+                        <li>
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Diversified portfolio
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Advanced analytics
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Priority support
+
+                        </li>
+
+                    </ul>
+
+                    <a
+                        href="{{ url_for('auth.register') }}"
+                        class="plan-btn featured-btn"
+                    >
+
+                        Start Exploring
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- PLAN 3 -->
+
+                <div class="investment-card">
+
+                    <div class="plan-icon">
+
+                        <i class="fa-solid fa-building-columns"></i>
+
+                    </div>
+
+                    <h3>
+                        Professional
+                    </h3>
+
+                    <p>
+                        Advanced tools for users managing larger digital
+                        asset portfolios.
+                    </p>
+
+                    <div class="plan-rate">
+
+                        <strong>
+                            Advanced
+                        </strong>
+
+                        <span>
+                            Portfolio
+                        </span>
+
+                    </div>
+
+                    <ul>
+
+                        <li>
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Advanced portfolio tools
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Detailed analytics
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Dedicated support
+
+                        </li>
+
+                    </ul>
+
+                    <a
+                        href="{{ url_for('auth.register') }}"
+                        class="plan-btn"
+                    >
+
+                        Explore Plan
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         HOW IT WORKS
+    ========================================== -->
+
+    <section
+        class="how-section"
+        id="how-it-works"
+    >
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+
+                    <i class="fa-solid fa-route"></i>
+
+                    SIMPLE PROCESS
+
+                </span>
+
+                <h2>
+                    How BlackRock Investment Works
+                </h2>
+
+                <p>
+                    Get started with a simple and transparent process.
+                </p>
+
+            </div>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <div class="step-icon">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                    </div>
+
+                    <h3>
+                        Create Account
+                    </h3>
+
+                    <p>
+                        Register your account and complete your profile.
+                    </p>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <div class="step-icon">
+
+                        <i class="fa-solid fa-wallet"></i>
+
+                    </div>
+
+                    <h3>
+                        Fund Your Wallet
+                    </h3>
+
+                    <p>
+                        Add supported digital assets to your platform
+                        wallet.
+                    </p>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <div class="step-icon">
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                    </div>
+
+                    <h3>
+                        Manage Investments
+                    </h3>
+
+                    <p>
+                        Monitor your portfolio and investment activity.
+                    </p>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        04
+                    </div>
+
+                    <div class="step-icon">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                    </div>
+
+                    <h3>
+                        Track Performance
+                    </h3>
+
+                    <p>
+                        Follow your portfolio performance from your
+                        dashboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SECURITY
+    ========================================== -->
+
+    <section
+        class="security-section"
+        id="about"
+    >
+
+        <div class="container security-container">
+
+            <div class="security-content">
+
+                <span class="section-label">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    SECURITY FIRST
+
+                </span>
+
+                <h2>
+
+                    Built With Security
+                    At The Core
+
+                </h2>
+
+                <p>
+                    Your account and digital assets deserve strong
+                    protection. Our platform is designed around modern
+                    security principles and transparent account
+                    management.
+                </p>
+
+
+                <div class="security-features">
+
+                    <div>
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <span>
+                            Secure authentication
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-fingerprint"></i>
+
+                        <span>
+                            Account protection
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-database"></i>
+
+                        <span>
+                            Protected data
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-eye"></i>
+
+                        <span>
+                            Transparent activity
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="security-visual">
+
+                <div class="security-circle">
+
+                    <div class="security-center">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <strong>
+                            SECURE
+                        </strong>
+
+                        <span>
+                            Platform
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================
+     FOOTER
+========================================== -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-main">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="{{ url_for('home') }}"
+                    class="logo"
+                >
+
+                    <span class="logo-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </span>
+
+                    <span class="logo-text">
+
+                        BLACKROCK<span>INVESTMENT</span>
+
+                    </span>
+
+                </a>
+
+                <p>
+                    A modern blockchain investment platform designed
+                    to help users manage their digital assets.
+                </p>
+
+
+                <div class="social-links">
+
+                    <a href="#">
+
+                        <i class="fa-brands fa-x-twitter"></i>
+
+                    </a>
+
+                    <a href="#">
+
+                        <i class="fa-brands fa-telegram"></i>
+
+                    </a>
+
+                    <a href="#">
+
+                        <i class="fa-brands fa-discord"></i>
+
+                    </a>
+
+                    <a href="#">
+
+                        <i class="fa-brands fa-linkedin-in"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Platform
+                </h4>
+
+                <a href="#markets">
+                    Markets
+                </a>
+
+                <a href="#investments">
+                    Investments
+                </a>
+
+                <a href="#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="#about">
+                    Security
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Company
+                </h4>
+
+                <a href="#about">
+                    About Us
+                </a>
+
+                <a href="#">
+                    Contact
+                </a>
+
+                <a href="#">
+                    Careers
+                </a>
+
+                <a href="#">
+                    News
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Support
+                </h4>
+
+                <a href="#">
+                    Help Center
+                </a>
+
+                <a href="#">
+                    FAQs
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+                <a href="#">
+                    Privacy
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 BlackRock Investment Demo. All rights reserved.
+            </span>
+
+            <span>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Platform status: Operational
+
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- Main JavaScript -->
+
+<script
+    src="{{ url_for('static', filename='js/script.js') }}"
+></script>
+
+
+</body>
+
+</html>
+

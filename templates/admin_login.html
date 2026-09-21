@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BlackRock Investment — Admin Login</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/auth.css') }}"
+    >
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #070707;
+        }
+
+        .admin-login-wrapper {
+            width: 100%;
+            max-width: 430px;
+            padding: 25px;
+        }
+
+        .admin-login-card {
+            background: #101010;
+            border: 1px solid #242424;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .admin-brand {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-brand-icon {
+            width: 62px;
+            height: 62px;
+            margin: 0 auto 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid rgba(245, 196, 0, 0.3);
+            border-radius: 50%;
+
+            background: rgba(245, 196, 0, 0.06);
+
+            color: #f5c400;
+            font-size: 24px;
+        }
+
+        .admin-brand h1 {
+            margin: 0;
+            color: #f5c400;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        .admin-brand p {
+            margin-top: 7px;
+            color: #777;
+            font-size: 11px;
+        }
+
+        .admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            margin-top: 12px;
+            padding: 6px 10px;
+
+            border: 1px solid rgba(245, 196, 0, 0.2);
+            border-radius: 20px;
+
+            background: rgba(245, 196, 0, 0.06);
+
+            color: #f5c400;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .admin-login-card label {
+            display: block;
+            margin-bottom: 7px;
+
+            color: #aaa;
+            font-size: 11px;
+        }
+
+        .admin-login-card input {
+            width: 100%;
+            box-sizing: border-box;
+
+            padding: 13px 14px;
+
+            background: #0a0a0a;
+            border: 1px solid #292929;
+            border-radius: 8px;
+
+            color: #eee;
+            outline: none;
+
+            font-size: 13px;
+        }
+
+        .admin-login-card input:focus {
+            border-color: #f5c400;
+            box-shadow: 0 0 0 2px rgba(245, 196, 0, 0.06);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 45px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            border: none;
+            background: transparent;
+
+            color: #666;
+            cursor: pointer;
+        }
+
+        .password-toggle:hover {
+            color: #f5c400;
+        }
+
+        .admin-submit {
+            width: 100%;
+            margin-top: 8px;
+
+            padding: 13px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #f5c400;
+            color: #090909;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .admin-submit:hover {
+            background: #ffd83d;
+            transform: translateY(-1px);
+        }
+
+        .admin-footer {
+            margin-top: 25px;
+            padding-top: 18px;
+
+            border-top: 1px solid #202020;
+
+            text-align: center;
+        }
+
+        .admin-footer a {
+            color: #777;
+            text-decoration: none;
+            font-size: 10px;
+        }
+
+        .admin-footer a:hover {
+            color: #f5c400;
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+
+            margin-top: 16px;
+
+            color: #555;
+            font-size: 9px;
+        }
+
+        .security-note i {
+            color: #f5c400;
+        }
+
+        .error-message {
+            margin-bottom: 18px;
+            padding: 10px 12px;
+
+            border: 1px solid rgba(255, 80, 80, 0.2);
+            border-radius: 7px;
+
+            background: rgba(255, 80, 80, 0.06);
+
+            color: #ff7777;
+            font-size: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .admin-login-wrapper {
+                padding: 15px;
+            }
+
+            .admin-login-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="admin-login-wrapper">
+
+    <div class="admin-login-card">
+
+        <div class="admin-brand">
+
+            <div class="admin-brand-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h1>BLACKROCK</h1>
+
+            <p>Investment Management System</p>
+
+            <div class="admin-badge">
+                <i class="fa-solid fa-user-shield"></i>
+                Administrator Access
+            </div>
+
+        </div>
+
+        {% if error %}
+        <div class="error-message">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('auth.admin_login') }}">
+
+            <div class="form-group">
+
+                <label for="email">
+                    Administrator Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter admin email"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+                    Administrator Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter admin password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword()"
+                    >
+                        <i class="fa-solid fa-eye" id="passwordIcon"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="admin-submit"
+            >
+                <i class="fa-solid fa-right-to-bracket"></i>
+                ENTER ADMIN PANEL
+            </button>
+
+        </form>
+
+        <div class="security-note">
+            <i class="fa-solid fa-lock"></i>
+            Authorized administrator access only
+        </div>
+
+        <div class="admin-footer">
+
+            <a href="{{ url_for('auth.login') }}">
+                <i class="fa-solid fa-arrow-left"></i>
+                Return to User Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function togglePassword() {
+
+    const password = document.getElementById("password");
+    const icon = document.getElementById("passwordIcon");
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+
+    } else {
+
+        password.type = "password";
+
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

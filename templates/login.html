@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | BlackRock Investment</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/auth.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="auth-page">
+
+
+    <!-- =====================================
+         LEFT SIDE
+    ====================================== -->
+
+    <div class="auth-brand">
+
+        <div class="brand-logo">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>BLACKROCK</span>
+
+            <strong>INVESTMENT</strong>
+
+        </div>
+
+
+        <div class="brand-content">
+
+            <span class="brand-badge">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Secure Investment Platform
+
+            </span>
+
+
+            <h1>
+
+                Welcome
+                <span>Back.</span>
+
+            </h1>
+
+
+            <p>
+
+                Sign in to access your investment dashboard,
+                portfolio, wallet and account activity.
+
+            </p>
+
+
+            <div class="brand-features">
+
+                <div>
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <span>Secure Login</span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                    <span>Portfolio Tracking</span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                    <span>Digital Wallet</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         LOGIN SIDE
+    ====================================== -->
+
+    <div class="auth-container">
+
+        <div class="auth-card">
+
+
+            <a
+                href="{{ url_for('home') }}"
+                class="back-home"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Home
+
+            </a>
+
+
+
+            <div class="auth-header">
+
+
+                <div class="mobile-logo">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+
+                <h2>
+
+                    Welcome back
+
+                </h2>
+
+
+                <p>
+
+                    Sign in to your BlackRock Investment account.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- ERROR MESSAGE -->
+
+            {% if error %}
+
+            <div class="error-message">
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                {{ error }}
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- LOGIN FORM -->
+
+            <form
+                action="{{ url_for('auth.login') }}"
+                method="POST"
+            >
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+
+                        Email Address
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+
+                        Password
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                        >
+
+                            <i
+                                class="fa-regular fa-eye"
+                                id="eyeIcon"
+                            ></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- REMEMBER / FORGOT -->
+
+                <div class="login-options">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            name="remember"
+                        >
+
+                        <span>Remember me</span>
+
+                    </label>
+
+
+                    <a href="#">
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                >
+
+                    Sign In
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+
+            <!-- REGISTER -->
+
+            <div class="divider">
+
+                Don't have an account?
+
+            </div>
+
+
+            <a
+                href="{{ url_for('auth.register') }}"
+                class="login-link"
+            >
+
+                Create Account
+
+            </a>
+
+
+
+            <!-- DEMO NOTICE -->
+
+            <p class="demo-notice">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                This platform is currently operating as a
+                demonstration environment.
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("password");
+
+    const eyeIcon =
+        document.getElementById("eyeIcon");
+
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        eyeIcon.classList.remove("fa-eye");
+
+        eyeIcon.classList.add("fa-eye-slash");
+
+    }
+
+    else {
+
+        password.type = "password";
+
+        eyeIcon.classList.remove("fa-eye-slash");
+
+        eyeIcon.classList.add("fa-eye");
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

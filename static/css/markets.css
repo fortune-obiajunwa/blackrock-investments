@@ -1,0 +1,1701 @@
+
+/* =========================================
+   BLACKROCK INVESTMENT
+   MARKETS PAGE
+   PROFESSIONAL DARK / GOLD UI
+========================================= */
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 255px;
+    height: 100vh;
+    background: #0d0d0d;
+    border-right: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+
+/* =========================================
+   SIDEBAR LOGO
+========================================= */
+
+.sidebar-logo {
+    height: 90px;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #1c1c1c;
+}
+
+.logo-mark {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 196, 0, 0.08);
+    border: 1px solid rgba(245, 196, 0, 0.18);
+    border-radius: 9px;
+    color: #f5c400;
+    font-size: 16px;
+}
+
+.logo-text strong {
+    display: block;
+    color: #f5c400;
+    font-size: 13px;
+    letter-spacing: 1.4px;
+    font-weight: 700;
+}
+
+.logo-text span {
+    display: block;
+    margin-top: 3px;
+    color: #666;
+    font-size: 8px;
+    letter-spacing: 1.8px;
+}
+
+
+/* =========================================
+   SIDEBAR NAVIGATION
+========================================= */
+
+.sidebar-nav {
+    flex: 1;
+    padding: 25px 14px;
+    overflow-y: auto;
+}
+
+.nav-title {
+    margin: 0 10px 12px;
+    color: #555;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.nav-title.second-title {
+    margin-top: 28px;
+}
+
+.nav-item {
+    height: 44px;
+    margin-bottom: 5px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #777;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 11px;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.nav-item i {
+    width: 17px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.nav-item:hover {
+    background: #151515;
+    color: #ddd;
+}
+
+.nav-item.active {
+    background: rgba(245, 196, 0, 0.08);
+    color: #f5c400;
+    border: 1px solid rgba(245, 196, 0, 0.12);
+}
+
+.nav-item.active i {
+    color: #f5c400;
+}
+
+
+/* =========================================
+   SIDEBAR BOTTOM
+========================================= */
+
+.sidebar-bottom {
+    padding: 15px;
+    border-top: 1px solid #1c1c1c;
+}
+
+.support-box {
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 9px;
+}
+
+.support-icon {
+    width: 31px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 196, 0, 0.08);
+    color: #f5c400;
+    border-radius: 7px;
+    font-size: 12px;
+}
+
+.support-box strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #ddd;
+    font-size: 10px;
+}
+
+.support-box span {
+    color: #555;
+    font-size: 8px;
+}
+
+.logout-link {
+    height: 40px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: #666;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 10px;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.logout-link:hover {
+    background: rgba(255, 104, 104, 0.06);
+    color: #ff6868;
+}
+
+.logout-link i {
+    width: 17px;
+    text-align: center;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+    margin-left: 255px;
+    width: calc(100% - 255px);
+    min-height: 100vh;
+    padding: 0 35px 50px;
+}
+
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #1b1b1b;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.topbar-left h1 {
+    color: #eee;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.topbar-left p {
+    margin-top: 5px;
+    color: #555;
+    font-size: 9px;
+}
+
+.mobile-menu {
+    display: none;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+
+/* =========================================
+   TOPBAR RIGHT
+========================================= */
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.demo-badge {
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(245, 196, 0, 0.07);
+    border: 1px solid rgba(245, 196, 0, 0.15);
+    border-radius: 6px;
+    color: #f5c400;
+    font-size: 8px;
+    letter-spacing: 0.6px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.profile-icon {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #151515;
+    border: 1px solid #252525;
+    border-radius: 50%;
+    color: #777;
+    font-size: 12px;
+}
+
+.profile-info strong {
+    display: block;
+    color: #ccc;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.profile-info span {
+    display: block;
+    margin-top: 3px;
+    color: #555;
+    font-size: 8px;
+}
+
+
+/* =========================================
+   DEMO NOTICE
+========================================= */
+
+.demo-notice {
+    margin-top: 25px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(245, 196, 0, 0.05);
+    border: 1px solid rgba(245, 196, 0, 0.13);
+    border-radius: 9px;
+}
+
+.notice-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f5c400;
+    font-size: 13px;
+}
+
+.demo-notice strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #d5d5d5;
+    font-size: 10px;
+}
+
+.demo-notice p {
+    color: #666;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   PAGE HEADING
+========================================= */
+
+.page-heading {
+    margin-top: 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.section-label {
+    display: block;
+    margin-bottom: 7px;
+    color: #f5c400;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+}
+
+.page-heading h2,
+.section-header h2 {
+    color: #ddd;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.page-heading p {
+    margin-top: 6px;
+    color: #555;
+    font-size: 9px;
+}
+
+.market-status {
+    padding: 7px 11px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(73, 201, 139, 0.06);
+    border: 1px solid rgba(73, 201, 139, 0.12);
+    border-radius: 6px;
+    color: #49c98b;
+    font-size: 8px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    background: #49c98b;
+    border-radius: 50%;
+    box-shadow: 0 0 7px rgba(73, 201, 139, 0.5);
+}
+
+
+/* =========================================
+   MARKET OVERVIEW
+========================================= */
+
+.market-overview {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.market-stat-card {
+    min-width: 0;
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #101010;
+    border: 1px solid #202020;
+    border-radius: 10px;
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.market-stat-card:hover {
+    border-color: #2d2d2d;
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.stat-icon.market-cap,
+.stat-icon.volume,
+.stat-icon.change,
+.stat-icon.sentiment {
+    background: rgba(245, 196, 0, 0.07);
+    color: #f5c400;
+}
+
+.stat-content {
+    min-width: 0;
+}
+
+.stat-content > span {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 8px;
+}
+
+.stat-content strong {
+    display: block;
+    color: #ddd;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.stat-content small {
+    display: block;
+    margin-top: 5px;
+    color: #555;
+    font-size: 8px;
+}
+
+.stat-content small.positive {
+    color: #49c98b;
+}
+
+.stat-content small.negative {
+    color: #ff6868;
+}
+
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.section-header {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.section-header .section-label {
+    margin-bottom: 6px;
+}
+
+.demo-label {
+    color: #555;
+    font-size: 8px;
+}
+
+
+/* =========================================
+   POPULAR ASSETS
+========================================= */
+
+.popular-section {
+    margin-top: 35px;
+}
+
+.popular-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.popular-card {
+    position: relative;
+    padding: 17px;
+    background: #101010;
+    border: 1px solid #202020;
+    border-radius: 10px;
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.popular-card:hover {
+    border-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.asset-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.asset-logo {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.asset-logo.bitcoin,
+.table-asset-icon.bitcoin {
+    background: rgba(245, 196, 0, 0.1);
+    color: #f5c400;
+}
+
+.asset-logo.ethereum,
+.table-asset-icon.ethereum {
+    background: rgba(160, 160, 160, 0.08);
+    color: #aaa;
+}
+
+.asset-logo.tether,
+.table-asset-icon.tether {
+    background: rgba(73, 201, 139, 0.08);
+    color: #49c98b;
+}
+
+.asset-logo.bnb,
+.table-asset-icon.bnb {
+    background: rgba(245, 196, 0, 0.08);
+    color: #f5c400;
+}
+
+.asset-logo.solana,
+.table-asset-icon.solana {
+    background: rgba(160, 160, 160, 0.08);
+    color: #aaa;
+}
+
+.asset-logo.xrp,
+.table-asset-icon.xrp {
+    background: rgba(160, 160, 160, 0.08);
+    color: #aaa;
+}
+
+.asset-logo.bnb span {
+    font-size: 7px;
+    font-weight: 700;
+}
+
+.asset-symbol {
+    color: #555;
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.asset-name {
+    margin-top: 14px;
+    color: #777;
+    font-size: 9px;
+}
+
+.asset-price {
+    margin-top: 5px;
+    color: #ddd;
+    font-size: 15px;
+    font-weight: 600;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.asset-change {
+    margin-top: 7px;
+    font-size: 8px;
+}
+
+.asset-change.positive {
+    color: #49c98b;
+}
+
+.asset-change.negative {
+    color: #ff6868;
+}
+
+.asset-change.neutral {
+    color: #777;
+}
+
+
+/* =========================================
+   OIL & GAS
+========================================= */
+
+.energy-section {
+    margin-top: 35px;
+}
+
+.energy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.energy-card {
+    position: relative;
+    min-width: 0;
+    padding: 18px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(245, 196, 0, 0.025),
+            rgba(255, 255, 255, 0.01)
+        ),
+        #101010;
+    border: 1px solid #202020;
+    border-radius: 10px;
+    overflow: hidden;
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.energy-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(245, 196, 0, 0.25),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.energy-card:hover {
+    border-color: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+}
+
+.energy-card:hover::before {
+    opacity: 1;
+}
+
+.energy-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.energy-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.energy-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 196, 0, 0.07);
+    border: 1px solid rgba(245, 196, 0, 0.08);
+    border-radius: 8px;
+    color: #f5c400;
+    font-size: 13px;
+}
+
+.energy-icon.oil {
+    background: rgba(245, 196, 0, 0.07);
+    color: #f5c400;
+}
+
+.energy-icon.gas {
+    background: rgba(73, 201, 139, 0.07);
+    color: #49c98b;
+}
+
+.energy-symbol {
+    color: #ccc;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.energy-name {
+    margin-top: 3px;
+    color: #555;
+    font-size: 8px;
+}
+
+.energy-price {
+    margin-top: 17px;
+    color: #ddd;
+    font-size: 16px;
+    font-weight: 600;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.energy-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    font-size: 8px;
+    font-weight: 500;
+}
+
+.energy-change.positive {
+    color: #49c98b;
+}
+
+.energy-change.negative {
+    color: #ff6868;
+}
+
+.energy-change.neutral {
+    color: #777;
+}
+
+.energy-unit {
+    margin-top: 8px;
+    color: #444;
+    font-size: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================
+   LIVE ENERGY PRICE ANIMATION
+========================================= */
+
+.energy-price.price-up {
+    animation: energyPriceUp 0.65s ease;
+}
+
+.energy-price.price-down {
+    animation: energyPriceDown 0.65s ease;
+}
+
+@keyframes energyPriceUp {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.04);
+        color: #49c98b;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes energyPriceDown {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.04);
+        color: #ff6868;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   SELECTED STOCKS
+========================================= */
+
+.stocks-section {
+    margin-top: 35px;
+}
+
+.stocks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.stock-card {
+    position: relative;
+    min-width: 0;
+    padding: 18px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.015),
+            rgba(245, 196, 0, 0.02)
+        ),
+        #101010;
+    border: 1px solid #202020;
+    border-radius: 10px;
+    overflow: hidden;
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.stock-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(245, 196, 0, 0.2),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.stock-card:hover {
+    border-color: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+.stock-card:hover::before {
+    opacity: 1;
+}
+
+.stock-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stock-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 196, 0, 0.07);
+    border: 1px solid rgba(245, 196, 0, 0.1);
+    border-radius: 8px;
+    color: #f5c400;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.stock-symbol {
+    color: #555;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.stock-name {
+    margin-top: 14px;
+    color: #777;
+    font-size: 9px;
+}
+
+.stock-price {
+    margin-top: 5px;
+    color: #ddd;
+    font-size: 16px;
+    font-weight: 600;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.stock-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 7px;
+    font-size: 8px;
+    font-weight: 500;
+}
+
+.stock-change.positive {
+    color: #49c98b;
+}
+
+.stock-change.negative {
+    color: #ff6868;
+}
+
+.stock-change.neutral {
+    color: #777;
+}
+
+
+/* =========================================
+   LIVE STOCK PRICE ANIMATION
+========================================= */
+
+.stock-price.price-up {
+    animation: stockPriceUp 0.65s ease;
+}
+
+.stock-price.price-down {
+    animation: stockPriceDown 0.65s ease;
+}
+
+@keyframes stockPriceUp {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.04);
+        color: #49c98b;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes stockPriceDown {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.04);
+        color: #ff6868;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   MARKETS SECTION
+========================================= */
+
+.markets-section {
+    margin-top: 35px;
+}
+
+.market-search {
+    width: 180px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px;
+    background: #101010;
+    border: 1px solid #252525;
+    border-radius: 7px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.market-search:focus-within {
+    border-color: rgba(245, 196, 0, 0.3);
+    box-shadow: 0 0 0 3px rgba(245, 196, 0, 0.03);
+}
+
+.market-search i {
+    color: #555;
+    font-size: 10px;
+}
+
+.market-search input {
+    width: 100%;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ccc;
+    font-size: 9px;
+}
+
+.market-search input::placeholder {
+    color: #555;
+}
+
+
+/* =========================================
+   MARKET TABLE
+========================================= */
+
+.markets-card {
+    background: #101010;
+    border: 1px solid #202020;
+    border-radius: 11px;
+    overflow: hidden;
+}
+
+.markets-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.markets-table-wrapper::-webkit-scrollbar {
+    height: 5px;
+}
+
+.markets-table-wrapper::-webkit-scrollbar-track {
+    background: #0b0b0b;
+}
+
+.markets-table-wrapper::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 10px;
+}
+
+.markets-table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+}
+
+.markets-table thead {
+    background: #0d0d0d;
+}
+
+.markets-table th {
+    padding: 14px 16px;
+    color: #555;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-align: left;
+    text-transform: uppercase;
+    border-bottom: 1px solid #202020;
+}
+
+.markets-table td {
+    padding: 16px;
+    color: #777;
+    font-size: 9px;
+    border-bottom: 1px solid #1c1c1c;
+}
+
+.markets-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.markets-table tbody tr {
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.markets-table tbody tr:hover {
+    background: #131313;
+}
+
+.markets-table td strong {
+    color: #ccc;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   TABLE ASSET
+========================================= */
+
+.table-asset {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 150px;
+}
+
+.table-asset-icon {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 13px;
+}
+
+.table-asset-icon.bnb span {
+    font-size: 7px;
+    font-weight: 700;
+}
+
+.table-asset strong {
+    display: block;
+    color: #ccc;
+    font-size: 10px;
+}
+
+.table-asset span {
+    display: block;
+    margin-top: 3px;
+    color: #555;
+    font-size: 8px;
+}
+
+
+/* =========================================
+   TABLE CHANGES
+========================================= */
+
+.table-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9px;
+}
+
+.table-change.positive {
+    color: #49c98b;
+}
+
+.table-change.negative {
+    color: #ff6868;
+}
+
+.table-change.neutral {
+    color: #777;
+}
+
+
+/* =========================================
+   MARKET BADGES
+========================================= */
+
+.market-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 7px;
+}
+
+.positive-badge {
+    background: rgba(73, 201, 139, 0.07);
+    border: 1px solid rgba(73, 201, 139, 0.12);
+    color: #49c98b;
+}
+
+.market-badge i {
+    font-size: 5px;
+}
+
+
+/* =========================================
+   EMPTY SEARCH STATE
+========================================= */
+
+.market-empty {
+    display: none;
+    padding: 45px 20px;
+    text-align: center;
+}
+
+.market-empty .empty-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #181818;
+    color: #555;
+    border-radius: 50%;
+    font-size: 17px;
+}
+
+.market-empty h3 {
+    margin-bottom: 6px;
+    color: #ccc;
+    font-size: 13px;
+}
+
+.market-empty p {
+    color: #555;
+    font-size: 9px;
+}
+
+
+/* =========================================
+   MARKET INFORMATION
+========================================= */
+
+.market-information {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.information-card {
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    background: #101010;
+    border: 1px solid #202020;
+    border-radius: 9px;
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.information-card:hover {
+    border-color: #2d2d2d;
+    transform: translateY(-2px);
+}
+
+.information-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 196, 0, 0.07);
+    color: #f5c400;
+    border-radius: 7px;
+    font-size: 12px;
+}
+
+.information-card h3 {
+    margin-bottom: 5px;
+    color: #ccc;
+    font-size: 10px;
+}
+
+.information-card p {
+    color: #555;
+    font-size: 8px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   SIDEBAR OVERLAY
+========================================= */
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 900;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .market-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .popular-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .energy-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stocks-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================
+   TABLET / SMALL LAPTOP
+========================================= */
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .mobile-menu {
+        display: flex;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .main-content {
+        padding: 0 18px 35px;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        height: 75px;
+    }
+
+    .topbar-left {
+        min-width: 0;
+    }
+
+    .topbar-left h1 {
+        font-size: 16px;
+    }
+
+    .topbar-left p {
+        font-size: 8px;
+    }
+
+    .topbar-right {
+        gap: 8px;
+    }
+
+    .demo-badge {
+        display: none;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+
+    /* DEMO NOTICE */
+
+    .demo-notice {
+        margin-top: 18px;
+        padding: 12px;
+        align-items: flex-start;
+    }
+
+    .demo-notice p {
+        line-height: 1.5;
+    }
+
+
+    /* PAGE HEADING */
+
+    .page-heading {
+        margin-top: 25px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .page-heading h2 {
+        font-size: 15px;
+    }
+
+    .market-status {
+        align-self: flex-start;
+    }
+
+
+    /* OVERVIEW */
+
+    .market-overview {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .market-stat-card {
+        padding: 15px;
+    }
+
+
+    /* POPULAR */
+
+    .popular-section {
+        margin-top: 28px;
+    }
+
+    .popular-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .popular-card {
+        padding: 14px;
+    }
+
+    .asset-price {
+        font-size: 13px;
+    }
+
+
+    /* ENERGY */
+
+    .energy-section {
+        margin-top: 30px;
+    }
+
+    .energy-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .energy-card {
+        padding: 16px;
+    }
+
+
+    /* STOCKS */
+
+    .stocks-section {
+        margin-top: 30px;
+    }
+
+    .stocks-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stock-card {
+        padding: 16px;
+    }
+
+
+    /* SECTION HEADER */
+
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+    /* SEARCH */
+
+    .market-search {
+        width: 100%;
+    }
+
+
+    /* TABLE */
+
+    .markets-table {
+        min-width: 680px;
+    }
+
+
+    /* INFORMATION */
+
+    .market-information {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 450px) {
+
+    .main-content {
+        padding: 0 14px 30px;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        height: 70px;
+    }
+
+    .topbar-left {
+        gap: 9px;
+    }
+
+    .topbar-left h1 {
+        font-size: 15px;
+    }
+
+    .topbar-left p {
+        font-size: 7px;
+    }
+
+    .mobile-menu {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    /* NOTICE */
+
+    .demo-notice {
+        padding: 10px;
+    }
+
+    .notice-icon {
+        width: 27px;
+        height: 27px;
+        font-size: 11px;
+    }
+
+    .demo-notice strong {
+        font-size: 9px;
+    }
+
+    .demo-notice p {
+        font-size: 8px;
+    }
+
+
+    /* HEADING */
+
+    .page-heading h2 {
+        font-size: 14px;
+    }
+
+    .page-heading p {
+        font-size: 8px;
+    }
+
+
+    /* STAT CARDS */
+
+    .market-stat-card {
+        padding: 13px;
+    }
+
+    .stat-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .stat-content strong {
+        font-size: 14px;
+    }
+
+
+    /* POPULAR ASSETS */
+
+    .popular-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .popular-card {
+        padding: 14px;
+    }
+
+
+    /* ENERGY */
+
+    .energy-card {
+        padding: 14px;
+    }
+
+    .energy-price {
+        font-size: 14px;
+    }
+
+
+    /* STOCKS */
+
+    .stock-card {
+        padding: 14px;
+    }
+
+    .stock-price {
+        font-size: 14px;
+    }
+
+
+    /* TABLE */
+
+    .markets-table {
+        min-width: 650px;
+    }
+
+    .markets-table th,
+    .markets-table td {
+        padding: 13px;
+    }
+
+
+    /* INFORMATION */
+
+    .information-card {
+        padding: 13px;
+    }
+}
+

@@ -1,0 +1,2161 @@
+/* =========================================
+   BLACKROCK INVESTMENT
+   ADMIN DASHBOARD
+========================================= */
+
+
+/* =========================================
+   ROOT
+========================================= */
+
+:root {
+
+    --admin-bg: #070707;
+    --admin-sidebar: #0b0b0b;
+    --admin-card: #101010;
+    --admin-card-hover: #131313;
+
+    --admin-border: #222222;
+    --admin-border-light: #292929;
+
+    --admin-gold: #f5c400;
+    --admin-gold-light: #ffd83d;
+
+    --admin-text: #eeeeee;
+    --admin-text-soft: #aaaaaa;
+    --admin-text-muted: #666666;
+
+    --admin-green: #49c98b;
+    --admin-red: #ff6868;
+
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+.admin-layout,
+.admin-layout * {
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+
+    margin: 0;
+
+    background: var(--admin-bg);
+
+    color: var(--admin-text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* =========================================
+   MAIN ADMIN LAYOUT
+========================================= */
+
+.admin-layout {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    background: var(--admin-bg);
+
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.admin-sidebar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 245px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--admin-sidebar);
+
+    border-right: 1px solid var(--admin-border);
+
+    z-index: 100;
+
+}
+
+
+/* =========================================
+   ADMIN LOGO
+========================================= */
+
+.admin-logo {
+
+    height: 82px;
+
+    padding: 0 22px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom: 1px solid var(--admin-border);
+
+}
+
+
+.admin-logo-icon {
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid rgba(245, 196, 0, 0.3);
+
+    border-radius: 10px;
+
+    background: rgba(245, 196, 0, 0.06);
+
+    color: var(--admin-gold);
+
+    font-size: 17px;
+
+}
+
+
+.admin-logo-text h2 {
+
+    margin: 0;
+
+    color: var(--admin-gold);
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+}
+
+
+.admin-logo-text span {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #555;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+/* =========================================
+   ADMIN NAV
+========================================= */
+
+.admin-nav {
+
+    padding: 20px 13px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.admin-nav-link {
+
+    position: relative;
+
+    min-height: 45px;
+
+    padding: 0 13px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    border: 1px solid transparent;
+
+    border-radius: 8px;
+
+    color: #777;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+.admin-nav-link i {
+
+    width: 18px;
+
+    color: #666;
+
+    font-size: 13px;
+
+    text-align: center;
+
+}
+
+
+.admin-nav-link:hover {
+
+    background: #111;
+
+    color: #ddd;
+
+}
+
+
+.admin-nav-link:hover i {
+
+    color: var(--admin-gold);
+
+}
+
+
+.admin-nav-link.active {
+
+    background: rgba(245, 196, 0, 0.07);
+
+    border-color: rgba(245, 196, 0, 0.14);
+
+    color: var(--admin-gold);
+
+}
+
+
+.admin-nav-link.active i {
+
+    color: var(--admin-gold);
+
+}
+
+
+/* =========================================
+   NAV COUNT
+========================================= */
+
+.nav-count {
+
+    min-width: 19px;
+    height: 19px;
+
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    border-radius: 20px;
+
+    background: rgba(245, 196, 0, 0.12);
+
+    color: var(--admin-gold);
+
+    font-size: 8px;
+
+}
+
+
+/* =========================================
+   SIDEBAR BOTTOM
+========================================= */
+
+.admin-sidebar-bottom {
+
+    margin-top: auto;
+
+    padding: 15px;
+
+    border-top: 1px solid var(--admin-border);
+
+}
+
+
+/* =========================================
+   ADMIN MODE
+========================================= */
+
+.admin-mode {
+
+    margin-bottom: 13px;
+
+    padding: 11px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    background: #0f0f0f;
+
+    border: 1px solid #1c1c1c;
+
+    border-radius: 8px;
+
+}
+
+
+.admin-mode-icon {
+
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 7px;
+
+    background: rgba(245, 196, 0, 0.07);
+
+    color: var(--admin-gold);
+
+    font-size: 12px;
+
+}
+
+
+.admin-mode strong {
+
+    display: block;
+
+    color: #bbb;
+
+    font-size: 10px;
+
+}
+
+
+.admin-mode span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #555;
+
+    font-size: 8px;
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.admin-logout {
+
+    min-height: 40px;
+
+    padding: 0 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    border-radius: 8px;
+
+    color: #777;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    transition: 0.2s ease;
+
+}
+
+
+.admin-logout i {
+
+    font-size: 12px;
+
+}
+
+
+.admin-logout:hover {
+
+    background: rgba(255, 104, 104, 0.06);
+
+    color: var(--admin-red);
+
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.admin-main {
+
+    width: calc(100% - 245px);
+
+    min-height: 100vh;
+
+    margin-left: 245px;
+
+}
+
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.admin-topbar {
+
+    min-height: 82px;
+
+    padding: 17px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-bottom: 1px solid var(--admin-border);
+
+    background: #090909;
+
+}
+
+
+.admin-page-title h1 {
+
+    margin: 0;
+
+    color: #eee;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+}
+
+
+.admin-page-title p {
+
+    margin: 6px 0 0;
+
+    color: #5f5f5f;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================
+   ADMIN PROFILE
+========================================= */
+
+.admin-profile {
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.admin-profile-icon {
+
+    width: 37px;
+    height: 37px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(245, 196, 0, 0.2);
+
+    border-radius: 50%;
+
+    background: rgba(245, 196, 0, 0.06);
+
+    color: var(--admin-gold);
+
+    font-size: 13px;
+
+}
+
+
+.admin-profile-info strong {
+
+    display: block;
+
+    color: #ccc;
+
+    font-size: 10px;
+
+}
+
+
+.admin-profile-info span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #555;
+
+    font-size: 8px;
+
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.admin-content {
+
+    padding: 28px 30px 40px;
+
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.admin-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.admin-stat-card {
+
+    min-height: 105px;
+
+    padding: 18px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+
+    border-radius: 10px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.admin-stat-card:hover {
+
+    transform: translateY(-2px);
+
+    background: var(--admin-card-hover);
+
+    border-color: #2c2c2c;
+
+}
+
+
+.stat-icon {
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+
+}
+
+
+.stat-icon.users {
+
+    background: rgba(245, 196, 0, 0.08);
+
+    color: var(--admin-gold);
+
+}
+
+
+.stat-icon.balance {
+
+    background: rgba(73, 201, 139, 0.08);
+
+    color: var(--admin-green);
+
+}
+
+
+.stat-icon.investment {
+
+    background: rgba(120, 150, 255, 0.08);
+
+    color: #8aa7ff;
+
+}
+
+
+.stat-icon.invested {
+
+    background: rgba(245, 196, 0, 0.08);
+
+    color: var(--admin-gold);
+
+}
+
+
+.stat-content span {
+
+    display: block;
+
+    color: #666;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+
+}
+
+
+.stat-content strong {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: #eee;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================
+   WITHDRAWAL ALERT
+========================================= */
+
+.withdrawal-alert {
+
+    min-height: 66px;
+
+    margin-bottom: 20px;
+
+    padding: 12px 15px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    background: rgba(245, 196, 0, 0.045);
+
+    border: 1px solid rgba(245, 196, 0, 0.15);
+
+    border-radius: 9px;
+
+}
+
+
+.withdrawal-alert-icon {
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    background: rgba(245, 196, 0, 0.08);
+
+    color: var(--admin-gold);
+
+    font-size: 13px;
+
+}
+
+
+.withdrawal-alert-content {
+
+    flex: 1;
+
+}
+
+
+.withdrawal-alert-content strong {
+
+    display: block;
+
+    color: #ccc;
+
+    font-size: 10px;
+
+}
+
+
+.withdrawal-alert-content span {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #666;
+
+    font-size: 9px;
+
+}
+
+
+.alert-action {
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--admin-gold);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    white-space: nowrap;
+
+}
+
+
+.alert-action:hover {
+
+    color: var(--admin-gold-light);
+
+}
+
+
+/* =========================================
+   DASHBOARD GRID
+========================================= */
+
+.admin-dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(0, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* =========================================
+   PANELS
+========================================= */
+
+.admin-panel {
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}
+
+
+.full-panel {
+
+    width: 100%;
+
+}
+
+
+/* =========================================
+   PANEL HEADER
+========================================= */
+
+.panel-header {
+
+    min-height: 70px;
+
+    padding: 16px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-bottom: 1px solid var(--admin-border);
+
+}
+
+
+.panel-header h2 {
+
+    margin: 0;
+
+    color: #ddd;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.panel-header p {
+
+    margin: 5px 0 0;
+
+    color: #5e5e5e;
+
+    font-size: 8px;
+
+}
+
+
+.panel-header > a {
+
+    color: var(--admin-gold);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    white-space: nowrap;
+
+}
+
+
+.panel-header > a:hover {
+
+    color: var(--admin-gold-light);
+
+}
+
+
+/* =========================================
+   TABLE WRAPPER
+========================================= */
+
+.admin-table-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.admin-table {
+
+    width: 100%;
+
+    min-width: 680px;
+
+    border-collapse: collapse;
+
+}
+
+
+.admin-table th {
+
+    padding: 12px 16px;
+
+    background: #0c0c0c;
+
+    border-bottom: 1px solid var(--admin-border);
+
+    color: #555;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    white-space: nowrap;
+
+}
+
+
+.admin-table td {
+
+    padding: 13px 16px;
+
+    border-bottom: 1px solid #1a1a1a;
+
+    color: #777;
+
+    font-size: 9px;
+
+    vertical-align: middle;
+
+}
+
+
+.admin-table tbody tr {
+
+    transition: background 0.2s ease;
+
+}
+
+
+.admin-table tbody tr:hover {
+
+    background: #131313;
+
+}
+
+
+.admin-table tbody tr:last-child td {
+
+    border-bottom: none;
+
+}
+
+
+/* =========================================
+   TABLE USER
+========================================= */
+
+.table-user {
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    min-width: 150px;
+
+}
+
+
+.table-avatar {
+
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: rgba(245, 196, 0, 0.07);
+
+    color: var(--admin-gold);
+
+    font-size: 10px;
+
+}
+
+
+.table-user strong {
+
+    display: block;
+
+    color: #ccc;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+}
+
+
+.table-user span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #555;
+
+    font-size: 7px;
+
+}
+
+
+/* =========================================
+   MONEY
+========================================= */
+
+.money {
+
+    color: #ddd !important;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+
+.money-positive {
+
+    color: var(--admin-green) !important;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+
+.money-negative {
+
+    color: var(--admin-red) !important;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================
+   TRANSACTION TYPE
+========================================= */
+
+.transaction-type {
+
+    color: #aaa;
+
+    font-size: 9px;
+
+}
+
+
+.investment-plan {
+
+    color: var(--admin-gold);
+
+    font-size: 9px;
+
+}
+
+
+/* =========================================
+   STATUS BADGES
+========================================= */
+
+.status-badge {
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 8px;
+
+    border: 1px solid #282828;
+
+    border-radius: 20px;
+
+    background: #151515;
+
+    color: #777;
+
+    font-size: 7px;
+
+    white-space: nowrap;
+
+}
+
+
+.status-badge i {
+
+    font-size: 6px;
+
+}
+
+
+.status-badge.pending {
+
+    background: rgba(245, 196, 0, 0.07);
+
+    border-color: rgba(245, 196, 0, 0.16);
+
+    color: var(--admin-gold);
+
+}
+
+
+.status-badge.approved {
+
+    background: rgba(73, 201, 139, 0.07);
+
+    border-color: rgba(73, 201, 139, 0.16);
+
+    color: var(--admin-green);
+
+}
+
+
+.status-badge.rejected {
+
+    background: rgba(255, 104, 104, 0.07);
+
+    border-color: rgba(255, 104, 104, 0.16);
+
+    color: var(--admin-red);
+
+}
+
+
+/* =========================================
+   WITHDRAWAL LIST
+========================================= */
+
+.withdrawal-list {
+
+    padding: 5px 18px;
+
+}
+
+
+.withdrawal-item {
+
+    min-height: 63px;
+
+    padding: 11px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    border-bottom: 1px solid #1b1b1b;
+
+}
+
+
+.withdrawal-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.withdrawal-user {
+
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.withdrawal-user > div:last-child {
+
+    min-width: 0;
+
+}
+
+
+.withdrawal-user strong {
+
+    display: block;
+
+    max-width: 150px;
+
+    overflow: hidden;
+
+    color: #ccc;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+.withdrawal-user span {
+
+    display: block;
+
+    max-width: 150px;
+
+    margin-top: 3px;
+
+    overflow: hidden;
+
+    color: #555;
+
+    font-size: 7px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+.withdrawal-amount {
+
+    flex-shrink: 0;
+
+    text-align: right;
+
+}
+
+
+.withdrawal-amount strong {
+
+    display: block;
+
+    color: #ddd;
+
+    font-size: 10px;
+
+}
+
+
+.withdrawal-amount span {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--admin-gold);
+
+    font-size: 7px;
+
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+
+    min-height: 170px;
+
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.empty-state i {
+
+    margin-bottom: 12px;
+
+    color: var(--admin-green);
+
+    font-size: 23px;
+
+}
+
+
+.empty-state strong {
+
+    color: #aaa;
+
+    font-size: 10px;
+
+}
+
+
+.empty-state span {
+
+    margin-top: 5px;
+
+    color: #555;
+
+    font-size: 8px;
+
+}
+
+
+.empty-table {
+
+    height: 100px;
+
+    color: #555 !important;
+
+    text-align: center !important;
+
+}
+
+
+.empty-table i {
+
+    margin-right: 6px;
+
+    color: #555;
+
+}
+
+
+/* =========================================
+   WITHDRAWAL SUMMARY
+========================================= */
+
+.withdrawal-summary-panel {
+
+    margin-bottom: 18px;
+
+}
+
+
+.pending-total {
+
+    text-align: right;
+
+}
+
+
+.pending-total span {
+
+    display: block;
+
+    color: #555;
+
+    font-size: 7px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+}
+
+
+.pending-total strong {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--admin-gold);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.withdrawal-summary-footer {
+
+    padding: 14px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    background: #0d0d0d;
+
+}
+
+
+.withdrawal-summary-footer > div {
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.withdrawal-summary-footer i {
+
+    color: #555;
+
+    font-size: 10px;
+
+}
+
+
+.withdrawal-summary-footer span {
+
+    color: #555;
+
+    font-size: 8px;
+
+}
+
+
+.withdrawal-summary-footer > a {
+
+    color: var(--admin-gold);
+
+    text-decoration: none;
+
+    font-size: 8px;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.action-buttons {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+
+.action-buttons form {
+
+    margin: 0;
+
+}
+
+
+.approve-btn,
+.reject-btn {
+
+    min-height: 28px;
+
+    padding: 0 9px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border-radius: 6px;
+
+    font-family: inherit;
+
+    font-size: 7px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+.approve-btn {
+
+    border: 1px solid rgba(73, 201, 139, 0.18);
+
+    background: rgba(73, 201, 139, 0.07);
+
+    color: var(--admin-green);
+
+}
+
+
+.approve-btn:hover {
+
+    background: rgba(73, 201, 139, 0.14);
+
+    border-color: rgba(73, 201, 139, 0.3);
+
+}
+
+
+.reject-btn {
+
+    border: 1px solid rgba(255, 104, 104, 0.18);
+
+    background: rgba(255, 104, 104, 0.06);
+
+    color: var(--admin-red);
+
+}
+
+
+.reject-btn:hover {
+
+    background: rgba(255, 104, 104, 0.13);
+
+    border-color: rgba(255, 104, 104, 0.3);
+
+}
+
+
+.action-completed {
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: #555;
+
+    font-size: 7px;
+
+}
+
+
+.action-completed i {
+
+    color: var(--admin-green);
+
+}
+
+
+/* =========================================
+   DEMO NOTICE
+========================================= */
+
+.admin-demo-notice {
+
+    padding: 15px 17px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    background: rgba(245, 196, 0, 0.035);
+
+    border: 1px solid rgba(245, 196, 0, 0.1);
+
+    border-radius: 9px;
+
+}
+
+
+.demo-notice-icon {
+
+    width: 29px;
+    height: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 7px;
+
+    background: rgba(245, 196, 0, 0.06);
+
+    color: var(--admin-gold);
+
+    font-size: 11px;
+
+}
+
+
+.admin-demo-notice strong {
+
+    display: block;
+
+    color: #aaa;
+
+    font-size: 9px;
+
+}
+
+
+.admin-demo-notice p {
+
+    max-width: 850px;
+
+    margin: 5px 0 0;
+
+    color: #555;
+
+    font-size: 8px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================
+   DESKTOP LARGE
+========================================= */
+
+@media (min-width: 1400px) {
+
+    .admin-content {
+
+        padding-left: 40px;
+        padding-right: 40px;
+
+    }
+
+    .admin-topbar {
+
+        padding-left: 40px;
+        padding-right: 40px;
+
+    }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .admin-sidebar {
+
+        width: 215px;
+
+    }
+
+
+    .admin-main {
+
+        width: calc(100% - 215px);
+
+        margin-left: 215px;
+
+    }
+
+
+    .admin-stats {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .admin-dashboard-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 800px) {
+
+    .admin-sidebar {
+
+        width: 70px;
+
+    }
+
+
+    .admin-logo {
+
+        height: 72px;
+
+        padding: 0;
+
+        justify-content: center;
+
+    }
+
+
+    .admin-logo-text {
+
+        display: none;
+
+    }
+
+
+    .admin-logo-icon {
+
+        width: 37px;
+        height: 37px;
+
+    }
+
+
+    .admin-nav {
+
+        padding: 15px 9px;
+
+    }
+
+
+    .admin-nav-link {
+
+        justify-content: center;
+
+        padding: 0;
+
+    }
+
+
+    .admin-nav-link span {
+
+        display: none;
+
+    }
+
+
+    .admin-nav-link i {
+
+        margin: 0;
+
+    }
+
+
+    .nav-count {
+
+        position: absolute;
+
+        top: 4px;
+        right: 5px;
+
+        min-width: 15px;
+        height: 15px;
+
+        font-size: 6px;
+
+    }
+
+
+    .admin-sidebar-bottom {
+
+        padding: 10px 8px;
+
+    }
+
+
+    .admin-mode {
+
+        padding: 9px;
+
+        justify-content: center;
+
+    }
+
+
+    .admin-mode > div:last-child {
+
+        display: none;
+
+    }
+
+
+    .admin-mode-icon {
+
+        margin: 0;
+
+    }
+
+
+    .admin-logout {
+
+        justify-content: center;
+
+        padding: 0;
+
+    }
+
+
+    .admin-logout span {
+
+        display: none;
+
+    }
+
+
+    .admin-main {
+
+        width: calc(100% - 70px);
+
+        margin-left: 70px;
+
+    }
+
+
+    .admin-topbar {
+
+        padding: 15px 20px;
+
+    }
+
+
+    .admin-content {
+
+        padding: 20px;
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .admin-topbar {
+
+        min-height: 75px;
+
+        padding: 13px 15px;
+
+    }
+
+
+    .admin-page-title h1 {
+
+        font-size: 16px;
+
+    }
+
+
+    .admin-page-title p {
+
+        font-size: 8px;
+
+    }
+
+
+    .admin-profile-info {
+
+        display: none;
+
+    }
+
+
+    .admin-profile-icon {
+
+        width: 34px;
+        height: 34px;
+
+    }
+
+
+    .admin-content {
+
+        padding: 15px;
+
+    }
+
+
+    .admin-stats {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+    }
+
+
+    .admin-stat-card {
+
+        min-height: 85px;
+
+    }
+
+
+    .withdrawal-alert {
+
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .withdrawal-alert-content {
+
+        flex: 1 1 calc(100% - 55px);
+
+    }
+
+
+    .alert-action {
+
+        width: 100%;
+
+        padding-left: 49px;
+
+    }
+
+
+    .panel-header {
+
+        padding: 14px;
+
+    }
+
+
+    .admin-table {
+
+        min-width: 700px;
+
+    }
+
+
+    .withdrawal-summary-footer {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .withdrawal-summary-footer > a {
+
+        padding-left: 18px;
+
+    }
+
+
+    .admin-demo-notice {
+
+        padding: 13px;
+
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 430px) {
+
+    .admin-sidebar {
+
+        width: 58px;
+
+    }
+
+
+    .admin-main {
+
+        width: calc(100% - 58px);
+
+        margin-left: 58px;
+
+    }
+
+
+    .admin-nav {
+
+        padding-left: 6px;
+        padding-right: 6px;
+
+    }
+
+
+    .admin-nav-link {
+
+        min-height: 42px;
+
+    }
+
+
+    .admin-logo {
+
+        height: 65px;
+
+    }
+
+
+    .admin-logo-icon {
+
+        width: 34px;
+        height: 34px;
+
+        font-size: 14px;
+
+    }
+
+
+    .admin-content {
+
+        padding: 12px;
+
+    }
+
+
+    .admin-topbar {
+
+        padding: 12px;
+
+    }
+
+
+    .admin-page-title h1 {
+
+        font-size: 14px;
+
+    }
+
+
+    .admin-page-title p {
+
+        display: none;
+
+    }
+
+
+    .admin-stat-card {
+
+        padding: 14px;
+
+    }
+
+
+    .stat-icon {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 13px;
+
+    }
+
+
+    .stat-content strong {
+
+        font-size: 15px;
+
+    }
+
+
+    .withdrawal-alert {
+
+        padding: 11px;
+
+    }
+
+
+    .admin-panel {
+
+        border-radius: 8px;
+
+    }
+
+
+    .panel-header h2 {
+
+        font-size: 11px;
+
+    }
+
+
+    .panel-header p {
+
+        font-size: 7px;
+
+    }
+
+}

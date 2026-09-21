@@ -1,0 +1,2345 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Wallet | BlackRock Investment</title>
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Wallet CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/wallet.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     DASHBOARD LAYOUT
+========================================= -->
+
+<div class="dashboard-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <div>
+                <h2>BLACKROCK</h2>
+                <span>INVESTMENT</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="{{ url_for('user.dashboard') }}">
+                <i class="fa-solid fa-grid-2"></i>
+                <span>Dashboard</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('user.wallet') }}"
+                class="active"
+            >
+                <i class="fa-solid fa-wallet"></i>
+                <span>Wallet</span>
+            </a>
+
+
+            <a href="{{ url_for('user.investments') }}">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Investments</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('user.transactions') }}"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Transactions</span>
+            </a>
+
+
+            <a href="{{ url_for('user.markets') }}">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Markets</span>
+            </a>
+
+
+            <a href="#">
+                <i class="fa-solid fa-users"></i>
+                <span>Referrals</span>
+            </a>
+
+
+            <a href="#">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="logout-link"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================
+             TOP BAR
+        ================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="mobile-menu"
+                    id="mobileMenu"
+                    type="button"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div>
+
+                    <h1>My Wallet</h1>
+
+                    <p>
+                        Manage your funds and portfolio.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            {{ user["full_name"] }}
+                        </strong>
+
+                        <span>
+                            User Account
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================
+             DEMO NOTICE
+        ================================== -->
+
+        <section class="demo-notice">
+
+            <div class="notice-icon">
+
+                <i class="fa-solid fa-flask"></i>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    WALLET Environment
+                </strong>
+
+                <p>
+                    Wallet values shown here are for user only.
+                    real funds are being deposited, invested,
+                    or withdrawn.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             WALLET OVERVIEW
+        ================================== -->
+
+        <section class="wallet-overview">
+
+
+            <!-- Available Balance -->
+
+            <div class="balance-card primary">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span>
+                            Available Balance
+                        </span>
+
+                        <h2>
+                            ${{ "%.2f"|format(user["balance"]) }}
+                        </h2>
+
+                    </div>
+
+
+                    <div class="card-icon">
+
+                        <i class="fa-solid fa-wallet"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="balance-footer">
+
+                    <span>
+                         USD Balance
+                    </span>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Total Invested -->
+
+            <div class="balance-card">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span>
+                            Total Invested
+                        </span>
+
+                        <h2>
+                            $0.00
+                        </h2>
+
+                    </div>
+
+
+                    <div class="card-icon">
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="balance-footer">
+
+                    <span>
+                        No active investments
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Portfolio -->
+
+            <div class="balance-card">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span>
+                            Portfolio Value
+                        </span>
+
+                        <h2>
+                            $0.00
+                        </h2>
+
+                    </div>
+
+
+                    <div class="card-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="balance-footer">
+
+                    <span>
+                       portfolio
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Profit -->
+
+            <div class="balance-card">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span>
+                            Profit / Loss
+                        </span>
+
+                        <h2 class="neutral">
+                            $0.00
+                        </h2>
+
+                    </div>
+
+
+                    <div class="card-icon">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="balance-footer">
+
+                    <span>
+                        No activity yet
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             WALLET ACTIONS
+        ================================== -->
+
+        <section class="wallet-actions-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Wallet Actions</h2>
+
+                    <p>
+                        Manage your  wallet.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-grid">
+
+
+
+                <!-- =================================
+                     DEMO BTC DEPOSIT
+                ================================== -->
+
+                <div class="action-card deposit-card">
+
+                    <div class="action-icon deposit">
+
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                    </div>
+
+
+                    <div class="action-content">
+
+                        <div class="action-heading">
+
+                            <div>
+
+                                <h3>
+                                    Deposit Funds
+                                </h3>
+
+                                <p>
+                                    Submit a  BTC deposit
+                                    for administration verification.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             DEMO WARNING
+                        ================================== -->
+
+                        <div class="demo-wallet-warning">
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                            <div>
+
+                                <strong>
+                                    WALLET ONLY
+                                </strong>
+
+                                <p>
+                                    This is a Live system.
+                                    Do not send fake funds to this address.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             BTC WALLET ADDRESS
+                        ================================== -->
+
+                        <div class="wallet-address-box">
+
+                            <div class="wallet-address-header">
+
+                                <span>
+                                    <i class="fa-brands fa-bitcoin"></i>
+                                    BTC Deposit Address
+                                </span>
+
+                                <span class="network-label">
+                                    Bitcoin Network
+                                </span>
+
+                            </div>
+
+
+                            <div class="wallet-address-row">
+
+                                <input
+                                    type="text"
+                                    id="demoWalletAddress"
+                                    value="bc1ql2zncmyhfnt4rp75v94mg2z42q89xxyccj3csd"
+                                    readonly
+                                >
+
+
+                                <button
+                                    type="button"
+                                    class="copy-address-btn"
+                                    id="copyAddressButton"
+                                >
+
+                                    <i class="fa-regular fa-copy"></i>
+
+                                    <span>
+                                        Copy
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             DEPOSIT FORM
+                        ================================== -->
+
+                        <form
+                            action="{{ url_for('user.deposit') }}"
+                            method="POST"
+                            class="deposit-form"
+                            id="depositForm"
+                        >
+
+
+                            <!-- Currency -->
+
+                            <div class="form-group">
+
+                                <label for="currency">
+                                    Currency
+                                </label>
+
+                                <select
+                                    name="currency"
+                                    id="currency"
+                                    required
+                                >
+
+                                    <option value="BTC">
+                                        Bitcoin (BTC)
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- Network -->
+
+                            <div class="form-group">
+
+                                <label for="network">
+                                    Network
+                                </label>
+
+                                <select
+                                    name="network"
+                                    id="network"
+                                    required
+                                >
+
+                                    <option value="Bitcoin">
+                                        Bitcoin Network
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- Amount -->
+
+                            <div class="form-group">
+
+                                <label for="depositAmount">
+                                    Deposit Amount
+                                </label>
+
+
+                                <div class="deposit-input-wrapper">
+
+                                    <span class="currency-symbol">
+                                        BTC
+                                    </span>
+
+
+                                    <input
+                                        type="number"
+                                        name="amount"
+                                        id="depositAmount"
+                                        min="0.00000001"
+                                        step="0.00000001"
+                                        placeholder="0.00000000"
+                                        aria-label="BTC deposit amount"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- Reference -->
+
+                            <div class="form-group">
+
+                                <label for="depositReference">
+
+                                    Transaction Reference
+
+                                    <span>
+                                        (Optional)
+                                    </span>
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    name="reference"
+                                    id="depositReference"
+                                    placeholder="Enter transaction ID or reference"
+                                    maxlength="200"
+                                >
+
+                            </div>
+
+
+
+                            <!-- Submit -->
+
+                            <button
+                                type="submit"
+                                class="action-button deposit-submit"
+                                id="depositSubmitButton"
+                            >
+
+                                <span>
+                                    Submit Deposit
+                                </span>
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </button>
+
+                        </form>
+
+
+
+                        <!-- =================================
+                             DEPOSIT META
+                        ================================== -->
+
+                        <div class="deposit-meta">
+
+                            <span>
+
+                                <i class="fa-solid fa-shield-halved"></i>
+
+                                Admin verification required
+
+                            </span>
+
+
+                            <span>
+                                BTC
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     WITHDRAWAL
+                ================================== -->
+
+                <div class="action-card withdrawal-card">
+
+                    <div class="action-icon withdraw">
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                    </div>
+
+
+                    <div class="action-content">
+
+                        <h3>
+                            Withdraw Funds
+                        </h3>
+
+
+                        <p>
+                            Select a withdrawal method and
+                            provide the destination details.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         WITHDRAWAL FORM
+                    ================================== -->
+
+                    <form
+                        action="{{ url_for('user.withdraw') }}"
+                        method="POST"
+                        class="withdraw-form"
+                        id="withdrawForm"
+                    >
+
+
+                        <!-- =================================
+                             WITHDRAWAL METHOD
+                        ================================== -->
+
+                        <div class="form-group">
+
+                            <label for="withdrawal_method">
+                                Withdrawal Method
+                            </label>
+
+
+                            <select
+                                name="withdrawal_method"
+                                id="withdrawal_method"
+                                required
+                            >
+
+                                <option value="">
+                                    Select withdrawal method
+                                </option>
+
+
+                                <option value="bank">
+                                    Bank Account
+                                </option>
+
+
+                                <option value="crypto">
+                                    Crypto Wallet
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             BANK DETAILS
+                        ================================== -->
+
+                        <div
+                            id="bankFields"
+                            class="withdrawal-method-fields"
+                            style="display: none;"
+                        >
+
+                            <div class="form-group">
+
+                                <label for="bank_name">
+                                    Bank Name
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    name="bank_name"
+                                    id="bank_name"
+                                    placeholder="Enter bank name"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="account_name">
+                                    Account Name
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    name="account_name"
+                                    id="account_name"
+                                    placeholder="Enter account name"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="account_number">
+                                    Account Number
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    name="account_number"
+                                    id="account_number"
+                                    placeholder="Enter account number"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             CRYPTO DETAILS
+                        ================================== -->
+
+                        <div
+                            id="cryptoFields"
+                            class="withdrawal-method-fields"
+                            style="display: none;"
+                        >
+
+                            <div class="form-group">
+
+                                <label for="crypto_currency">
+                                    Cryptocurrency
+                                </label>
+
+
+                                <select
+                                    name="crypto_currency"
+                                    id="crypto_currency"
+                                >
+
+                                    <option value="">
+                                        Select cryptocurrency
+                                    </option>
+
+
+                                    <option value="BTC">
+                                        Bitcoin (BTC)
+                                    </option>
+
+
+                                    <option value="ETH">
+                                        Ethereum (ETH)
+                                    </option>
+
+
+                                    <option value="USDT">
+                                        Tether (USDT)
+                                    </option>
+
+
+                                    <option value="BNB">
+                                        BNB
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="crypto_network">
+                                    Network
+                                </label>
+
+
+                                <select
+                                    name="crypto_network"
+                                    id="crypto_network"
+                                >
+
+                                    <option value="">
+                                        Select network
+                                    </option>
+
+
+                                    <option value="Bitcoin">
+                                        Bitcoin Network
+                                    </option>
+
+
+                                    <option value="Ethereum">
+                                        Ethereum Network
+                                    </option>
+
+
+                                    <option value="BSC">
+                                        BNB Smart Chain (BSC)
+                                    </option>
+
+
+                                    <option value="TRON">
+                                        TRON (TRC20)
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="wallet_address">
+                                    Wallet Address
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    name="wallet_address"
+                                    id="wallet_address"
+                                    placeholder="Enter wallet address"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             AMOUNT
+                        ================================== -->
+
+                        <div class="form-group">
+
+                            <label for="withdrawal_amount">
+                                Withdrawal Amount
+                            </label>
+
+
+                            <input
+                                type="number"
+                                name="amount"
+                                id="withdrawal_amount"
+                                min="1"
+                                max="{{ user['balance'] }}"
+                                step="0.01"
+                                placeholder="Amount"
+                                required
+                            >
+
+
+                            <small>
+                                Available balance:
+                                ${{ "%.2f"|format(user["balance"]) }}
+                            </small>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             ADMIN VERIFICATION NOTICE
+                        ================================== -->
+
+                        <div class="withdrawal-notice">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+
+                            <div>
+
+                                <strong>
+                                    Withdrawal Verification
+                                </strong>
+
+
+                                <p>
+                                    Please wait while the administration
+                                    team reviews and verifies your
+                                    withdrawal request.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             SUBMIT BUTTON
+                        ================================== -->
+
+                        <button
+                            type="submit"
+                            class="action-button secondary"
+                            id="withdrawSubmitButton"
+                        >
+
+                            Submit Withdrawal
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             PENDING DEPOSITS
+        ================================== -->
+
+        {% if pending_deposits %}
+
+        <section class="pending-deposits-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Pending Deposits
+                    </h2>
+
+
+                    <p>
+                        Deposits currently waiting for
+                        administration verification.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="pending-deposits-list">
+
+                {% for deposit in pending_deposits %}
+
+                <div class="pending-deposit-card">
+
+
+                    <!-- HEADER -->
+
+                    <div class="pending-deposit-header">
+
+                        <div>
+
+                            <strong>
+                                Deposit #DP-{{
+                                    "%06d"|format(
+                                        deposit["id"]
+                                    )
+                                }}
+                            </strong>
+
+
+                            <span>
+                                {{ deposit["created_at"] }}
+                            </span>
+
+                        </div>
+
+
+                        <span class="deposit-status pending">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                            {{ deposit["status"] }}
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- DETAILS -->
+
+                    <div class="pending-deposit-details">
+
+
+                        <div>
+
+                            <span>
+                                Amount
+                            </span>
+
+
+                            <strong>
+                                {{ deposit["amount"] }}
+                                {{ deposit["currency"] or "BTC" }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Network
+                            </span>
+
+
+                            <strong>
+                                {{ deposit["network"] or "Bitcoin" }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Deposit Address
+                            </span>
+
+
+                            <strong class="wallet-address">
+                                {{ deposit["wallet_address"] or "Demo BTC Address" }}
+                            </strong>
+
+                        </div>
+
+
+                        {% if deposit["reference"] %}
+
+                        <div>
+
+                            <span>
+                                Reference
+                            </span>
+
+
+                            <strong>
+                                {{ deposit["reference"] }}
+                            </strong>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+
+                    <!-- FOOTER -->
+
+                    <div class="pending-deposit-footer">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+
+                        Your  deposit will remain pending
+                        until it is reviewed by administration.
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+
+        <!-- =================================
+             PENDING WITHDRAWALS
+        ================================== -->
+
+        {% if pending_withdrawals %}
+
+        <section class="pending-withdrawals-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Pending Withdrawals
+                    </h2>
+
+
+                    <p>
+                        Withdrawal requests currently under
+                        administration review.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="pending-withdrawals-list">
+
+                {% for withdrawal in pending_withdrawals %}
+
+                <div class="pending-withdrawal-card">
+
+
+                    <div class="pending-withdrawal-header">
+
+                        <div>
+
+                            <strong>
+                                Withdrawal #WD-{{
+                                    "%06d"|format(
+                                        withdrawal["id"]
+                                    )
+                                }}
+                            </strong>
+
+
+                            <span>
+                                {{ withdrawal["created_at"] }}
+                            </span>
+
+                        </div>
+
+
+                        <span class="withdrawal-status pending">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                            {{ withdrawal["status"] }}
+
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="pending-withdrawal-details">
+
+
+                        <div>
+
+                            <span>
+                                Method
+                            </span>
+
+
+                            <strong>
+
+                                {% if withdrawal["withdrawal_method"] == "bank" %}
+
+                                    <i class="fa-solid fa-building-columns"></i>
+
+                                    Bank Account
+
+                                {% else %}
+
+                                    <i class="fa-brands fa-bitcoin"></i>
+
+                                    Crypto Wallet
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <span>
+                                Amount
+                            </span>
+
+
+                            <strong>
+                                ${{ "%.2f"|format(
+                                    withdrawal["amount"]
+                                ) }}
+                            </strong>
+
+                        </div>
+
+
+
+                        {% if withdrawal["withdrawal_method"] == "bank" %}
+
+                            <div>
+
+                                <span>
+                                    Bank
+                                </span>
+
+
+                                <strong>
+                                    {{ withdrawal["bank_name"] }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Account Name
+                                </span>
+
+
+                                <strong>
+                                    {{ withdrawal["account_name"] }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Account Number
+                                </span>
+
+
+                                <strong>
+                                    {{ withdrawal["account_number"] }}
+                                </strong>
+
+                            </div>
+
+                        {% else %}
+
+                            <div>
+
+                                <span>
+                                    Cryptocurrency
+                                </span>
+
+
+                                <strong>
+                                    {{ withdrawal["crypto_currency"] }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Network
+                                </span>
+
+
+                                <strong>
+                                    {{ withdrawal["crypto_network"] }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Wallet Address
+                                </span>
+
+
+                                <strong class="wallet-address">
+                                    {{ withdrawal["wallet_address"] }}
+                                </strong>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+
+                    <div class="pending-withdrawal-footer">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        Your withdrawal amount has been reserved
+                        while this request is being reviewed.
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+
+        <!-- =================================
+             RECENT TRANSACTIONS
+        ================================== -->
+
+        <section class="transactions-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Recent Transactions
+                    </h2>
+
+
+                    <p>
+                        Your latest wallet activity.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="transactions-card">
+
+                {% if transactions %}
+
+                    <div class="transaction-list">
+
+                        {% for transaction in transactions %}
+
+                            <div class="transaction-item">
+
+
+                                <div class="transaction-icon
+                                    {% if transaction['type'] == 'Deposit' %}
+                                        deposit
+                                    {% else %}
+                                        withdraw
+                                    {% endif %}
+                                ">
+
+                                    {% if transaction["type"] == "Deposit" %}
+
+                                        <i class="fa-solid fa-arrow-down"></i>
+
+                                    {% else %}
+
+                                        <i class="fa-solid fa-arrow-up"></i>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <div class="transaction-info">
+
+                                    <strong>
+                                        {{ transaction["type"] }}
+                                    </strong>
+
+
+                                    <span>
+                                        {{ transaction["description"] or "Wallet transaction" }}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="transaction-amount">
+
+                                    <strong
+                                        class="
+                                        {% if transaction['type'] == 'Deposit' %}
+                                            positive
+                                        {% else %}
+                                            negative
+                                        {% endif %}
+                                        "
+                                    >
+
+                                        {% if transaction["type"] == "Deposit" %}
+                                            +
+                                        {% else %}
+                                            -
+                                        {% endif %}
+
+                                        ${{ "%.2f"|format(transaction["amount"]) }}
+
+                                    </strong>
+
+
+                                    <span>
+                                        {{ transaction["status"] }}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="transaction-date">
+
+                                    {{ transaction["created_at"] }}
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                {% else %}
+
+                    <div class="empty-transactions">
+
+                        <div class="empty-icon">
+
+                            <i class="fa-solid fa-receipt"></i>
+
+                        </div>
+
+
+                        <h3>
+                            No Transactions Yet
+                        </h3>
+
+
+                        <p>
+                            Your wallet transactions will
+                            appear here after you make a
+                             deposit or withdrawal.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             SUPPORTED ASSETS
+        ================================== -->
+
+        <section class="assets-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Supported Assets
+                    </h2>
+
+
+                    <p>
+                        market assets available
+                        for portfolio tracking.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="assets-grid">
+
+
+                <!-- BITCOIN -->
+
+                <div class="asset-card">
+
+                    <div class="asset-left">
+
+                        <div class="asset-icon bitcoin">
+                            ₿
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Bitcoin
+                            </h3>
+
+
+                            <span>
+                                BTC
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="asset-price">
+
+                        <strong>
+                            $67,420.00
+                        </strong>
+
+
+                        <span class="positive">
+                            +2.84%
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ETHEREUM -->
+
+                <div class="asset-card">
+
+                    <div class="asset-left">
+
+                        <div class="asset-icon ethereum">
+                            Ξ
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Ethereum
+                            </h3>
+
+
+                            <span>
+                                ETH
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="asset-price">
+
+                        <strong>
+                            $3,482.15
+                        </strong>
+
+
+                        <span class="positive">
+                            +1.72%
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- USDT -->
+
+                <div class="asset-card">
+
+                    <div class="asset-left">
+
+                        <div class="asset-icon usdt">
+                            $
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Tether
+                            </h3>
+
+
+                            <span>
+                                USDT
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="asset-price">
+
+                        <strong>
+                            $1.00
+                        </strong>
+
+
+                        <span class="neutral-text">
+                            0.00%
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BNB -->
+
+                <div class="asset-card">
+
+                    <div class="asset-left">
+
+                        <div class="asset-icon bnb">
+                            B
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                BNB
+                            </h3>
+
+
+                            <span>
+                                BNB
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="asset-price">
+
+                        <strong>
+                            $612.80
+                        </strong>
+
+
+                        <span class="positive">
+                            +3.12%
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             SECURITY
+        ================================== -->
+
+        <section class="security-card">
+
+            <div class="security-icon">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+            </div>
+
+
+            <div class="security-content">
+
+                <h3>
+                    Wallet Security
+                </h3>
+
+
+                <p>
+                    Your account credentials are protected
+                    using secure password hashing and
+                    session-based authentication.
+                </p>
+
+            </div>
+
+
+            <div class="security-status">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                 Secure
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================
+     MOBILE SIDEBAR OVERLAY
+========================================= -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+></div>
+
+
+
+<!-- =========================================
+     WALLET JAVASCRIPT
+========================================= -->
+
+<script>
+
+
+// =========================================
+// MOBILE SIDEBAR
+// =========================================
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+const sidebar =
+    document.querySelector(".sidebar");
+
+const sidebarOverlay =
+    document.getElementById("sidebarOverlay");
+
+
+if (mobileMenu) {
+
+    mobileMenu.addEventListener(
+        "click",
+        () => {
+
+            sidebar.classList.toggle("open");
+
+            sidebarOverlay.classList.toggle("show");
+
+        }
+    );
+
+}
+
+
+if (sidebarOverlay) {
+
+    sidebarOverlay.addEventListener(
+        "click",
+        () => {
+
+            sidebar.classList.remove("open");
+
+            sidebarOverlay.classList.remove("show");
+
+        }
+    );
+
+}
+
+
+
+// =========================================
+// COPY BTC DEMO ADDRESS
+// =========================================
+
+const copyAddressButton =
+    document.getElementById(
+        "copyAddressButton"
+    );
+
+const demoWalletAddress =
+    document.getElementById(
+        "demoWalletAddress"
+    );
+
+
+if (
+    copyAddressButton &&
+    demoWalletAddress
+) {
+
+    copyAddressButton.addEventListener(
+        "click",
+        async () => {
+
+            const address =
+                demoWalletAddress.value;
+
+
+            try {
+
+                await navigator.clipboard.writeText(
+                    address
+                );
+
+                copyAddressButton.innerHTML = `
+                    <i class="fa-solid fa-check"></i>
+                    <span>Copied</span>
+                `;
+
+
+                setTimeout(() => {
+
+                    copyAddressButton.innerHTML = `
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Copy</span>
+                    `;
+
+                }, 2000);
+
+            }
+
+            catch (error) {
+
+                demoWalletAddress.select();
+
+                document.execCommand("copy");
+
+                copyAddressButton.innerHTML = `
+                    <i class="fa-solid fa-check"></i>
+                    <span>Copied</span>
+                `;
+
+
+                setTimeout(() => {
+
+                    copyAddressButton.innerHTML = `
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Copy</span>
+                    `;
+
+                }, 2000);
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// =========================================
+// DEPOSIT FORM
+// =========================================
+
+const depositForm =
+    document.getElementById(
+        "depositForm"
+    );
+
+const depositAmount =
+    document.getElementById(
+        "depositAmount"
+    );
+
+const depositSubmitButton =
+    document.getElementById(
+        "depositSubmitButton"
+    );
+
+
+if (depositForm) {
+
+    depositForm.addEventListener(
+        "submit",
+        function (event) {
+
+            const amount =
+                parseFloat(
+                    depositAmount.value
+                );
+
+
+            // -------------------------------
+            // AMOUNT CHECK
+            // -------------------------------
+
+            if (
+                Number.isNaN(amount) ||
+                amount <= 0
+            ) {
+
+                event.preventDefault();
+
+                alert(
+                    "Please enter a valid BTC deposit amount."
+                );
+
+                return;
+
+            }
+
+
+            // -------------------------------
+            // BUTTON STATE
+            // -------------------------------
+
+            if (depositSubmitButton) {
+
+                depositSubmitButton.disabled =
+                    true;
+
+                depositSubmitButton.innerHTML = `
+                    Submitting Deposit
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                `;
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// =========================================
+// WITHDRAWAL METHOD SWITCHER
+// =========================================
+
+const withdrawalMethod =
+    document.getElementById(
+        "withdrawal_method"
+    );
+
+const bankFields =
+    document.getElementById(
+        "bankFields"
+    );
+
+const cryptoFields =
+    document.getElementById(
+        "cryptoFields"
+    );
+
+
+// Bank inputs
+
+const bankName =
+    document.getElementById(
+        "bank_name"
+    );
+
+const accountName =
+    document.getElementById(
+        "account_name"
+    );
+
+const accountNumber =
+    document.getElementById(
+        "account_number"
+    );
+
+
+// Crypto inputs
+
+const cryptoCurrency =
+    document.getElementById(
+        "crypto_currency"
+    );
+
+const cryptoNetwork =
+    document.getElementById(
+        "crypto_network"
+    );
+
+const walletAddress =
+    document.getElementById(
+        "wallet_address"
+    );
+
+
+
+// =========================================
+// UPDATE WITHDRAWAL FIELDS
+// =========================================
+
+function updateWithdrawalFields() {
+
+    const method =
+        withdrawalMethod.value;
+
+
+    // -------------------------------------
+    // HIDE EVERYTHING FIRST
+    // -------------------------------------
+
+    bankFields.style.display =
+        "none";
+
+    cryptoFields.style.display =
+        "none";
+
+
+    // Remove required attributes
+
+    bankName.required =
+        false;
+
+    accountName.required =
+        false;
+
+    accountNumber.required =
+        false;
+
+    cryptoCurrency.required =
+        false;
+
+    cryptoNetwork.required =
+        false;
+
+    walletAddress.required =
+        false;
+
+
+    // -------------------------------------
+    // BANK
+    // -------------------------------------
+
+    if (method === "bank") {
+
+        bankFields.style.display =
+            "block";
+
+        bankName.required =
+            true;
+
+        accountName.required =
+            true;
+
+        accountNumber.required =
+            true;
+
+    }
+
+
+    // -------------------------------------
+    // CRYPTO
+    // -------------------------------------
+
+    if (method === "crypto") {
+
+        cryptoFields.style.display =
+            "block";
+
+        cryptoCurrency.required =
+            true;
+
+        cryptoNetwork.required =
+            true;
+
+        walletAddress.required =
+            true;
+
+    }
+
+}
+
+
+
+// Listen for method changes
+
+if (withdrawalMethod) {
+
+    withdrawalMethod.addEventListener(
+        "change",
+        updateWithdrawalFields
+    );
+
+}
+
+
+
+// =========================================
+// WITHDRAWAL FORM VALIDATION
+// =========================================
+
+const withdrawForm =
+    document.getElementById(
+        "withdrawForm"
+    );
+
+const withdrawAmount =
+    document.getElementById(
+        "withdrawal_amount"
+    );
+
+const withdrawSubmitButton =
+    document.getElementById(
+        "withdrawSubmitButton"
+    );
+
+
+if (withdrawForm) {
+
+    withdrawForm.addEventListener(
+        "submit",
+        function (event) {
+
+            const method =
+                withdrawalMethod.value;
+
+
+            const amount =
+                parseFloat(
+                    withdrawAmount.value
+                );
+
+
+            const balance =
+                parseFloat(
+                    "{{ user['balance'] }}"
+                );
+
+
+            // ---------------------------------
+            // METHOD CHECK
+            // ---------------------------------
+
+            if (
+                method !== "bank" &&
+                method !== "crypto"
+            ) {
+
+                event.preventDefault();
+
+                alert(
+                    "Please select a withdrawal method."
+                );
+
+                return;
+
+            }
+
+
+            // ---------------------------------
+            // AMOUNT CHECK
+            // ---------------------------------
+
+            if (
+                Number.isNaN(amount) ||
+                amount <= 0
+            ) {
+
+                event.preventDefault();
+
+                alert(
+                    "Please enter a valid withdrawal amount."
+                );
+
+                return;
+
+            }
+
+
+            // ---------------------------------
+            // BALANCE CHECK
+            // ---------------------------------
+
+            if (amount > balance) {
+
+                event.preventDefault();
+
+                alert(
+                    "Withdrawal amount cannot exceed your available balance."
+                );
+
+                return;
+
+            }
+
+
+            // ---------------------------------
+            // BUTTON STATE
+            // ---------------------------------
+
+            if (withdrawSubmitButton) {
+
+                withdrawSubmitButton.disabled =
+                    true;
+
+                withdrawSubmitButton.innerHTML = `
+                    Processing Withdrawal
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                `;
+
+            }
+
+        }
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+
