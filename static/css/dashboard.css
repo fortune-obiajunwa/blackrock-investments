@@ -1,0 +1,1095 @@
+
+/* =========================================
+   BLACKROCK INVESTMENT
+   DASHBOARD
+========================================= */
+
+:root {
+
+    --yellow: #f4c542;
+    --yellow-dark: #d9a900;
+    --yellow-light: #fff7d6;
+
+    --black: #090909;
+    --dark: #111111;
+    --dark-2: #181818;
+
+    --white: #ffffff;
+
+    --background: #f5f6f8;
+    --card: #ffffff;
+
+    --text: #161616;
+    --muted: #7b7b7b;
+
+    --border: #e8e8e8;
+
+    --green: #22a55b;
+    --red: #e5484d;
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: "Inter", sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 250px;
+    height: 100vh;
+
+    background: var(--black);
+
+    color: white;
+
+    padding: 28px 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    z-index: 100;
+
+}
+
+
+/* LOGO */
+
+.sidebar-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 12px 35px;
+
+}
+
+
+.sidebar-logo > i {
+
+    color: var(--yellow);
+
+    font-size: 25px;
+
+}
+
+
+.sidebar-logo div {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.sidebar-logo span {
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.sidebar-logo strong {
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: var(--yellow);
+
+}
+
+
+/* =========================================
+   NAV
+========================================= */
+
+.sidebar-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.sidebar-nav a,
+.sidebar-bottom a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 13px 14px;
+
+    border-radius: 8px;
+
+    color: #9b9b9b;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+
+}
+
+
+.sidebar-nav a i,
+.sidebar-bottom a i {
+
+    width: 18px;
+
+    text-align: center;
+
+}
+
+
+.sidebar-nav a:hover,
+.sidebar-bottom a:hover {
+
+    color: white;
+
+    background: #1a1a1a;
+
+}
+
+
+.sidebar-nav a.active {
+
+    background: rgba(244, 197, 66, 0.12);
+
+    color: var(--yellow);
+
+}
+
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    border-top: 1px solid #252525;
+
+    padding-top: 15px;
+
+}
+
+
+.sidebar-bottom .logout:hover {
+
+    color: #ff6b6b;
+
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.main-content {
+
+    margin-left: 250px;
+
+    min-height: 100vh;
+
+}
+
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar {
+
+    height: 80px;
+
+    background: white;
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+}
+
+
+.topbar-title h1 {
+
+    font-size: 20px;
+
+    margin-bottom: 3px;
+
+}
+
+
+.topbar-title p {
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+}
+
+
+.topbar-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+}
+
+
+.icon-button {
+
+    position: relative;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+}
+
+
+.icon-button i {
+
+    color: #555;
+
+}
+
+
+.notification-dot {
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    background: var(--yellow);
+
+    border-radius: 50%;
+
+    top: 7px;
+    right: 7px;
+
+}
+
+
+.user-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.user-avatar {
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: var(--yellow);
+
+    color: #111;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 800;
+
+}
+
+
+.user-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.user-info strong {
+
+    font-size: 12px;
+
+}
+
+
+.user-info span {
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+}
+
+
+.mobile-menu {
+
+    display: none;
+
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.dashboard-content {
+
+    padding: 30px 35px 50px;
+
+}
+
+
+/* =========================================
+   DEMO BANNER
+========================================= */
+
+.demo-banner {
+
+    background: var(--yellow-light);
+
+    border: 1px solid #f1dc83;
+
+    border-radius: 10px;
+
+    padding: 15px 18px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.demo-banner > div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.demo-banner > div > i {
+
+    color: var(--yellow-dark);
+
+    font-size: 18px;
+
+}
+
+
+.demo-banner strong {
+
+    font-size: 12px;
+
+}
+
+
+.demo-banner p {
+
+    font-size: 11px;
+
+    color: #777;
+
+    margin-top: 3px;
+
+}
+
+
+/* =========================================
+   BALANCE CARDS
+========================================= */
+
+.balance-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 35px;
+
+}
+
+
+.balance-card {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 22px;
+
+}
+
+
+.balance-card.primary {
+
+    background: var(--black);
+
+    color: white;
+
+    border-color: var(--black);
+
+}
+
+
+.card-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    color: #777;
+
+    font-size: 11px;
+
+}
+
+
+.primary .card-top {
+
+    color: #aaa;
+
+}
+
+
+.card-top i {
+
+    color: var(--yellow-dark);
+
+}
+
+
+.primary .card-top i {
+
+    color: var(--yellow);
+
+}
+
+
+.balance-card h2 {
+
+    margin: 17px 0 7px;
+
+    font-size: 24px;
+
+}
+
+
+.balance-note,
+.neutral {
+
+    font-size: 10px;
+
+    color: #888;
+
+}
+
+
+.primary .balance-note {
+
+    color: #aaa;
+
+}
+
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.section-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+}
+
+
+.section-header h2 {
+
+    font-size: 17px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.section-header p {
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+}
+
+
+.market-header a {
+
+    color: var(--yellow-dark);
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.actions-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 35px;
+
+}
+
+
+.action-card {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    text-decoration: none;
+
+    color: var(--text);
+
+    transition: 0.2s;
+
+}
+
+
+.action-card:hover {
+
+    border-color: #dfc45a;
+
+    transform: translateY(-2px);
+
+}
+
+
+.action-icon {
+
+    width: 42px;
+    height: 42px;
+
+    background: var(--yellow-light);
+
+    color: var(--yellow-dark);
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.action-card div:nth-child(2) {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.action-card strong {
+
+    font-size: 12px;
+
+}
+
+
+.action-card span {
+
+    font-size: 10px;
+
+    color: #888;
+
+}
+
+
+.action-card .arrow {
+
+    margin-left: auto;
+
+    color: #aaa;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   MARKET TABLE
+========================================= */
+
+.market-table {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    margin-bottom: 35px;
+
+}
+
+
+.market-row {
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+    align-items: center;
+
+    padding: 16px 20px;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 12px;
+
+}
+
+
+.market-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.market-heading {
+
+    background: #fafafa;
+
+    color: #888;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+}
+
+
+.asset {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.asset-icon {
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.bitcoin {
+
+    background: #fff2d5;
+
+    color: #d99000;
+
+}
+
+
+.ethereum {
+
+    background: #eeeeff;
+
+    color: #6868b9;
+
+}
+
+
+.usdt {
+
+    background: #e2f7ed;
+
+    color: #15945b;
+
+}
+
+
+.asset div:last-child {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.asset span {
+
+    color: #999;
+
+    font-size: 9px;
+
+}
+
+
+.positive {
+
+    color: var(--green);
+
+    font-weight: 600;
+
+}
+
+
+.status {
+
+    color: var(--green);
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+}
+
+
+.empty-icon {
+
+    width: 50px;
+    height: 50px;
+
+    margin: 0 auto 15px;
+
+    background: #f5f5f5;
+
+    color: #999;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.empty-state h3 {
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.empty-state p {
+
+    font-size: 11px;
+
+    color: #999;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .balance-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .sidebar {
+
+        transform: translateX(-100%);
+
+        transition: 0.3s;
+
+    }
+
+
+    .sidebar.open {
+
+        transform: translateX(0);
+
+    }
+
+
+    .main-content {
+
+        margin-left: 0;
+
+    }
+
+
+    .mobile-menu {
+
+        display: block;
+
+        border: none;
+
+        background: none;
+
+        font-size: 20px;
+
+        cursor: pointer;
+
+        margin-right: 15px;
+
+    }
+
+
+    .topbar {
+
+        padding: 0 20px;
+
+    }
+
+
+    .topbar {
+
+        justify-content: flex-start;
+
+        gap: 10px;
+
+    }
+
+
+    .topbar-actions {
+
+        margin-left: auto;
+
+    }
+
+
+    .user-info {
+
+        display: none;
+
+    }
+
+
+    .dashboard-content {
+
+        padding: 25px 20px;
+
+    }
+
+
+    .actions-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .market-row {
+
+        grid-template-columns:
+            2fr 1fr 1fr;
+
+    }
+
+
+    .market-row > :last-child {
+
+        display: none;
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .balance-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .topbar-title h1 {
+
+        font-size: 17px;
+
+    }
+
+
+    .topbar-title p {
+
+        display: none;
+
+    }
+
+
+    .dashboard-content {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .market-row {
+
+        grid-template-columns:
+            1.5fr 1fr 1fr;
+
+        padding: 14px;
+
+    }
+
+}
+

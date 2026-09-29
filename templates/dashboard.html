@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | BlackRock Investment</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        <div>
+            <span>BLACKROCK</span>
+            <strong>INVESTMENT</strong>
+        </div>
+
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+        <a href="#" class="active">
+            <i class="fa-solid fa-grid-2"></i>
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('user.wallet') }}">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Wallet</span>
+        </a>
+
+        <a href="{{ url_for('user.investments') }}">
+            <i class="fa-solid fa-chart-pie"></i>
+            Investments
+        </a>
+
+        <a
+            href="{{ url_for('user.transactions') }}"
+            class="nav-item"
+        >
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Transactions</span>
+        </a>
+
+        <a href="{{ url_for('user.markets') }}">
+            <i class="fa-solid fa-chart-line"></i>
+            Markets
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-users"></i>
+            Referrals
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="#">
+            <i class="fa-solid fa-gear"></i>
+            Settings
+        </a>
+
+        <a
+            href="{{ url_for('auth.logout') }}"
+            class="logout"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <button class="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+
+        <div class="topbar-title">
+
+            <h1>Dashboard</h1>
+
+            <p>
+                Welcome back, {{ user["full_name"] }}
+            </p>
+
+        </div>
+
+
+        <div class="topbar-actions">
+
+            <button class="icon-button">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notification-dot"></span>
+            </button>
+
+
+            <div class="user-profile">
+
+                <div class="user-avatar">
+                    {{ user["full_name"][0]|upper }}
+                </div>
+
+                <div class="user-info">
+
+                    <strong>
+                        {{ user["full_name"] }}
+                    </strong>
+
+                    <span>
+                        Investor
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         DASHBOARD CONTENT
+    ========================================= -->
+
+    <section class="dashboard-content">
+
+
+        <!-- DEMO NOTICE -->
+
+        <div class="demo-banner">
+
+            <div>
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <div>
+
+                    <strong>Environment</strong>
+
+                    <p>
+                        Account balances and market figures  are shown here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BALANCE CARDS -->
+
+        <div class="balance-grid">
+
+
+            <div class="balance-card primary">
+
+                <div class="card-top">
+
+                    <span>Total Balance</span>
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                </div>
+
+
+                <h2>
+                    ${{ "%.2f"|format(user["balance"]) }}
+                </h2>
+
+
+                <p class="balance-note">
+                    Available balance
+                </p>
+
+            </div>
+
+
+
+            <div class="balance-card">
+
+                <div class="card-top">
+
+                    <span>Total Invested</span>
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+
+                <h2>
+                    $0.00
+                </h2>
+
+
+                <p class="neutral">
+                    No active investments
+                </p>
+
+            </div>
+
+
+
+            <div class="balance-card">
+
+                <div class="card-top">
+
+                    <span>Portfolio Value</span>
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                </div>
+
+
+                <h2>
+                    $0.00
+                </h2>
+
+
+                <p class="neutral">
+                    Portfolio starting value
+                </p>
+
+            </div>
+
+
+
+            <div class="balance-card">
+
+                <div class="card-top">
+
+                    <span>Profit / Loss</span>
+
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+
+                </div>
+
+
+                <h2>
+                    $0.00
+                </h2>
+
+
+                <p class="neutral">
+                    No investment activity
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>Quick Actions</h2>
+
+                <p>
+                    Manage your account
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="actions-grid">
+
+
+            <a href="#" class="action-card">
+
+                <div class="action-icon">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+
+                <div>
+                    <a
+                        href="{{ url_for('user.wallet') }}"
+                        class="quick-action"
+                    >
+                        <i class="fa-solid fa-arrow-down"></i>
+                        <span>Deposit Funds</span>
+                    </a>
+
+                    <span>
+                        Add funds to your wallet
+                    </span>
+                </div>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </a>
+
+
+
+            <a href="#" class="action-card">
+
+                <div class="action-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div>
+                    <strong>Start Investing</strong>
+                    <span>Explore investment options</span>
+                </div>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </a>
+
+
+
+            <a href="#" class="action-card">
+
+                <div class="action-icon">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+
+                <div>
+                    <strong>Withdraw</strong>
+                    <span>Withdraw available funds</span>
+                </div>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- MARKET SECTION -->
+
+        <div class="section-header market-header">
+
+            <div>
+
+                <h2>Market Overview</h2>
+
+                <p>
+                    Current market data
+                </p>
+
+            </div>
+
+
+            <a href="{{ url_for('user.markets') }}">
+                View Markets
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="market-table">
+
+
+            <div class="market-row market-heading">
+
+                <span>Asset</span>
+                <span>Price</span>
+                <span>24h Change</span>
+                <span>Market Status</span>
+
+            </div>
+
+
+
+            <div class="market-row">
+
+                <div class="asset">
+
+                    <div class="asset-icon bitcoin">
+                        <i class="fa-brands fa-bitcoin"></i>
+                    </div>
+
+                    <div>
+                        <strong>Bitcoin</strong>
+                        <span>BTC</span>
+                    </div>
+
+                </div>
+
+                <strong>$67,842.10</strong>
+
+                <span class="positive">
+                    +3.42%
+                </span>
+
+                <span class="status">
+                    Active
+                </span>
+
+            </div>
+
+
+
+            <div class="market-row">
+
+                <div class="asset">
+
+                    <div class="asset-icon ethereum">
+                        <i class="fa-brands fa-ethereum"></i>
+                    </div>
+
+                    <div>
+                        <strong>Ethereum</strong>
+                        <span>ETH</span>
+                    </div>
+
+                </div>
+
+                <strong>$3,842.56</strong>
+
+                <span class="positive">
+                    +2.18%
+                </span>
+
+                <span class="status">
+                    Active
+                </span>
+
+            </div>
+
+
+
+            <div class="market-row">
+
+                <div class="asset">
+
+                    <div class="asset-icon usdt">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+
+                    <div>
+                        <strong>Tether</strong>
+                        <span>USDT</span>
+                    </div>
+
+                </div>
+
+                <strong>$1.00</strong>
+
+                <span class="positive">
+                    +0.01%
+                </span>
+
+                <span class="status">
+                    Active
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- RECENT ACTIVITY -->
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>Recent Activity</h2>
+
+                <p>
+                    Your latest account activity
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+
+            <h3>No recent activity</h3>
+
+            <p>
+                Your deposits, investments and withdrawals
+                will appear here.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+const mobileMenu =
+    document.querySelector(".mobile-menu");
+
+const sidebar =
+    document.querySelector(".sidebar");
+
+
+if (mobileMenu && sidebar) {
+
+    mobileMenu.addEventListener("click", () => {
+
+        sidebar.classList.toggle("open");
+
+    });
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,3017 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<title>BlackRock Investment — Admin Panel</title>
+
+<!-- =========================================
+     FONT AWESOME
+========================================== -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
+
+<!-- =========================================
+     MAIN CSS
+========================================== -->
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+
+<!-- =========================================
+     ADMIN CSS
+========================================== -->
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/admin.css') }}"
+>
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<!-- =========================================
+     ADMIN SIDEBAR
+========================================== -->
+
+<aside class="admin-sidebar">
+
+
+<!-- LOGO -->
+
+<div class="admin-logo">
+
+    <div class="admin-logo-icon">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+    </div>
+
+
+    <div class="admin-logo-text">
+
+        <h2>
+            BLACKROCK
+        </h2>
+
+        <span>
+            ADMIN PANEL
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     NAVIGATION
+========================================== -->
+
+<nav class="admin-nav">
+
+
+    <!-- DASHBOARD -->
+
+    <a
+        href="{{ url_for('admin.admin_dashboard') }}"
+        class="admin-nav-link
+        {% if not admin_section %}
+            active
+        {% endif %}"
+    >
+
+        <i class="fa-solid fa-gauge-high"></i>
+
+        <span>
+            Dashboard
+        </span>
+
+    </a>
+
+
+
+    <!-- USERS -->
+
+    <a
+        href="{{ url_for('admin.admin_users') }}"
+        class="admin-nav-link
+        {% if admin_section == 'users' or admin_section == 'user_account' %}
+            active
+        {% endif %}"
+    >
+
+        <i class="fa-solid fa-users"></i>
+
+        <span>
+            Users
+        </span>
+
+    </a>
+
+
+
+    <!-- WITHDRAWALS -->
+
+    <a
+        href="{{ url_for('admin.admin_withdrawals') }}"
+        class="admin-nav-link
+        {% if admin_section == 'withdrawals' %}
+            active
+        {% endif %}"
+    >
+
+        <i class="fa-solid fa-money-bill-transfer"></i>
+
+        <span>
+            Withdrawals
+        </span>
+
+
+        {% if pending_withdrawals is defined and pending_withdrawals > 0 %}
+
+            <b class="nav-count">
+                {{ pending_withdrawals }}
+            </b>
+
+        {% endif %}
+
+    </a>
+
+
+
+    <!-- DEPOSITS -->
+
+    <a
+        href="{{ url_for('admin.admin_deposits') }}"
+        class="admin-nav-link
+        {% if admin_section == 'deposits' %}
+            active
+        {% endif %}"
+    >
+
+        <i class="fa-solid fa-money-bill-trend-up"></i>
+
+        <span>
+            Deposits
+        </span>
+
+
+        {% if pending_deposits is defined and pending_deposits > 0 %}
+
+            <b class="nav-count">
+                {{ pending_deposits }}
+            </b>
+
+        {% endif %}
+
+    </a>
+
+
+
+    <!-- TRANSACTIONS -->
+
+    <a
+        href="{{ url_for('admin.admin_transactions') }}"
+        class="admin-nav-link
+        {% if admin_section == 'transactions' %}
+            active
+        {% endif %}"
+    >
+
+        <i class="fa-solid fa-receipt"></i>
+
+        <span>
+            Transactions
+        </span>
+
+    </a>
+
+
+
+    <!-- INVESTMENTS -->
+
+    <a
+        href="{{ url_for('admin.admin_investments') }}"
+        class="admin-nav-link
+        {% if admin_section == 'investments' %}
+            active
+        {% endif %}"
+    >
+
+        <i class="fa-solid fa-chart-pie"></i>
+
+        <span>
+            Investments
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =========================================
+     SIDEBAR BOTTOM
+========================================== -->
+
+<div class="admin-sidebar-bottom">
+
+
+    <div class="admin-mode">
+
+        <div class="admin-mode-icon">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Admin Mode
+            </strong>
+
+            <span>
+                Authorized access
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{{ url_for('auth.admin_logout') }}"
+        class="admin-logout"
+    >
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        <span>
+            Logout
+        </span>
+
+    </a>
+
+
+</div>
+
+
+</aside>
+
+<!-- =========================================
+     MAIN CONTENT
+========================================== -->
+
+<main class="admin-main">
+
+
+<!-- =========================================
+     TOPBAR
+========================================== -->
+
+<header class="admin-topbar">
+
+
+    <div class="admin-page-title">
+
+
+        {% if admin_section == "users" %}
+
+            <h1>
+                User Management
+            </h1>
+
+            <p>
+                Manage registered platform users.
+            </p>
+
+
+        {% elif admin_section == "user_account" %}
+
+            <h1>
+                User Account
+            </h1>
+
+            <p>
+                Manage individual user account activity.
+            </p>
+
+
+        {% elif admin_section == "withdrawals" %}
+
+            <h1>
+                Withdrawal Requests
+            </h1>
+
+            <p>
+                Review and manage withdrawal requests.
+            </p>
+
+
+        {% elif admin_section == "deposits" %}
+
+            <h1>
+                Deposit Requests
+            </h1>
+
+            <p>
+                Review and manage deposit requests.
+            </p>
+
+
+        {% elif admin_section == "transactions" %}
+
+            <h1>
+                Transactions
+            </h1>
+
+            <p>
+                Monitor platform transaction activity.
+            </p>
+
+
+        {% elif admin_section == "investments" %}
+
+            <h1>
+                Investments
+            </h1>
+
+            <p>
+                Monitor user investment activity.
+            </p>
+
+
+        {% else %}
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                BlackRock Investment management overview.
+            </p>
+
+        {% endif %}
+
+
+    </div>
+
+
+
+    <!-- ADMIN PROFILE -->
+
+    <div class="admin-profile">
+
+
+        <div class="admin-profile-icon">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+        </div>
+
+
+        <div class="admin-profile-info">
+
+            <strong>
+
+                {% if admin %}
+
+                    {{ admin["full_name"] }}
+
+                {% else %}
+
+                    Administrator
+
+                {% endif %}
+
+            </strong>
+
+
+            <span>
+                Administrator
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+====================================================== -->
+
+{% if not admin_section %}
+
+
+<section class="admin-content">
+
+
+    <!-- STATISTICS -->
+
+    <div class="admin-stats">
+
+
+        <!-- USERS -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon users">
+
+                <i class="fa-solid fa-users"></i>
+
+            </div>
+
+
+            <div class="stat-content">
+
+                <span>
+                    Total Users
+                </span>
+
+                <strong>
+                    {{ total_users }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BALANCE -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon balance">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+
+            <div class="stat-content">
+
+                <span>
+                    Total Balances
+                </span>
+
+                <strong>
+                    ${{ "%.2f"|format(total_balance or 0) }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIVE INVESTMENTS -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon investment">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+
+            <div class="stat-content">
+
+                <span>
+                    Active Investments
+                </span>
+
+                <strong>
+                    {{ active_investments }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TOTAL INVESTED -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon invested">
+
+                <i class="fa-solid fa-coins"></i>
+
+            </div>
+
+
+            <div class="stat-content">
+
+                <span>
+                    Total Invested
+                </span>
+
+                <strong>
+                    ${{ "%.2f"|format(total_invested or 0) }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- PENDING WITHDRAWAL ALERT -->
+
+    {% if pending_withdrawals > 0 %}
+
+
+    <div class="withdrawal-alert">
+
+
+        <div class="withdrawal-alert-icon">
+
+            <i class="fa-solid fa-clock"></i>
+
+        </div>
+
+
+        <div class="withdrawal-alert-content">
+
+            <strong>
+                Pending Withdrawal Requests
+            </strong>
+
+            <span>
+
+                {{ pending_withdrawals }}
+
+                request{% if pending_withdrawals != 1 %}s{% endif %}
+
+                require administrator review.
+
+            </span>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('admin.admin_withdrawals') }}"
+            class="alert-action"
+        >
+
+            Review Requests
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+
+    </div>
+
+
+    {% endif %}
+
+
+
+    <!-- DASHBOARD GRID -->
+
+    <div class="admin-dashboard-grid">
+
+
+        <!-- RECENT USERS -->
+
+        <div class="admin-panel">
+
+
+            <div class="panel-header">
+
+
+                <div>
+
+                    <h2>
+                        Recent Users
+                    </h2>
+
+                    <p>
+                        Latest registered accounts
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('admin.admin_users') }}"
+                >
+                    View All
+                </a>
+
+
+            </div>
+
+
+
+            <div class="admin-table-wrapper">
+
+
+                <table class="admin-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                User
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Balance
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                    {% for user in recent_users %}
+
+
+                        <tr>
+
+
+                            <td>
+
+                                <div class="table-user">
+
+                                    <div class="table-avatar">
+
+                                        <i class="fa-solid fa-user"></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            {{ user["full_name"] }}
+                                        </strong>
+
+                                        <span>
+                                            ID #{{ user["id"] }}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                {{ user["email"] }}
+                            </td>
+
+
+                            <td class="money">
+
+                                ${{ "%.2f"|format(
+                                    user["balance"] or 0
+                                ) }}
+
+                            </td>
+
+
+                        </tr>
+
+
+                    {% else %}
+
+
+                        <tr>
+
+                            <td
+                                colspan="3"
+                                class="empty-table"
+                            >
+                                No users found.
+                            </td>
+
+                        </tr>
+
+
+                    {% endfor %}
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- WITHDRAWAL REQUESTS -->
+
+        <div class="admin-panel">
+
+
+            <div class="panel-header">
+
+
+                <div>
+
+                    <h2>
+                        Withdrawal Requests
+                    </h2>
+
+                    <p>
+                        Awaiting approval
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('admin.admin_withdrawals') }}"
+                >
+                    View All
+                </a>
+
+
+            </div>
+
+
+
+            <div class="withdrawal-list">
+
+
+            {% for withdrawal in withdrawal_requests[:5] %}
+
+
+                <div class="withdrawal-item">
+
+
+                    <div class="withdrawal-user">
+
+
+                        <div class="table-avatar">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                {{ withdrawal["full_name"] }}
+                            </strong>
+
+                            <span>
+                                {{ withdrawal["email"] }}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="withdrawal-amount">
+
+
+                        <strong>
+
+                            ${{ "%.2f"|format(
+                                withdrawal["amount"] or 0
+                            ) }}
+
+                        </strong>
+
+
+                        <span>
+                            {{ withdrawal["status"] }}
+                        </span>
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <div class="empty-state">
+
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+
+                    <strong>
+                        No withdrawal requests
+                    </strong>
+
+
+                    <span>
+                        Everything is up to date.
+                    </span>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- PENDING WITHDRAWAL SUMMARY -->
+
+    <div class="admin-panel withdrawal-summary-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    Pending Withdrawal Summary
+                </h2>
+
+                <p>
+                    Funds currently awaiting administrator review.
+                </p>
+
+            </div>
+
+
+            <div class="pending-total">
+
+                <span>
+                    Pending Amount
+                </span>
+
+                <strong>
+                    ${{ "%.2f"|format(
+                        pending_withdrawal_amount or 0
+                    ) }}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="withdrawal-summary-footer">
+
+            <div>
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+                    Withdrawals remain pending until they are
+                    reviewed and processed by an administrator.
+                </span>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('admin.admin_withdrawals') }}"
+            >
+
+                Manage Withdrawals
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- DEMO NOTICE -->
+
+    <div class="admin-demo-notice">
+
+
+        <div class="demo-notice-icon">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Demo / Sandbox Administration
+            </strong>
+
+            <p>
+
+                This administration panel is part of the
+                BlackRock Investment demo environment.
+                Financial balances, investments and market
+                activity are simulated for development and testing.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endif %}
+
+
+
+<!-- =====================================================
+     USERS PAGE
+====================================================== -->
+
+{% if admin_section == "users" %}
+
+
+<section class="admin-content">
+
+
+    <div class="admin-panel full-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    Registered Users
+                </h2>
+
+                <p>
+                    All non-administrator platform accounts.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="admin-table-wrapper">
+
+
+            <table class="admin-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            User
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Balance
+                        </th>
+
+                        <th>
+                            Joined
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for user in users %}
+
+
+                    <tr>
+
+
+                        <td>
+                            #{{ user["id"] }}
+                        </td>
+
+
+                        <td>
+
+
+                            <div class="table-user">
+
+
+                                <div class="table-avatar">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                </div>
+
+
+                                <strong>
+                                    {{ user["full_name"] }}
+                                </strong>
+
+
+                            </div>
+
+
+                        </td>
+
+
+                        <td>
+                            {{ user["email"] }}
+                        </td>
+
+
+                        <td class="money">
+
+                            ${{ "%.2f"|format(
+                                user["balance"] or 0
+                            ) }}
+
+                        </td>
+
+
+                        <td>
+                            {{ user["created_at"] }}
+                        </td>
+
+
+                        <td>
+
+                            <a
+                                href="{{ url_for(
+                                    'admin.admin_access_user',
+                                    user_id=user['id']
+                                ) }}"
+                                class="admin-action-btn"
+                            >
+
+                                <i class="fa-solid fa-user-gear"></i>
+
+                                Manage
+
+                            </a>
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% else %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            class="empty-table"
+                        >
+                            No users found.
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endif %}
+
+
+
+<!-- =====================================================
+     USER ACCOUNT MANAGEMENT
+====================================================== -->
+
+{% if admin_section == "user_account" %}
+
+
+<section class="admin-content">
+
+
+    <!-- USER ACCOUNT -->
+
+    <div class="admin-panel full-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    User Account
+                </h2>
+
+                <p>
+                    Manage this user's demo account.
+                </p>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('admin.admin_users') }}"
+                class="admin-action-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Users
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- USER INFORMATION -->
+
+        <div class="admin-user-account">
+
+
+            <div class="table-user">
+
+
+                <div class="table-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        {{ user_account["full_name"] }}
+                    </strong>
+
+                    <span>
+                        {{ user_account["email"] }}
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="user-account-balance">
+
+
+                <span>
+                    Current Balance
+                </span>
+
+
+                <strong>
+
+                    ${{ "%.2f"|format(
+                        user_account["balance"] or 0
+                    ) }}
+
+                </strong>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BALANCE ADJUSTMENT -->
+
+    <div class="admin-panel full-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    Adjust Balance
+                </h2>
+
+                <p>
+                    Add or deduct demo funds from this user's balance.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <form
+            method="POST"
+            action="{{ url_for(
+                'admin.admin_adjust_balance',
+                user_id=user_account['id']
+            ) }}"
+            class="balance-adjust-form"
+        >
+
+
+            <div class="balance-adjust-info">
+
+
+                <i class="fa-solid fa-circle-info"></i>
+
+
+                <span>
+
+                    Enter a positive amount to add funds or a
+                    negative amount to deduct funds.
+
+                </span>
+
+
+            </div>
+
+
+
+            <div class="balance-adjust-fields">
+
+
+                <div class="form-group">
+
+
+                    <label for="amount">
+                        Adjustment Amount
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        step="0.01"
+                        placeholder="Example: 1000 or -500"
+                        required
+                    >
+
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="approve-btn"
+                    onclick="return confirm('Apply this balance adjustment?')"
+                >
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                    Adjust Balance
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+
+    <!-- USER TRANSACTIONS -->
+
+    <div class="admin-panel full-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    Recent Transactions
+                </h2>
+
+                <p>
+                    Recent activity for this user.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="admin-table-wrapper">
+
+
+            <table class="admin-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Description
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for transaction in user_transactions %}
+
+
+                    <tr>
+
+
+                        <td>
+
+                            <span class="transaction-type">
+
+                                {{ transaction["type"] }}
+
+                            </span>
+
+                        </td>
+
+
+                        <td
+                            class="
+                            {% if transaction['amount'] > 0 %}
+                                money-positive
+                            {% else %}
+                                money-negative
+                            {% endif %}
+                            "
+                        >
+
+                            ${{ "%.2f"|format(
+                                transaction["amount"] or 0
+                            ) }}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if transaction["status"] == "Completed" %}
+
+                                <span class="status-badge approved">
+
+                                    <i class="fa-solid fa-circle-check"></i>
+
+                                    Completed
+
+                                </span>
+
+                            {% elif transaction["status"] == "Pending" %}
+
+                                <span class="status-badge pending">
+
+                                    <i class="fa-solid fa-clock"></i>
+
+                                    Pending
+
+                                </span>
+
+                            {% elif transaction["status"] == "Failed" %}
+
+                                <span class="status-badge rejected">
+
+                                    <i class="fa-solid fa-circle-xmark"></i>
+
+                                    Failed
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="status-badge">
+
+                                    {{ transaction["status"] }}
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ transaction["description"] or "—" }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ transaction["created_at"] }}
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% else %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            class="empty-table"
+                        >
+
+                            No transactions found.
+
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- USER INVESTMENTS -->
+
+    <div class="admin-panel full-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    User Investments
+                </h2>
+
+                <p>
+                    Investments belonging to this account.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="admin-table-wrapper">
+
+
+            <table class="admin-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Plan
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Expected Return
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Maturity
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for investment in user_investments %}
+
+
+                    <tr>
+
+
+                        <td>
+
+                            <span class="investment-plan">
+
+                                {{ investment["plan_name"] }}
+
+                            </span>
+
+                        </td>
+
+
+                        <td class="money">
+
+                            ${{ "%.2f"|format(
+                                investment["amount"] or 0
+                            ) }}
+
+                        </td>
+
+
+                        <td class="money-positive">
+
+                            ${{ "%.2f"|format(
+                                investment["expected_return"] or 0
+                            ) }}
+
+                        </td>
+
+
+                        <td>
+
+
+                            {% if investment["status"] == "Active" %}
+
+                                <span class="status-badge pending">
+
+                                    <i class="fa-solid fa-clock"></i>
+
+                                    Active
+
+                                </span>
+
+
+                            {% elif investment["status"] == "Completed" %}
+
+                                <span class="status-badge approved">
+
+                                    <i class="fa-solid fa-circle-check"></i>
+
+                                    Completed
+
+                                </span>
+
+
+                            {% else %}
+
+                                <span class="status-badge">
+
+                                    {{ investment["status"] }}
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </td>
+
+
+                        <td>
+
+                            {{ investment["maturity_date"] }}
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% else %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            class="empty-table"
+                        >
+
+                            No investments found.
+
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- DEMO NOTICE -->
+
+    <div class="admin-demo-notice">
+
+
+        <div class="demo-notice-icon">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Demo / Sandbox Account Management
+            </strong>
+
+            <p>
+
+                Balance adjustments are simulated for this
+                development environment. Positive values add
+                demo funds while negative values deduct demo
+                funds from the selected user's available balance.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endif %}
+
+
+
+<!-- =====================================================
+     WITHDRAWALS PAGE
+====================================================== -->
+
+{% if admin_section == "withdrawals" %}
+
+
+<section class="admin-content">
+
+
+    <div class="admin-panel full-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    Withdrawal Requests
+                </h2>
+
+                <p>
+                    Review requests before funds are released.
+                </p>
+
+            </div>
+
+
+            {% if pending_withdrawals is defined %}
+
+            <div class="pending-total">
+
+                <span>
+                    Pending
+                </span>
+
+                <strong>
+                    {{ pending_withdrawals }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+
+        <div class="admin-table-wrapper">
+
+
+            <table class="admin-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Requested
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for withdrawal in withdrawal_requests %}
+
+
+                    <tr>
+
+
+                        <td>
+
+
+                            <div class="table-user">
+
+
+                                <div class="table-avatar">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        {{ withdrawal["full_name"] }}
+                                    </strong>
+
+                                    <span>
+                                        {{ withdrawal["email"] }}
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </td>
+
+
+                        <td class="money">
+
+                            ${{ "%.2f"|format(
+                                withdrawal["amount"] or 0
+                            ) }}
+
+                        </td>
+
+
+                        <td>
+
+
+                            {% if withdrawal["status"] == "Pending" %}
+
+                                <span class="status-badge pending">
+
+                                    <i class="fa-solid fa-clock"></i>
+
+                                    Pending
+
+                                </span>
+
+
+                            {% elif withdrawal["status"] == "Approved" %}
+
+                                <span class="status-badge approved">
+
+                                    <i class="fa-solid fa-circle-check"></i>
+
+                                    Approved
+
+                                </span>
+
+
+                            {% elif withdrawal["status"] == "Rejected" %}
+
+                                <span class="status-badge rejected">
+
+                                    <i class="fa-solid fa-circle-xmark"></i>
+
+                                    Rejected
+
+                                </span>
+
+
+                            {% else %}
+
+                                <span class="status-badge">
+
+                                    {{ withdrawal["status"] }}
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </td>
+
+
+                        <td>
+
+                            {{ withdrawal["created_at"] }}
+
+                        </td>
+
+
+                        <td>
+
+
+                        {% if withdrawal["status"] == "Pending" %}
+
+
+                            <div class="action-buttons">
+
+
+                                <form
+                                    method="POST"
+                                    action="{{
+                                        url_for(
+                                            'admin.approve_withdrawal',
+                                            request_id=withdrawal['id']
+                                        )
+                                    }}"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="approve-btn"
+                                        onclick="return confirm('Approve this withdrawal request?')"
+                                    >
+
+                                        <i class="fa-solid fa-check"></i>
+
+                                        Approve
+
+                                    </button>
+
+                                </form>
+
+
+                                <form
+                                    method="POST"
+                                    action="{{
+                                        url_for(
+                                            'admin.reject_withdrawal',
+                                            request_id=withdrawal['id']
+                                        )
+                                    }}"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="reject-btn"
+                                        onclick="return confirm('Reject this withdrawal request?')"
+                                    >
+
+                                        <i class="fa-solid fa-xmark"></i>
+
+                                        Reject
+
+                                    </button>
+
+                                </form>
+
+
+                            </div>
+
+
+                        {% else %}
+
+
+                            <span class="action-completed">
+
+                                <i class="fa-solid fa-check"></i>
+
+                                Processed
+
+                            </span>
+
+
+                        {% endif %}
+
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% else %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            class="empty-table"
+                        >
+
+                            <i class="fa-solid fa-inbox"></i>
+
+                            No withdrawal requests found.
+
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- WITHDRAWAL PROCEDURE -->
+
+    <div class="admin-demo-notice">
+
+
+        <div class="demo-notice-icon">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Withdrawal Verification
+            </strong>
+
+            <p>
+
+                Pending withdrawal requests must be reviewed
+                by an administrator before they can be marked
+                as completed. Rejected requests return the
+                reserved funds to the user's available balance.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endif %}
+
+
+
+<!-- =====================================================
+     DEPOSITS PAGE
+====================================================== -->
+
+{% if admin_section == "deposits" %}
+
+
+<section class="admin-content">
+
+
+    <div class="admin-panel full-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    Deposit Requests
+                </h2>
+
+                <p>
+                    Review deposits before funds are added
+                    to user balances.
+                </p>
+
+            </div>
+
+
+            {% if pending_deposits is defined %}
+
+            <div class="pending-total">
+
+                <span>
+                    Pending
+                </span>
+
+                <strong>
+                    {{ pending_deposits }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+
+        <div class="admin-table-wrapper">
+
+
+            <table class="admin-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Requested
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for deposit in deposit_requests %}
+
+
+                    <tr>
+
+
+                        <td>
+
+
+                            <div class="table-user">
+
+
+                                <div class="table-avatar">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        {{ deposit["full_name"] }}
+                                    </strong>
+
+                                    <span>
+                                        {{ deposit["email"] }}
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </td>
+
+
+                        <td class="money-positive">
+
+                            ${{ "%.2f"|format(
+                                deposit["amount"] or 0
+                            ) }}
+
+                        </td>
+
+
+                        <td>
+
+
+                            {% if deposit["status"] == "Pending" %}
+
+                                <span class="status-badge pending">
+
+                                    <i class="fa-solid fa-clock"></i>
+
+                                    Pending
+
+                                </span>
+
+
+                            {% elif deposit["status"] == "Approved" %}
+
+                                <span class="status-badge approved">
+
+                                    <i class="fa-solid fa-circle-check"></i>
+
+                                    Approved
+
+                                </span>
+
+
+                            {% elif deposit["status"] == "Rejected" %}
+
+                                <span class="status-badge rejected">
+
+                                    <i class="fa-solid fa-circle-xmark"></i>
+
+                                    Rejected
+
+                                </span>
+
+
+                            {% else %}
+
+                                <span class="status-badge">
+
+                                    {{ deposit["status"] }}
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </td>
+
+
+                        <td>
+
+                            {{ deposit["created_at"] }}
+
+                        </td>
+
+
+                        <td>
+
+
+                        {% if deposit["status"] == "Pending" %}
+
+
+                            <div class="action-buttons">
+
+
+                                <form
+                                    method="POST"
+                                    action="{{
+                                        url_for(
+                                            'admin.approve_deposit',
+                                            request_id=deposit['id']
+                                        )
+                                    }}"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="approve-btn"
+                                        onclick="return confirm('Allow this deposit and add the funds to the user balance?')"
+                                    >
+
+                                        <i class="fa-solid fa-check"></i>
+
+                                        Allow
+
+                                    </button>
+
+                                </form>
+
+
+                                <form
+                                    method="POST"
+                                    action="{{
+                                        url_for(
+                                            'admin.reject_deposit',
+                                            request_id=deposit['id']
+                                        )
+                                    }}"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="reject-btn"
+                                        onclick="return confirm('Reject this deposit request?')"
+                                    >
+
+                                        <i class="fa-solid fa-xmark"></i>
+
+                                        Reject
+
+                                    </button>
+
+                                </form>
+
+
+                            </div>
+
+
+                        {% else %}
+
+
+                            <span class="action-completed">
+
+
+                                {% if deposit["status"] == "Approved" %}
+
+                                    <i class="fa-solid fa-check"></i>
+
+                                    Approved
+
+                                {% else %}
+
+                                    <i class="fa-solid fa-xmark"></i>
+
+                                    Rejected
+
+                                {% endif %}
+
+
+                            </span>
+
+
+                        {% endif %}
+
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% else %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            class="empty-table"
+                        >
+
+                            <i class="fa-solid fa-inbox"></i>
+
+                            No deposit requests found.
+
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- DEPOSIT VERIFICATION NOTICE -->
+
+    <div class="admin-demo-notice">
+
+
+        <div class="demo-notice-icon">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Deposit Verification
+            </strong>
+
+            <p>
+
+                Deposit requests remain pending until they
+                are reviewed by an administrator. Approved
+                deposits are added to the user's available
+                demo balance. Rejected deposits do not add
+                funds to the user's balance.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endif %}
+
+
+
+<!-- =====================================================
+     TRANSACTIONS PAGE
+====================================================== -->
+
+{% if admin_section == "transactions" %}
+
+
+<section class="admin-content">
+
+
+    <div class="admin-panel full-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    All Transactions
+                </h2>
+
+                <p>
+                    Platform transaction history.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="admin-table-wrapper">
+
+
+            <table class="admin-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for transaction in transactions %}
+
+
+                    <tr>
+
+
+                        <td>
+
+
+                            <div class="table-user">
+
+
+                                <div class="table-avatar">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        {{ transaction["full_name"] }}
+                                    </strong>
+
+                                    <span>
+                                        {{ transaction["email"] }}
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="transaction-type">
+
+                                {{ transaction["type"] }}
+
+                            </span>
+
+                        </td>
+
+
+                        <td
+                            class="
+                            {% if transaction['amount'] > 0 %}
+                                money-positive
+                            {% else %}
+                                money-negative
+                            {% endif %}
+                            "
+                        >
+
+                            ${{ "%.2f"|format(
+                                transaction["amount"] or 0
+                            ) }}
+
+                        </td>
+
+
+                        <td>
+
+
+                            {% if transaction["status"] == "Completed" %}
+
+                                <span class="status-badge approved">
+
+                                    <i class="fa-solid fa-circle-check"></i>
+
+                                    Completed
+
+                                </span>
+
+
+                            {% elif transaction["status"] == "Pending" %}
+
+                                <span class="status-badge pending">
+
+                                    <i class="fa-solid fa-clock"></i>
+
+                                    Pending
+
+                                </span>
+
+
+                            {% elif transaction["status"] == "Failed" %}
+
+                                <span class="status-badge rejected">
+
+                                    <i class="fa-solid fa-circle-xmark"></i>
+
+                                    Failed
+
+                                </span>
+
+
+                            {% else %}
+
+                                <span class="status-badge">
+
+                                    {{ transaction["status"] }}
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </td>
+
+
+                        <td>
+
+                            {{ transaction["created_at"] }}
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% else %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            class="empty-table"
+                        >
+
+                            <i class="fa-solid fa-receipt"></i>
+
+                            No transactions found.
+
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endif %}
+
+
+
+<!-- =====================================================
+     INVESTMENTS PAGE
+====================================================== -->
+
+{% if admin_section == "investments" %}
+
+
+<section class="admin-content">
+
+
+    <div class="admin-panel full-panel">
+
+
+        <div class="panel-header">
+
+
+            <div>
+
+                <h2>
+                    All Investments
+                </h2>
+
+                <p>
+                    Monitor user investment activity.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="admin-table-wrapper">
+
+
+            <table class="admin-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User
+                        </th>
+
+                        <th>
+                            Plan
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Expected Return
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Maturity
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for investment in investments %}
+
+
+                    <tr>
+
+
+                        <td>
+
+
+                            <div class="table-user">
+
+
+                                <div class="table-avatar">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        {{ investment["full_name"] }}
+                                    </strong>
+
+                                    <span>
+                                        {{ investment["email"] }}
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="investment-plan">
+
+                                {{ investment["plan_name"] }}
+
+                            </span>
+
+                        </td>
+
+
+                        <td class="money">
+
+                            ${{ "%.2f"|format(
+                                investment["amount"] or 0
+                            ) }}
+
+                        </td>
+
+
+                        <td class="money-positive">
+
+                            ${{ "%.2f"|format(
+                                investment["expected_return"] or 0
+                            ) }}
+
+                        </td>
+
+
+                        <td>
+
+
+                            {% if investment["status"] == "Active" %}
+
+                                <span class="status-badge pending">
+
+                                    <i class="fa-solid fa-clock"></i>
+
+                                    Active
+
+                                </span>
+
+
+                            {% elif investment["status"] == "Completed" %}
+
+                                <span class="status-badge approved">
+
+                                    <i class="fa-solid fa-circle-check"></i>
+
+                                    Completed
+
+                                </span>
+
+
+                            {% else %}
+
+                                <span class="status-badge">
+
+                                    {{ investment["status"] }}
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </td>
+
+
+                        <td>
+
+                            {{ investment["maturity_date"] }}
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% else %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            class="empty-table"
+                        >
+
+                            <i class="fa-solid fa-chart-pie"></i>
+
+                            No investments found.
+
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- DEMO NOTICE -->
+
+    <div class="admin-demo-notice">
+
+
+        <div class="demo-notice-icon">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Investment Data
+            </strong>
+
+            <p>
+
+                Investment information shown here belongs
+                to the platform's simulated demonstration
+                environment.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endif %}
+
+
+</main>
+
+</div>
+
+</body>
+
+</html>

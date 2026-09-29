@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Transactions | BlackRock Investment</title>
+
+    <!-- Google Font -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Transactions CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/transactions.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+
+<!-- =====================================
+     SIDEBAR
+====================================== -->
+
+<aside class="sidebar">
+
+
+    <div class="sidebar-logo">
+
+        <div class="logo-icon">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+        </div>
+
+        <div>
+
+            <h2>BLACKROCK</h2>
+
+            <span>INVESTMENT</span>
+
+        </div>
+
+    </div>
+
+
+
+    <nav class="sidebar-nav">
+
+
+        <a href="{{ url_for('user.dashboard') }}">
+
+            <i class="fa-solid fa-grid-2"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+
+        <a href="{{ url_for('user.wallet') }}">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            <span>Wallet</span>
+
+        </a>
+
+
+
+        <a href="{{ url_for('user.investments') }}">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            <span>Investments</span>
+
+        </a>
+
+
+
+        <a
+            href="{{ url_for('user.transactions') }}"
+            class="active"
+        >
+
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+            <span>Transactions</span>
+
+        </a>
+
+
+
+        <a href="{{ url_for('user.markets') }}">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <span>Markets</span>
+
+        </a>
+
+
+
+        <a href="#">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>Referrals</span>
+
+        </a>
+
+
+
+        <a href="#">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+    </nav>
+
+
+
+    <div class="sidebar-bottom">
+
+        <a
+            href="{{ url_for('auth.logout') }}"
+            class="logout-link"
+        >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+
+
+<!-- =====================================
+     MAIN CONTENT
+====================================== -->
+
+<main class="main-content">
+
+
+    <!-- =================================
+         TOPBAR
+    ================================== -->
+
+    <header class="topbar">
+
+
+        <div class="topbar-left">
+
+
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+                type="button"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+
+            <div>
+
+                <h1>Transactions</h1>
+
+                <p>
+                    View your complete wallet activity.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="topbar-right">
+
+
+            <div class="user-profile">
+
+
+                <div class="user-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+
+                <div>
+
+                    <strong>
+                        {{ session["user_name"] }}
+                    </strong>
+
+                    <span>
+                        Account
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+
+
+    <!-- =================================
+         DEMO NOTICE
+    ================================== -->
+
+    <section class="demo-notice">
+
+
+        <div class="notice-icon">
+
+            <i class="fa-solid fa-flask"></i>
+
+        </div>
+
+
+
+        <div>
+
+            <strong>
+                Transaction Environment
+            </strong>
+
+            <p>
+                All transactions  will be displayed on this page
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- =================================
+         PAGE HEADER
+    ================================== -->
+
+    <section class="page-heading">
+
+
+        <div>
+
+            <h2>Transaction History</h2>
+
+            <p>
+                Your complete wallet and investment activity.
+            </p>
+
+        </div>
+
+
+
+        <div class="transaction-count">
+
+            <i class="fa-solid fa-receipt"></i>
+
+            {{ transactions|length }} Transactions
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- =================================
+         TRANSACTION CARD
+    ================================== -->
+
+    <section class="transactions-card">
+
+
+        {% if transactions %}
+
+
+            <!-- TABLE HEADER -->
+
+            <div class="transaction-header">
+
+                <span>Type</span>
+
+                <span>Description</span>
+
+                <span>Amount</span>
+
+                <span>Status</span>
+
+                <span>Date</span>
+
+            </div>
+
+
+
+
+
+            <!-- TRANSACTION LIST -->
+
+            <div class="transaction-list">
+
+
+                {% for transaction in transactions %}
+
+
+                    {% set transaction_type = transaction["type"] %}
+
+
+                    <div
+                        class="
+                            transaction-row
+
+                            {% if transaction_type == 'Deposit' %}
+                                transaction-deposit
+
+                            {% elif transaction_type == 'Investment Return' %}
+                                transaction-return
+
+                            {% elif transaction_type == 'Investment' %}
+                                transaction-investment
+
+                            {% elif transaction_type == 'Withdrawal' %}
+                                transaction-withdrawal
+                            {% endif %}
+                        "
+                    >
+
+
+
+                        <!-- =================================
+                             TYPE
+                        ================================== -->
+
+                        <div class="transaction-type">
+
+
+                            <div
+                                class="
+                                    transaction-icon
+
+                                    {% if transaction_type == 'Deposit' %}
+                                        deposit
+
+                                    {% elif transaction_type == 'Investment Return' %}
+                                        return
+
+                                    {% elif transaction_type == 'Investment' %}
+                                        investment
+
+                                    {% elif transaction_type == 'Withdrawal' %}
+                                        withdraw
+                                    {% endif %}
+                                "
+                            >
+
+
+                                {% if transaction_type == "Deposit" %}
+
+                                    <i class="fa-solid fa-arrow-down"></i>
+
+
+                                {% elif transaction_type == "Investment Return" %}
+
+                                    <i class="fa-solid fa-coins"></i>
+
+
+                                {% elif transaction_type == "Investment" %}
+
+                                    <i class="fa-solid fa-chart-line"></i>
+
+
+                                {% elif transaction_type == "Withdrawal" %}
+
+                                    <i class="fa-solid fa-arrow-up"></i>
+
+
+                                {% else %}
+
+                                    <i class="fa-solid fa-receipt"></i>
+
+                                {% endif %}
+
+
+                            </div>
+
+
+
+                            <div>
+
+
+                                <strong>
+
+                                    {% if transaction_type == "Deposit" %}
+
+                                        Deposit
+
+                                    {% elif transaction_type == "Investment Return" %}
+
+                                        Investment Return
+
+                                    {% elif transaction_type == "Investment" %}
+
+                                        Investment
+
+                                    {% elif transaction_type == "Withdrawal" %}
+
+                                        Withdrawal
+
+                                    {% else %}
+
+                                        {{ transaction_type }}
+
+                                    {% endif %}
+
+                                </strong>
+
+
+
+                                <span>
+
+                                    {% if transaction_type == "Deposit" %}
+
+                                        Wallet Credit
+
+                                    {% elif transaction_type == "Investment Return" %}
+
+                                        Investment Maturity
+
+                                    {% elif transaction_type == "Investment" %}
+
+                                        Portfolio Investment
+
+                                    {% elif transaction_type == "Withdrawal" %}
+
+                                        Wallet Debit
+
+                                    {% else %}
+
+                                        Transaction
+
+                                    {% endif %}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <!-- =================================
+                             DESCRIPTION
+                        ================================== -->
+
+                        <div class="transaction-description">
+
+                            {{ transaction["description"] or " transaction" }}
+
+                        </div>
+
+
+
+
+
+                        <!-- =================================
+                             AMOUNT
+                        ================================== -->
+
+                        <div
+                            class="
+                                transaction-amount
+
+                                {% if transaction_type == 'Deposit' %}
+
+                                    positive
+
+                                {% elif transaction_type == 'Investment Return' %}
+
+                                    positive
+
+                                {% else %}
+
+                                    negative
+
+                                {% endif %}
+                            "
+                        >
+
+
+                            {% if transaction_type == "Deposit" %}
+
+                                +
+
+                            {% elif transaction_type == "Investment Return" %}
+
+                                +
+
+                            {% else %}
+
+                                -
+
+                            {% endif %}
+
+
+                            ${{ "%.2f"|format(transaction["amount"]) }}
+
+                        </div>
+
+
+
+
+
+                        <!-- =================================
+                             STATUS
+                        ================================== -->
+
+                        <div>
+
+
+                            <span
+                                class="
+                                    status-badge
+
+                                    {% if transaction['status'] == 'Completed' %}
+
+                                        status-completed
+
+                                    {% elif transaction['status'] == 'Pending' %}
+
+                                        status-pending
+
+                                    {% elif transaction['status'] == 'Failed' %}
+
+                                        status-failed
+
+                                    {% endif %}
+                                "
+                            >
+
+
+                                {% if transaction["status"] == "Completed" %}
+
+                                    <i class="fa-solid fa-circle-check"></i>
+
+
+                                {% elif transaction["status"] == "Pending" %}
+
+                                    <i class="fa-solid fa-clock"></i>
+
+
+                                {% elif transaction["status"] == "Failed" %}
+
+                                    <i class="fa-solid fa-circle-xmark"></i>
+
+
+                                {% else %}
+
+                                    <i class="fa-solid fa-circle-info"></i>
+
+                                {% endif %}
+
+
+                                {{ transaction["status"] }}
+
+                            </span>
+
+                        </div>
+
+
+
+
+
+                        <!-- =================================
+                             DATE
+                        ================================== -->
+
+                        <div class="transaction-date">
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            {{ transaction["created_at"] }}
+
+                        </div>
+
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- =================================
+                 EMPTY STATE
+            ================================== -->
+
+            <div class="empty-transactions">
+
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-receipt"></i>
+
+                </div>
+
+
+
+                <h3>
+                    No Transactions Yet
+                </h3>
+
+
+
+                <p>
+                    Your deposits, withdrawals,
+                    investments and investment returns
+                    will appear here.
+                </p>
+
+
+
+                <a
+                    href="{{ url_for('user.wallet') }}"
+                    class="wallet-button"
+                >
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                    Go to Wallet
+
+                </a>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+</main>
+
+
+</div>
+
+<!-- =========================================
+     MOBILE OVERLAY
+========================================= -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+></div>
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+
+/* =========================================
+   MOBILE SIDEBAR
+========================================= */
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+
+const sidebar =
+    document.querySelector(".sidebar");
+
+
+const sidebarOverlay =
+    document.getElementById("sidebarOverlay");
+
+
+if (mobileMenu && sidebar && sidebarOverlay) {
+
+
+    mobileMenu.addEventListener("click", () => {
+
+        sidebar.classList.toggle("open");
+
+        sidebarOverlay.classList.toggle("show");
+
+    });
+
+
+    sidebarOverlay.addEventListener("click", () => {
+
+        sidebar.classList.remove("open");
+
+        sidebarOverlay.classList.remove("show");
+
+    });
+
+}
+
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Investments | BlackRock Investment</title>
+
+
+    <!-- Google Font -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <!-- Investments CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/investments.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside class="sidebar">
+
+
+    <div class="sidebar-logo">
+
+        <div class="logo-icon">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+        </div>
+
+        <div>
+
+            <h2>BLACKROCK</h2>
+
+            <span>INVESTMENT</span>
+
+        </div>
+
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+
+        <a
+            href="{{ url_for('user.dashboard') }}"
+            class="nav-item"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('user.wallet') }}"
+            class="nav-item"
+        >
+
+            <i class="fa-solid fa-wallet"></i>
+
+            <span>Wallet</span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('user.investments') }}"
+            class="nav-item active"
+        >
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            <span>Investments</span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('user.transactions') }}"
+            class="nav-item"
+        >
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <span>Transactions</span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('user.markets') }}"
+            class="nav-item"
+        >
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <span>Markets</span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="nav-item"
+        >
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>Referrals</span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="nav-item"
+        >
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+
+    </nav>
+
+
+    <a
+        href="{{ url_for('auth.logout') }}"
+        class="logout-link"
+    >
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        <span>Logout</span>
+
+    </a>
+
+
+</aside>
+
+
+<!-- =========================================
+     MAIN CONTENT
+========================================= -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+
+        <div class="mobile-menu">
+
+            <button
+                id="menuBtn"
+                type="button"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="topbar-title">
+
+            <h1>Investments</h1>
+
+            <p>
+                Manage your investment portfolio
+            </p>
+
+        </div>
+
+
+        <div class="topbar-user">
+
+
+            <div class="user-icon">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    {{ user["full_name"] }}
+                </strong>
+
+                <span>
+                    Investor
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         DEMO NOTICE
+    ========================================== -->
+
+    <div class="demo-notice">
+
+
+        <div class="demo-icon">
+
+            <i class="fa-solid fa-flask"></i>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Sandbox Mode
+            </strong>
+
+            <p>
+                Investment are shown here.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================================
+         PAGE INTRO
+    ========================================== -->
+
+    <section class="page-intro">
+
+
+        <div>
+
+            <span class="section-label">
+                PORTFOLIO
+            </span>
+
+
+            <h2>
+                Grow Your Portfolio
+            </h2>
+
+
+            <p>
+                Explore available investment plans
+                and monitor your portfolio.
+            </p>
+
+        </div>
+
+
+        <div class="portfolio-icon">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         PORTFOLIO OVERVIEW
+    ========================================== -->
+
+    <section class="overview-grid">
+
+
+        <!-- TOTAL INVESTED -->
+
+        <div class="overview-card">
+
+            <div class="overview-icon">
+
+                <i class="fa-solid fa-coins"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>Total Invested</span>
+
+                <h3>
+                    ${{ "%.2f"|format(total_invested) }}
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PORTFOLIO VALUE -->
+
+        <div class="overview-card">
+
+            <div class="overview-icon">
+
+                <i class="fa-solid fa-arrow-trend-up"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>Portfolio Value</span>
+
+                <h3>
+                    ${{ "%.2f"|format(portfolio_value) }}
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DEMO RETURNS -->
+
+        <div class="overview-card">
+
+            <div class="overview-icon">
+
+                <i class="fa-solid fa-chart-simple"></i>
+
+            </div>
+
+
+            <div>
+
+                <span> Returns</span>
+
+                <h3>
+                    ${{ "%.2f"|format(demo_returns) }}
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIVE PLANS -->
+
+        <div class="overview-card">
+
+            <div class="overview-icon">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>Active Plans</span>
+
+                <h3>
+                    {{ active_plans }}
+                </h3>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         INVESTMENT PLANS
+    ========================================== -->
+
+    <section class="plans-section">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                AVAILABLE PLANS
+            </span>
+
+
+            <h2>
+                Choose an Investment Plan
+            </h2>
+
+        </div>
+
+
+
+        <div class="plans-grid">
+
+
+            <!-- =================================
+                 STARTER PLAN
+            ================================== -->
+
+            <div class="plan-card">
+
+
+                <div class="plan-top">
+
+
+                    <div class="plan-icon">
+
+                        <i class="fa-solid fa-seedling"></i>
+
+                    </div>
+
+
+                    <span class="plan-badge">
+                        STARTER
+                    </span>
+
+
+                </div>
+
+
+                <h3>
+                    Starter Plan
+                </h3>
+
+
+                <p class="plan-description">
+                    A simple plan designed for users
+                    starting with smaller amounts.
+                </p>
+
+
+                <div class="plan-details">
+
+
+                    <div>
+
+                        <span>Minimum</span>
+
+                        <strong>$100</strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Duration</span>
+
+                        <strong>30 Days</strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span> Return</span>
+
+                        <strong>5%</strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="invest-btn"
+                    data-plan="Starter Plan"
+                    data-minimum="100"
+                    data-duration="30"
+                    data-return="5"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Start Investment
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 GROWTH PLAN
+            ================================== -->
+
+            <div class="plan-card featured">
+
+
+                <div class="featured-label">
+                    POPULAR
+                </div>
+
+
+                <div class="plan-top">
+
+
+                    <div class="plan-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+
+                    <span class="plan-badge">
+                        STANDARD
+                    </span>
+
+
+                </div>
+
+
+                <h3>
+                    Growth Plan
+                </h3>
+
+
+                <p class="plan-description">
+                    A larger portfolio option for users
+                    looking to explore longer-term investing.
+                </p>
+
+
+                <div class="plan-details">
+
+
+                    <div>
+
+                        <span>Minimum</span>
+
+                        <strong>$500</strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Duration</span>
+
+                        <strong>60 Days</strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span> Return</span>
+
+                        <strong>10%</strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="invest-btn"
+                    data-plan="Growth Plan"
+                    data-minimum="500"
+                    data-duration="60"
+                    data-return="10"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Start Investment
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 PREMIUM PLAN
+            ================================== -->
+
+            <div class="plan-card">
+
+
+                <div class="plan-top">
+
+
+                    <div class="plan-icon">
+
+                        <i class="fa-solid fa-crown"></i>
+
+                    </div>
+
+
+                    <span class="plan-badge">
+                        PREMIUM
+                    </span>
+
+
+                </div>
+
+
+                <h3>
+                    Premium Plan
+                </h3>
+
+
+                <p class="plan-description">
+                    A premium plan for experimenting
+                    with larger portfolio allocations.
+                </p>
+
+
+                <div class="plan-details">
+
+
+                    <div>
+
+                        <span>Minimum</span>
+
+                        <strong>$1,000</strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Duration</span>
+
+                        <strong>90 Days</strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span> Return</span>
+
+                        <strong>15%</strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="invest-btn"
+                    data-plan="Premium Plan"
+                    data-minimum="1000"
+                    data-duration="90"
+                    data-return="15"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Start Investment
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         ACTIVE INVESTMENTS
+    ========================================== -->
+
+    <section class="active-section">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                CURRENT PORTFOLIO
+            </span>
+
+
+            <h2>
+                Active Investments
+            </h2>
+
+        </div>
+
+
+
+        {% set active_investments =
+            investments
+            | selectattr("status", "equalto", "Active")
+            | list
+        %}
+
+
+
+        {% if active_investments %}
+
+
+        <div class="active-investments-grid">
+
+
+            {% for investment in active_investments %}
+
+
+            <div class="active-investment-card">
+
+
+                <!-- CARD HEADER -->
+
+                <div class="active-card-header">
+
+
+                    <div class="active-plan-icon">
+
+
+                        {% if investment["plan_name"] == "Starter Plan" %}
+
+                            <i class="fa-solid fa-seedling"></i>
+
+                        {% elif investment["plan_name"] == "Growth Plan" %}
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                        {% else %}
+
+                            <i class="fa-solid fa-crown"></i>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            {{ investment["plan_name"] }}
+                        </h3>
+
+                        <span>
+                             Investment
+                        </span>
+
+                    </div>
+
+
+                    <!-- ACTIVE STATUS -->
+
+                    <div class="active-status">
+
+                        {% if investment["maturity_status"] == "Maturing Soon" %}
+
+                            <i class="fa-solid fa-clock"></i>
+                            Maturing Soon
+
+                        {% else %}
+
+                            <i class="fa-solid fa-circle"></i>
+                            Active
+
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- INVESTMENT AMOUNT -->
+
+                <div class="active-main-value">
+
+                    <span>
+                        Invested Amount
+                    </span>
+
+
+                    <strong>
+
+                        ${{ "%.2f"|format(
+                            investment["amount"]
+                        ) }}
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- INVESTMENT DETAILS -->
+
+                <div class="active-details">
+
+
+                    <!-- EXPECTED VALUE -->
+
+                    <div>
+
+                        <span>
+                            Expected Value
+                        </span>
+
+                        <strong>
+
+                            ${{ "%.2f"|format(
+                                investment["expected_return"]
+                            ) }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- DEMO RETURN -->
+
+                    <div>
+
+                        <span>
+                          Return
+                        </span>
+
+                        <strong>
+
+                            {{ "%.2f"|format(
+                                investment["return_rate"]
+                            ) }}%
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- DURATION -->
+
+                    <div>
+
+                        <span>
+                            Duration
+                        </span>
+
+                        <strong>
+
+                            {{ investment["duration_days"] }}
+                            Days
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- DAYS REMAINING -->
+
+                    <div>
+
+                        <span>
+                            Days Remaining
+                        </span>
+
+                        <strong>
+
+                            {% if investment["days_remaining"] == 1 %}
+
+                                1 Day Left
+
+                            {% else %}
+
+                                {{ investment["days_remaining"] }}
+                                Days Left
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- MATURITY INFORMATION -->
+
+                <div class="maturity-info">
+
+
+                    <!-- MATURITY DATE -->
+
+                    <div class="maturity-date">
+
+                        <span>
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            Maturity Date
+
+                        </span>
+
+
+                        <strong>
+                            {{ investment["maturity_date"] }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- COUNTDOWN -->
+
+                    <div class="maturity-countdown">
+
+
+                        {% if investment["days_remaining"] <= 3 %}
+
+                            <span>
+
+                                <i class="fa-solid fa-clock"></i>
+
+                                Maturing Soon
+
+                            </span>
+
+                        {% else %}
+
+                            <span>
+
+                                <i class="fa-solid fa-hourglass-half"></i>
+
+                                {{ investment["days_remaining"] }}
+                                Days Remaining
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- INVESTMENT PROGRESS -->
+
+                <div class="investment-progress">
+
+
+                    <div class="progress-header">
+
+
+                        <span>
+                            Investment Progress
+                        </span>
+
+
+                        <strong>
+                            {{ investment["progress"] }}%
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+
+                        <div
+                            class="progress-bar"
+                            style="--progress: {{ investment['progress'] }}%;"
+                        ></div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- EXPECTED PROFIT -->
+
+                <div class="expected-profit">
+
+
+                    <div>
+
+                        <span>
+                            Expected Profit
+                        </span>
+
+
+                        <strong>
+
+                            ${{ "%.2f"|format(
+                                investment["expected_return"]
+                                - investment["amount"]
+                            ) }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ACTIVE EMPTY STATE -->
+
+        <div class="empty-investments">
+
+
+            <div class="empty-icon">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+            </div>
+
+
+            <h3>
+                No Active Investments
+            </h3>
+
+
+            <p>
+                You don't have any active 
+                investments at the moment.
+            </p>
+
+
+        </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         COMPLETED INVESTMENTS
+    ========================================== -->
+
+    <section class="active-section completed-section">
+
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                INVESTMENT HISTORY
+            </span>
+
+
+            <h2>
+                Completed Investments
+            </h2>
+
+        </div>
+
+
+
+        {% set completed_investments =
+            investments
+            | selectattr("status", "equalto", "Completed")
+            | list
+        %}
+
+
+
+        {% if completed_investments %}
+
+
+        <div class="active-investments-grid">
+
+
+            {% for investment in completed_investments %}
+
+
+            <div class="active-investment-card completed-investment-card">
+
+
+                <!-- COMPLETED CARD HEADER -->
+
+                <div class="active-card-header">
+
+
+                    <div class="active-plan-icon">
+
+
+                        {% if investment["plan_name"] == "Starter Plan" %}
+
+                            <i class="fa-solid fa-seedling"></i>
+
+                        {% elif investment["plan_name"] == "Growth Plan" %}
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                        {% else %}
+
+                            <i class="fa-solid fa-crown"></i>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            {{ investment["plan_name"] }}
+                        </h3>
+
+                        <span>
+                            Completed Investment
+                        </span>
+
+                    </div>
+
+
+                    <!-- COMPLETED STATUS -->
+
+                    <div class="active-status completed-status">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Completed
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ORIGINAL INVESTMENT -->
+
+                <div class="active-main-value">
+
+                    <span>
+                        Original Investment
+                    </span>
+
+
+                    <strong>
+
+                        ${{ "%.2f"|format(
+                            investment["amount"]
+                        ) }}
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- COMPLETED INVESTMENT DETAILS -->
+
+                <div class="active-details">
+
+
+                    <!-- RETURN PAID -->
+
+                    <div>
+
+                        <span>
+                            Return Paid
+                        </span>
+
+                        <strong>
+
+                            ${{ "%.2f"|format(
+                                investment["expected_return"]
+                            ) }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- DEMO PROFIT -->
+
+                    <div>
+
+                        <span>
+                             Profit
+                        </span>
+
+                        <strong>
+
+                            ${{ "%.2f"|format(
+                                investment["expected_return"]
+                                - investment["amount"]
+                            ) }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- DURATION -->
+
+                    <div>
+
+                        <span>
+                            Duration
+                        </span>
+
+                        <strong>
+
+                            {{ investment["duration_days"] }}
+                            Days
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- RETURN RATE -->
+
+                    <div>
+
+                        <span>
+                            Return Rate
+                        </span>
+
+                        <strong>
+
+                            {{ "%.2f"|format(
+                                investment["return_rate"]
+                            ) }}%
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- COMPLETION INFORMATION -->
+
+                <div class="maturity-info">
+
+
+                    <div class="maturity-date">
+
+                        <span>
+
+                            <i class="fa-regular fa-calendar-check"></i>
+
+                            Maturity Date
+
+                        </span>
+
+
+                        <strong>
+                            {{ investment["maturity_date"] }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="maturity-countdown">
+
+                        <span>
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Investment Completed
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- COMPLETED PROGRESS -->
+
+                <div class="investment-progress">
+
+
+                    <div class="progress-header">
+
+
+                        <span>
+                            Investment Progress
+                        </span>
+
+
+                        <strong>
+                            100%
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+
+                        <div
+                            class="progress-bar"
+                            style="--progress: 100%;"
+                        ></div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- COMPLETION RESULT -->
+
+                <div class="expected-profit">
+
+
+                    <div>
+
+                        <span>
+                            Total Profit
+                        </span>
+
+
+                        <strong>
+
+                            ${{ "%.2f"|format(
+                                investment["expected_return"]
+                                - investment["amount"]
+                            ) }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- COMPLETED EMPTY STATE -->
+
+        <div class="empty-investments">
+
+
+            <div class="empty-icon">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+
+            <h3>
+                No Completed Investments
+            </h3>
+
+
+            <p>
+                Completed investments will
+                appear here after maturity.
+            </p>
+
+
+        </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     INVESTMENT MODAL
+========================================= -->
+
+<div
+    class="investment-modal"
+    id="investmentModal"
+>
+
+
+    <div class="investment-modal-box">
+
+
+        <button
+            class="modal-close"
+            id="closeModal"
+            type="button"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+
+        <div class="modal-icon">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+        </div>
+
+
+
+        <span class="section-label">
+             INVESTMENT
+        </span>
+
+
+
+        <h2 id="modalPlanName">
+            Starter Plan
+        </h2>
+
+
+
+        <p class="modal-description">
+            Enter the amount you would like to allocate
+            to this  investment.
+        </p>
+
+
+
+        <div class="modal-plan-info">
+
+
+            <div>
+
+                <span>Minimum</span>
+
+                <strong id="modalMinimum">
+                    $100
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>Duration</span>
+
+                <strong id="modalDuration">
+                    30 Days
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span> Return</span>
+
+                <strong id="modalReturn">
+                    5%
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="amount-field">
+
+
+            <label for="investmentAmount">
+                Investment Amount
+            </label>
+
+
+            <div class="amount-input">
+
+                <span>$</span>
+
+
+                <input
+                    type="number"
+                    id="investmentAmount"
+                    placeholder="Enter amount"
+                    min="1"
+                    step="0.01"
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div
+            class="modal-error"
+            id="modalError"
+        ></div>
+
+
+
+        <button
+            class="confirm-invest-btn"
+            id="confirmInvestment"
+            type="button"
+        >
+
+            <i class="fa-solid fa-check"></i>
+
+            Continue
+
+        </button>
+
+
+
+        <p class="modal-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+             investment.
+
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const sidebar =
+    document.querySelector(".sidebar");
+
+
+if (menuBtn && sidebar) {
+
+
+    menuBtn.addEventListener("click", () => {
+
+        sidebar.classList.toggle("show");
+
+    });
+
+
+    document.addEventListener("click", (event) => {
+
+
+        if (
+
+            window.innerWidth <= 850 &&
+
+            !sidebar.contains(event.target) &&
+
+            !menuBtn.contains(event.target)
+
+        ) {
+
+            sidebar.classList.remove("show");
+
+        }
+
+
+    });
+
+
+}
+
+
+/* =========================================
+   INVESTMENT MODAL ELEMENTS
+========================================= */
+
+const investmentModal =
+    document.getElementById("investmentModal");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+const investmentButtons =
+    document.querySelectorAll(".invest-btn");
+
+const modalPlanName =
+    document.getElementById("modalPlanName");
+
+const modalMinimum =
+    document.getElementById("modalMinimum");
+
+const modalDuration =
+    document.getElementById("modalDuration");
+
+const modalReturn =
+    document.getElementById("modalReturn");
+
+const investmentAmount =
+    document.getElementById("investmentAmount");
+
+const modalError =
+    document.getElementById("modalError");
+
+const confirmInvestment =
+    document.getElementById("confirmInvestment");
+
+
+
+/*
+ * Store the currently selected
+ * investment plan.
+ */
+
+let selectedPlan = "";
+
+let selectedMinimum = 0;
+
+let selectedDuration = 0;
+
+let selectedReturn = 0;
+
+
+
+/* =========================================
+   OPEN INVESTMENT MODAL
+========================================= */
+
+investmentButtons.forEach((button) => {
+
+
+    button.addEventListener("click", () => {
+
+
+        selectedPlan =
+            button.dataset.plan;
+
+
+        selectedMinimum =
+            Number(button.dataset.minimum);
+
+
+        selectedDuration =
+            Number(button.dataset.duration);
+
+
+        selectedReturn =
+            Number(button.dataset.return);
+
+
+
+        /* Update modal */
+
+        modalPlanName.textContent =
+            selectedPlan;
+
+
+        modalMinimum.textContent =
+            "$" + selectedMinimum.toLocaleString();
+
+
+        modalDuration.textContent =
+            selectedDuration + " Days";
+
+
+        modalReturn.textContent =
+            selectedReturn + "%";
+
+
+
+        /* Reset input */
+
+        investmentAmount.value = "";
+
+        modalError.textContent = "";
+
+
+
+        /* Open modal */
+
+        investmentModal.classList.add("show");
+
+
+
+        /* Focus amount field */
+
+        setTimeout(() => {
+
+            investmentAmount.focus();
+
+        }, 100);
+
+
+    });
+
+
+});
+
+
+
+/* =========================================
+   CLOSE MODAL
+========================================= */
+
+closeModal.addEventListener("click", () => {
+
+    investmentModal.classList.remove("show");
+
+});
+
+
+
+/* =========================================
+   CLICK OUTSIDE MODAL
+========================================= */
+
+investmentModal.addEventListener(
+
+    "click",
+
+    (event) => {
+
+
+        if (
+
+            event.target === investmentModal
+
+        ) {
+
+            investmentModal.classList.remove("show");
+
+        }
+
+
+    }
+
+);
+
+
+
+/* =========================================
+   CONFIRM INVESTMENT
+========================================= */
+
+confirmInvestment.addEventListener(
+
+    "click",
+
+    () => {
+
+
+        const amount =
+            Number(investmentAmount.value);
+
+
+
+        /* Check amount */
+
+        if (!amount || amount <= 0) {
+
+
+            modalError.textContent =
+                "Please enter a valid investment amount.";
+
+
+            return;
+
+        }
+
+
+
+        /* Check minimum */
+
+        if (amount < selectedMinimum) {
+
+
+            modalError.textContent =
+                "Minimum investment is $" +
+                selectedMinimum.toLocaleString() +
+                ".";
+
+
+            return;
+
+        }
+
+
+
+        /*
+         * Create POST form
+         */
+
+        const form =
+            document.createElement("form");
+
+
+        form.method = "POST";
+
+
+        form.action =
+            "{{ url_for('user.create_investment') }}";
+
+
+
+        /* =================================
+           AMOUNT
+        ================================= */
+
+        const amountInput =
+            document.createElement("input");
+
+
+        amountInput.type = "hidden";
+
+        amountInput.name = "amount";
+
+        amountInput.value = amount;
+
+
+
+        /* =================================
+           PLAN NAME
+        ================================= */
+
+        const planInput =
+            document.createElement("input");
+
+
+        planInput.type = "hidden";
+
+        planInput.name = "plan_name";
+
+        planInput.value = selectedPlan;
+
+
+
+        /* =================================
+           DURATION
+        ================================= */
+
+        const durationInput =
+            document.createElement("input");
+
+
+        durationInput.type = "hidden";
+
+        durationInput.name = "duration_days";
+
+        durationInput.value = selectedDuration;
+
+
+
+        /* =================================
+           RETURN RATE
+        ================================= */
+
+        const returnInput =
+            document.createElement("input");
+
+
+        returnInput.type = "hidden";
+
+        returnInput.name = "return_rate";
+
+        returnInput.value = selectedReturn;
+
+
+
+        /* =================================
+           ADD INPUTS
+        ================================= */
+
+        form.appendChild(amountInput);
+
+        form.appendChild(planInput);
+
+        form.appendChild(durationInput);
+
+        form.appendChild(returnInput);
+
+
+
+        /* =================================
+           ADD FORM TO PAGE
+        ================================= */
+
+        document.body.appendChild(form);
+
+
+
+        /* =================================
+           SUBMIT TO FLASK
+        ================================= */
+
+        form.submit();
+
+
+    }
+
+);
+
+
+
+/* =========================================
+   ESC KEY
+========================================= */
+
+document.addEventListener(
+
+    "keydown",
+
+    (event) => {
+
+
+        if (
+
+            event.key === "Escape" &&
+
+            investmentModal.classList.contains("show")
+
+        ) {
+
+            investmentModal.classList.remove("show");
+
+        }
+
+
+    }
+
+);
+
+
+</script>
+
+
+</body>
+
+</html>

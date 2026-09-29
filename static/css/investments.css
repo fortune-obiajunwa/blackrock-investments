@@ -1,0 +1,1854 @@
+
+/* =========================================
+   INVESTMENTS PAGE
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #080808;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 255px;
+    height: 100vh;
+
+    background: #0d0d0d;
+
+    border-right: 1px solid #242424;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+}
+
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 25px 22px;
+
+    border-bottom: 1px solid #222;
+}
+
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 10px;
+
+    background: #f5c400;
+
+    color: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+
+.sidebar-logo h2 {
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+
+.sidebar-logo span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #f5c400;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.sidebar-nav {
+    padding: 20px 13px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.nav-item {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px 15px;
+
+    color: #999;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.nav-item i {
+    width: 18px;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+.nav-item:hover {
+    background: #181818;
+
+    color: #ffffff;
+}
+
+
+.nav-item.active {
+    background: rgba(245, 196, 0, 0.12);
+
+    color: #f5c400;
+}
+
+
+.logout-link {
+    margin: auto 13px 20px;
+
+    padding: 13px 15px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    color: #888;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    border-radius: 8px;
+}
+
+
+.logout-link:hover {
+    background: #181818;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+    margin-left: 255px;
+
+    min-height: 100vh;
+
+    padding: 0 30px 50px;
+}
+
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar {
+    height: 85px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid #202020;
+}
+
+
+.topbar-title h1 {
+    font-size: 22px;
+}
+
+
+.topbar-title p {
+    margin-top: 5px;
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+
+.topbar-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.user-icon {
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    background: #191919;
+
+    color: #f5c400;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.topbar-user strong {
+    display: block;
+
+    font-size: 11px;
+}
+
+
+.topbar-user span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #777;
+
+    font-size: 9px;
+}
+
+
+.mobile-menu {
+    display: none;
+}
+
+
+.mobile-menu button {
+    border: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   DEMO NOTICE
+========================================= */
+
+.demo-notice {
+    margin-top: 25px;
+
+    padding: 15px 18px;
+
+    background: rgba(245, 196, 0, 0.06);
+
+    border: 1px solid rgba(245, 196, 0, 0.18);
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.demo-icon {
+    width: 36px;
+    height: 36px;
+
+    border-radius: 8px;
+
+    background: rgba(245, 196, 0, 0.12);
+
+    color: #f5c400;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.demo-notice strong {
+    font-size: 11px;
+
+    color: #f5c400;
+}
+
+
+.demo-notice p {
+    margin-top: 4px;
+
+    color: #777;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   PAGE INTRO
+========================================= */
+
+.page-intro {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    background: #101010;
+
+    border: 1px solid #202020;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.section-label {
+    display: block;
+
+    color: #f5c400;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+}
+
+
+.page-intro h2 {
+    margin-top: 8px;
+
+    font-size: 21px;
+}
+
+
+.page-intro p {
+    margin-top: 7px;
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+
+.portfolio-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 12px;
+
+    background: rgba(245, 196, 0, 0.1);
+
+    color: #f5c400;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+
+/* =========================================
+   OVERVIEW
+========================================= */
+
+.overview-grid {
+    margin-top: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+}
+
+
+.overview-card {
+    padding: 18px;
+
+    background: #101010;
+
+    border: 1px solid #202020;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    transition: 0.25s;
+}
+
+
+.overview-card:hover {
+    border-color: rgba(245, 196, 0, 0.25);
+
+    transform: translateY(-2px);
+}
+
+
+.overview-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: rgba(245, 196, 0, 0.1);
+
+    color: #f5c400;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.overview-card span {
+    color: #777;
+
+    font-size: 9px;
+}
+
+
+.overview-card h3 {
+    margin-top: 5px;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.plans-section,
+.active-section {
+    margin-top: 35px;
+}
+
+
+.section-heading {
+    margin-bottom: 17px;
+}
+
+
+.section-heading h2 {
+    margin-top: 6px;
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   INVESTMENT PLANS
+========================================= */
+
+.plans-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.plan-card {
+    position: relative;
+
+    padding: 23px;
+
+    background: #101010;
+
+    border: 1px solid #252525;
+
+    border-radius: 12px;
+
+    transition: 0.25s;
+}
+
+
+.plan-card:hover {
+    border-color: rgba(245, 196, 0, 0.5);
+
+    transform: translateY(-3px);
+}
+
+
+.plan-card.featured {
+    border-color: rgba(245, 196, 0, 0.55);
+}
+
+
+.featured-label {
+    position: absolute;
+
+    top: 0;
+    right: 18px;
+
+    padding: 5px 9px;
+
+    background: #f5c400;
+
+    color: #000;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    border-radius: 0 0 6px 6px;
+}
+
+
+.plan-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.plan-icon {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 10px;
+
+    background: rgba(245, 196, 0, 0.1);
+
+    color: #f5c400;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+}
+
+
+.plan-badge {
+    padding: 5px 8px;
+
+    border: 1px solid #333;
+
+    border-radius: 5px;
+
+    color: #aaa;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+
+.plan-card h3 {
+    margin-top: 20px;
+
+    font-size: 17px;
+}
+
+
+.plan-description {
+    margin-top: 8px;
+
+    color: #777;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+
+    min-height: 50px;
+}
+
+
+.plan-details {
+    margin-top: 20px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid #222;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+}
+
+
+.plan-details span {
+    display: block;
+
+    color: #666;
+
+    font-size: 8px;
+}
+
+
+.plan-details strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 11px;
+}
+
+
+.invest-btn {
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 12px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background: #f5c400;
+
+    color: #000;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.invest-btn:hover {
+    background: #ffffff;
+}
+
+
+.invest-btn i {
+    margin-right: 5px;
+}
+
+
+/* =========================================
+   ACTIVE INVESTMENTS
+========================================= */
+
+.active-investments-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+
+/* =========================================
+   ACTIVE INVESTMENT CARD
+========================================= */
+
+.active-investment-card {
+    position: relative;
+
+    padding: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #121212,
+            #0d0d0d
+        );
+
+    border: 1px solid #252525;
+
+    border-radius: 13px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.active-investment-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background: #f5c400;
+
+    opacity: 0.85;
+}
+
+
+.active-investment-card:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(245, 196, 0, 0.4);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   ACTIVE CARD HEADER
+========================================= */
+
+.active-card-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.active-plan-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: rgba(245, 196, 0, 0.1);
+
+    border: 1px solid rgba(245, 196, 0, 0.12);
+
+    color: #f5c400;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+}
+
+
+.active-card-header > div:nth-child(2) {
+    flex: 1;
+}
+
+
+.active-card-header h3 {
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.active-card-header span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #666;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   ACTIVE STATUS
+========================================= */
+
+.active-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 6px 9px;
+
+    border-radius: 20px;
+
+    background: rgba(42, 210, 120, 0.08);
+
+    border: 1px solid rgba(42, 210, 120, 0.18);
+
+    color: #55d98a;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+.active-status i {
+    font-size: 6px;
+
+    color: #55d98a;
+}
+
+
+/* =========================================
+   MAIN INVESTMENT VALUE
+========================================= */
+
+.active-main-value {
+    margin-top: 22px;
+
+    padding: 17px;
+
+    background: #090909;
+
+    border: 1px solid #1e1e1e;
+
+    border-radius: 9px;
+}
+
+
+.active-main-value span {
+    display: block;
+
+    color: #666;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.active-main-value strong {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #ffffff;
+
+    font-size: 23px;
+
+    font-weight: 600;
+
+    letter-spacing: -0.5px;
+}
+
+
+/* =========================================
+   ACTIVE INVESTMENT DETAILS
+========================================= */
+
+.active-details {
+    margin-top: 17px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+
+.active-details > div {
+    padding: 11px;
+
+    background: #111111;
+
+    border: 1px solid #1e1e1e;
+
+    border-radius: 8px;
+
+    transition: 0.2s;
+}
+
+
+.active-details > div:hover {
+    border-color:
+        rgba(245, 196, 0, 0.25);
+}
+
+
+.active-details span {
+    display: block;
+
+    color: #666;
+
+    font-size: 8px;
+}
+
+
+.active-details strong {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #ddd;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+
+.active-details > div:first-child strong {
+    color: #f5c400;
+}
+
+
+.active-details > div:nth-child(2) strong {
+    color: #55d98a;
+}
+
+
+/* =========================================
+   EXPECTED PROFIT
+========================================= */
+
+.expected-profit {
+    margin-top: 17px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #202020;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.expected-profit span {
+    display: block;
+
+    color: #666;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+
+.expected-profit strong {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #55d98a;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.expected-profit > i {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: rgba(42, 210, 120, 0.08);
+
+    color: #55d98a;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   EMPTY INVESTMENTS
+========================================= */
+
+.empty-investments {
+    padding: 45px 20px;
+
+    background: #101010;
+
+    border: 1px solid #202020;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+
+.empty-icon {
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: rgba(245, 196, 0, 0.08);
+
+    color: #f5c400;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+
+.empty-investments h3 {
+    font-size: 14px;
+}
+
+
+.empty-investments p {
+    margin-top: 7px;
+
+    color: #666;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .overview-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .plans-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .active-investments-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        left: -255px;
+
+        transition: 0.25s;
+    }
+
+
+    .sidebar.show {
+        left: 0;
+    }
+
+
+    .main-content {
+        margin-left: 0;
+
+        padding: 0 20px 40px;
+    }
+
+
+    .mobile-menu {
+        display: block;
+    }
+
+
+    .topbar {
+        gap: 15px;
+    }
+
+
+    .topbar-title {
+        flex: 1;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .overview-grid,
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .page-intro {
+        padding: 20px;
+    }
+
+
+    .page-intro h2 {
+        font-size: 18px;
+    }
+
+
+    .portfolio-icon {
+        width: 45px;
+        height: 45px;
+
+        font-size: 18px;
+    }
+
+
+    .topbar-user {
+        display: none;
+    }
+
+
+    .active-investments-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .main-content {
+        padding-left: 13px;
+
+        padding-right: 13px;
+    }
+
+
+    .topbar-title h1 {
+        font-size: 18px;
+    }
+
+
+    .demo-notice {
+        align-items: flex-start;
+    }
+
+
+    .plan-card {
+        padding: 18px;
+    }
+
+
+    .active-investment-card {
+        padding: 19px;
+    }
+
+
+    .active-card-header {
+        position: relative;
+
+        align-items: flex-start;
+    }
+
+
+    .active-status {
+        position: absolute;
+
+        top: 0;
+
+        right: 0;
+
+        padding: 5px 7px;
+
+        font-size: 7px;
+    }
+
+
+    .active-card-header > div:nth-child(2) {
+        padding-right: 65px;
+    }
+
+
+    .active-details {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 8px;
+    }
+
+
+    .active-details > div {
+        padding: 10px;
+    }
+
+
+    .active-details strong {
+        font-size: 9px;
+    }
+
+
+    .active-main-value strong {
+        font-size: 21px;
+    }
+
+
+    .expected-profit strong {
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================
+   INVESTMENT MODAL
+========================================= */
+
+.investment-modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 2000;
+}
+
+
+.investment-modal.show {
+    display: flex;
+}
+
+
+.investment-modal-box {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 440px;
+
+    padding: 30px;
+
+    background: #111111;
+
+    border: 1px solid #2b2b2b;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+
+.modal-close {
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    width: 32px;
+    height: 32px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: #1c1c1c;
+
+    color: #888;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+.modal-close:hover {
+    color: #fff;
+
+    background: #292929;
+}
+
+
+.modal-icon {
+    width: 50px;
+    height: 50px;
+
+    margin-bottom: 18px;
+
+    border-radius: 11px;
+
+    background: rgba(245, 196, 0, 0.1);
+
+    color: #f5c400;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+
+.investment-modal-box h2 {
+    margin-top: 8px;
+
+    font-size: 22px;
+}
+
+
+.modal-description {
+    margin-top: 8px;
+
+    color: #777;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   MODAL PLAN INFO
+========================================= */
+
+.modal-plan-info {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: #0b0b0b;
+
+    border: 1px solid #222;
+
+    border-radius: 9px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+
+.modal-plan-info span {
+    display: block;
+
+    color: #666;
+
+    font-size: 8px;
+}
+
+
+.modal-plan-info strong {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #fff;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   AMOUNT FIELD
+========================================= */
+
+.amount-field {
+    margin-top: 20px;
+}
+
+
+.amount-field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #aaa;
+
+    font-size: 10px;
+}
+
+
+.amount-input {
+    display: flex;
+
+    align-items: center;
+
+    background: #080808;
+
+    border: 1px solid #303030;
+
+    border-radius: 8px;
+
+    padding: 0 12px;
+}
+
+
+.amount-input:focus-within {
+    border-color: #f5c400;
+}
+
+
+.amount-input span {
+    color: #f5c400;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+.amount-input input {
+    width: 100%;
+
+    padding: 13px 8px;
+
+    background: transparent;
+
+    border: 0;
+
+    outline: none;
+
+    color: #fff;
+
+    font-size: 14px;
+}
+
+
+.amount-input input::placeholder {
+    color: #555;
+}
+
+
+/* =========================================
+   MODAL ERROR
+========================================= */
+
+.modal-error {
+    min-height: 16px;
+
+    margin-top: 8px;
+
+    color: #ff6b6b;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   CONFIRM INVESTMENT
+========================================= */
+
+.confirm-invest-btn {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: #f5c400;
+
+    color: #000;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.confirm-invest-btn:hover {
+    background: #fff;
+}
+
+
+.confirm-invest-btn i {
+    margin-right: 5px;
+}
+
+
+.modal-note {
+    margin-top: 13px;
+
+    color: #555;
+
+    text-align: center;
+
+    font-size: 8px;
+}
+
+
+.modal-note i {
+    margin-right: 3px;
+
+    color: #777;
+}
+
+
+/* =========================================
+   MOBILE MODAL
+========================================= */
+
+@media (max-width: 500px) {
+
+    .investment-modal-box {
+        padding: 24px 18px;
+    }
+
+
+    .modal-plan-info {
+        gap: 6px;
+    }
+
+}
+
+
+/* =========================================
+   MATURITY INFORMATION
+========================================= */
+
+.maturity-info {
+    margin-top: 17px;
+
+    padding: 13px;
+
+    background: #0b0b0b;
+
+    border: 1px solid #202020;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+.maturity-date span,
+.maturity-countdown span {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #666;
+
+    font-size: 8px;
+}
+
+
+.maturity-date span i,
+.maturity-countdown span i {
+    color: #f5c400;
+
+    font-size: 9px;
+}
+
+
+.maturity-date strong {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #ddd;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+.maturity-countdown {
+    text-align: right;
+}
+
+
+.maturity-countdown span {
+    color: #aaa;
+
+    justify-content: flex-end;
+}
+
+
+/* =========================================
+   INVESTMENT PROGRESS
+========================================= */
+
+.investment-progress {
+    margin-top: 17px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #202020;
+}
+
+
+.progress-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+}
+
+
+.progress-header span {
+    color: #666;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+
+.progress-header strong {
+    color: #f5c400;
+
+    font-size: 9px;
+
+    font-weight: 600;
+}
+
+
+.progress-track {
+    width: 100%;
+
+    height: 6px;
+
+    background: #1c1c1c;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+.progress-bar {
+    width: var(--progress);
+
+    height: 100%;
+
+    background: #f5c400;
+
+    border-radius: 10px;
+
+    transition: width 0.8s ease;
+
+    box-shadow:
+        0 0 10px rgba(245, 196, 0, 0.25);
+}
+
+
+/* =========================================
+   MATURITY STATUS STATES
+========================================= */
+
+/* MATURED */
+
+.active-status:has(.fa-circle-check) {
+    background: rgba(42, 210, 120, 0.08);
+
+    border-color: rgba(42, 210, 120, 0.18);
+
+    color: #55d98a;
+}
+
+
+.active-status:has(.fa-circle-check) i {
+    color: #55d98a;
+}
+
+
+/* MATURING SOON */
+
+.active-status:has(.fa-clock) {
+    background: rgba(245, 196, 0, 0.08);
+
+    border-color: rgba(245, 196, 0, 0.18);
+
+    color: #f5c400;
+}
+
+
+.active-status:has(.fa-clock) i {
+    color: #f5c400;
+}
+
+
+/* ACTIVE */
+
+.active-status:has(.fa-circle) {
+    background: rgba(42, 210, 120, 0.08);
+
+    border-color: rgba(42, 210, 120, 0.18);
+
+    color: #55d98a;
+}
+
+
+.active-status:has(.fa-circle) i {
+    color: #55d98a;
+}
+
+
+/* =========================================
+   MOBILE MATURITY SECTION
+========================================= */
+
+@media (max-width: 650px) {
+
+    .maturity-info {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    .maturity-countdown {
+        width: 100%;
+
+        text-align: left;
+    }
+
+
+    .maturity-countdown span {
+        justify-content: flex-start;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .maturity-info {
+        padding: 11px;
+    }
+
+
+    .maturity-date strong {
+        font-size: 9px;
+    }
+
+
+    .maturity-date span,
+    .maturity-countdown span {
+        font-size: 7px;
+    }
+
+
+    .progress-header span {
+        font-size: 7px;
+    }
+
+
+    .progress-header strong {
+        font-size: 8px;
+    }
+
+}
+
