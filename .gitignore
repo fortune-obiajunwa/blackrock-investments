@@ -1,0 +1,39 @@
+﻿# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Local database
+database.db
+*.sqlite
+*.sqlite3
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Temporary backups
+*.backup
+*.bak
+*.old
+.conflict-marker-backups-*/
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Additional temporary backups
+*.withdrawal-backup
+*.asset-icons-backup
+*.withdrawal-modal-backup
+
+# Withdrawal handler backup
+*.withdrawal-handler-backup

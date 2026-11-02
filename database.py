@@ -740,4 +740,5 @@ def migrate_database():
     # =========================================
 
     connection.commit()
+
     connection.close()

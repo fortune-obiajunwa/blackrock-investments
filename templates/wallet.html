@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1618,7 +1618,7 @@
                     <div class="asset-left">
 
                         <div class="asset-icon bitcoin">
-                            ₿
+                            <i class="fa-brands fa-bitcoin" aria-label="Bitcoin"></i>
                         </div>
 
 
@@ -1662,7 +1662,7 @@
                     <div class="asset-left">
 
                         <div class="asset-icon ethereum">
-                            Ξ
+                            <i class="fa-brands fa-ethereum" aria-label="Ethereum"></i>
                         </div>
 
 
@@ -1706,7 +1706,7 @@
                     <div class="asset-left">
 
                         <div class="asset-icon usdt">
-                            $
+                            <svg viewBox="0 0 200 200" aria-label="Tether logo"><circle cx="100" cy="100" r="96" fill="currentColor"/><path d="M42 48h116v27h-43v22c34 2 58 9 58 18 0 10-33 18-73 19v37H100v-37c-40-1-73-9-73-19 0-9 24-16 58-18V75H42V48z" fill="#fff"/></svg>
                         </div>
 
 
@@ -1750,7 +1750,7 @@
                     <div class="asset-left">
 
                         <div class="asset-icon bnb">
-                            B
+                            <svg viewBox="0 0 100 100" aria-label="BNB logo"><path fill="currentColor" d="M50 5 68 23 50 41 32 23 50 5ZM23 32 41 50 23 68 5 50 23 32ZM77 32 95 50 77 68 59 50 77 32ZM50 59 68 77 50 95 32 77 50 59ZM50 32 68 50 50 68 32 50 50 32Z"/></svg>
                         </div>
 
 
@@ -2339,7 +2339,202 @@ if (withdrawForm) {
 </script>
 
 
+
+{% if withdrawal_receipt %}
+<style>
+    #withdrawal-success-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(10, 25, 48, 0.62);
+        backdrop-filter: blur(5px);
+        font-family: Inter, sans-serif;
+    }
+
+    #withdrawal-success-modal .withdrawal-receipt {
+        width: 100%;
+        max-width: 410px;
+        overflow: hidden;
+        background: #ffffff;
+        border-radius: 22px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+        text-align: center;
+        animation: withdrawalReceiptIn 0.3s ease-out;
+    }
+
+    #withdrawal-success-modal .receipt-content {
+        padding: 34px 28px 26px;
+    }
+
+    #withdrawal-success-modal .success-icon {
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #e8f2ff;
+        color: #1769e8;
+        font-size: 36px;
+    }
+
+    #withdrawal-success-modal .receipt-title {
+        margin: 0 0 10px;
+        color: #14243a;
+        font-size: 23px;
+        font-weight: 800;
+    }
+
+    #withdrawal-success-modal .receipt-subtitle {
+        margin: 0 0 25px;
+        color: #748198;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.1px;
+        line-height: 1.7;
+    }
+
+    #withdrawal-success-modal .receipt-amount {
+        margin: 0 0 8px;
+        color: #1769e8;
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    #withdrawal-success-modal .receipt-debited {
+        margin: 0 0 28px;
+        color: #52627a;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.7px;
+    }
+
+    #withdrawal-success-modal .receipt-divider {
+        height: 1px;
+        margin: 0 0 20px;
+        background: #e9eef5;
+    }
+
+    #withdrawal-success-modal .receipt-details {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    #withdrawal-success-modal .receipt-label {
+        color: #8793a5;
+        font-size: 12px;
+    }
+
+    #withdrawal-success-modal .receipt-value {
+        color: #26364d;
+        font-size: 12px;
+        font-weight: 700;
+        text-align: right;
+    }
+
+    #withdrawal-success-modal .receipt-done {
+        width: 100%;
+        margin-top: 14px;
+        padding: 15px;
+        border: 0;
+        border-radius: 12px;
+        background: #1769e8;
+        color: #ffffff;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    #withdrawal-success-modal .receipt-done:hover {
+        background: #1055c4;
+    }
+
+    @keyframes withdrawalReceiptIn {
+        from {
+            opacity: 0;
+            transform: translateY(15px) scale(0.97);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @media (max-width: 480px) {
+        #withdrawal-success-modal .receipt-content {
+            padding: 30px 22px 23px;
+        }
+
+        #withdrawal-success-modal .receipt-amount {
+            font-size: 31px;
+        }
+    }
+</style>
+
+<div id="withdrawal-success-modal" role="dialog"
+     aria-modal="true" aria-labelledby="withdrawal-receipt-title">
+    <div class="withdrawal-receipt">
+        <div class="receipt-content">
+
+            <div class="success-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+            <h2 class="receipt-title" id="withdrawal-receipt-title">
+                Withdrawal Successful
+            </h2>
+
+            <p class="receipt-subtitle">
+                YOUR WITHDRAWAL HAS BEEN COMPLETED
+            </p>
+
+            <div class="receipt-amount">
+                ${{ "%.2f"|format(withdrawal_receipt["amount"]) }}
+            </div>
+
+            <p class="receipt-debited">
+                HAS BEEN DEBITED FROM YOUR ACCOUNT
+            </p>
+
+            <div class="receipt-divider"></div>
+
+            <div class="receipt-details">
+                <span class="receipt-label">Date</span>
+                <span class="receipt-value">
+                    {{ withdrawal_receipt["date"] }}
+                </span>
+            </div>
+
+            <div class="receipt-details">
+                <span class="receipt-label">Time</span>
+                <span class="receipt-value">
+                    {{ withdrawal_receipt["time"] }}
+                </span>
+            </div>
+
+            <button type="button" class="receipt-done"
+                    onclick="document.getElementById('withdrawal-success-modal').remove()">
+                Done
+            </button>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
 </body>
 
 </html>
+
 

@@ -1,4 +1,4 @@
-from flask import (
+﻿from flask import (
     Blueprint,
     render_template,
     request,
@@ -150,12 +150,18 @@ def wallet():
             url_for("auth.login")
         )
 
+    withdrawal_receipt = session.pop(
+        "withdrawal_receipt",
+        None
+    )
+
     return render_template(
         "wallet.html",
         user=user,
         pending_withdrawals=pending_withdrawals,
         pending_deposits=pending_deposits,
-        transactions=transactions
+        transactions=transactions,
+        withdrawal_receipt=withdrawal_receipt
     )
 
 
@@ -1080,7 +1086,7 @@ def withdraw():
     """, (
         session["user_id"],
         amount,
-        "Pending",
+        "Completed",
         withdrawal_method,
         bank_name,
         account_name,
@@ -1098,16 +1104,16 @@ def withdraw():
 
     if withdrawal_method == "bank":
 
-        description = (
-            "Bank withdrawal request "
-            f"#{withdrawal_id} pending admin verification"
+            description = (
+            "Bank withdrawal recorded as completed "
+            f"(reference #{withdrawal_id})"
         )
-
     else:
 
+
         description = (
-            "Crypto withdrawal request "
-            f"#{withdrawal_id} pending admin verification"
+            "Crypto withdrawal recorded as completed "
+            f"(reference #{withdrawal_id})"
         )
 
     connection.execute("""
@@ -1124,7 +1130,7 @@ def withdraw():
         session["user_id"],
         "Withdrawal",
         amount,
-        "Pending",
+        "Completed",
         description
     ))
 
@@ -1133,6 +1139,18 @@ def withdraw():
     # =========================================
 
     connection.commit()
+
+    # =========================================
+    # CREATE ONE-TIME WITHDRAWAL RECEIPT
+    # =========================================
+
+    completed_at = datetime.now()
+
+    session["withdrawal_receipt"] = {
+        "amount": amount,
+        "date": completed_at.strftime("%d %B %Y"),
+        "time": completed_at.strftime("%I:%M:%S %p")
+    }
 
     connection.close()
 
